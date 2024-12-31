@@ -1,85 +1,80 @@
-let originalText = [];
-
-function romanizePage(languages) {
-  // 保存原始文本以便还原
-  originalText = [];
-
-  const body = document.body;
-  const range = document.createRange();
-  range.selectNodeContents(body);
-
-  languages.forEach((lang) => {
-    let regex;
-    let romanizeFunc;
-
-    switch (lang) {
-      case 'japanese':
-        regex = /[\p{Script=Hiragana}\p{Script=Katakana}\p{InCJK_Unified_Ideographs}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InCJK_Unified_Ideographs_Extension_C}\p{InCJK_Unified_Ideographs_Extension_D}\p{InCJK_Compatibility_Ideographs_Supplement}]/gu;
-        romanizeFunc = romanizeJapanese;
-        break;
-      case 'korean':
-        regex = /[\p{Script=Hangul}]/gu;
-        romanizeFunc = romanizeKorean;
-        break;
-      case 'arabic':
-        regex = /[ء-ي]/gu;
-        romanizeFunc = romanizeArabic;
-        break;
-      case 'russian':
-        regex = /[А-яЁё]/gu;
-        romanizeFunc = romanizeRussian;
-        break;
-      default:
-        return;
-    }
-
-    const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-
-    while ((node = walker.nextNode())) {
-      const text = node.textContent;
-      const matches = text.match(regex);
-
-      if (matches) {
-        const newText = text.replace(regex, (match) => {
-          const romanized = romanizeFunc(match);
-          originalText.push({ original: match, romanized: romanized });
-          return `<span class="romanized" style="position:relative; display:inline-block;">
-                    ${match}
-                    <span class="romanized-mark">${romanized}</span>
-                  </span>`;
-        });
-
-        const newNode = document.createTextNode(newText);
-        range.setStartBefore(node);
-        range.setEndAfter(node);
-        range.deleteContents();
-        range.insertNode(newNode);
-      }
+function romanizePage(selectedLanguages) {
+  const elements = document.querySelectorAll('body *');
+  elements.forEach(element => {
+    const text = element.textContent;
+    const romanizedText = romanizeText(text, selectedLanguages);
+    if (romanizedText !== text) {
+      element.innerHTML = romanizedText;
     }
   });
 }
 
 function restorePage() {
-  originalText.forEach((item) => {
-    document.body.innerHTML = document.body.innerHTML.replace(item.romanized, item.original);
+  const elements = document.querySelectorAll('.romanized');
+  elements.forEach(element => {
+    const originalText = element.getAttribute('data-original-text');
+    if (originalText) {
+      element.innerHTML = originalText;
+      element.removeAttribute('data-original-text');
+    }
   });
 }
 
-function romanizeJapanese(text) {
-  // 使用某种方式将日文字符转为罗马音
-  // 假设使用简单的映射示例
-  return "romaji"; // 示例返回
+function romanizeText(text, selectedLanguages) {
+  let romanizedText = '';
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    let romanizedChar = char;
+    if (selectedLanguages.includes('japanese') && isJapanese(char)) {
+      romanizedChar = getJapaneseRomanization(char);
+    } else if (selectedLanguages.includes('korean') && isKorean(char)) {
+      romanizedChar = getKoreanRomanization(char);
+    } else if (selectedLanguages.includes('arabic') && isArabic(char)) {
+      romanizedChar = getArabicRomanization(char);
+    } else if (selectedLanguages.includes('russian') && isRussian(char)) {
+      romanizedChar = getRussianRomanization(char);
+    }
+    romanizedText += romanizedChar;
+  }
+  return romanizedText;
 }
 
-function romanizeKorean(text) {
-  return "romaji"; // 示例返回
+function isJapanese(char) {
+  const japaneseRegex = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/;
+  return japaneseRegex.test(char);
 }
 
-function romanizeArabic(text) {
-  return "romanization"; // 示例返回
+function isKorean(char) {
+  const koreanRegex = /[\uAC00-\uD7A3]/;
+  return koreanRegex.test(char);
 }
 
-function romanizeRussian(text) {
-  return "romanization"; // 示例返回
+function isArabic(char) {
+  const arabicRegex = /[\u0600-\u06FF]/;
+  return arabicRegex.test(char);
+}
+
+function isRussian(char) {
+  const russianRegex = /[\u0400-\u04FF]/;
+  return russianRegex.test(char);
+}
+
+function getJapaneseRomanization(char) {
+  // 这里需要实现将日文转换为罗马音的逻辑
+  return char; // 暂时返回原字符
+}
+
+function getKoreanRomanization(char) {
+  // 这里需要实现将韩文转换为罗马音的逻辑
+  return char; // 暂时返回原字符
+}
+
+function getArabicRomanization(char) {
+  // 这里需要实现将阿拉伯文转换为罗马音的逻辑
+  return char; // 暂时返回原字符
+}
+
+function getRussianRomanization(char) {
+  // 这里需要实现将俄文转换为罗马音的逻辑
+  return char; // 暂时返回原字符
 }

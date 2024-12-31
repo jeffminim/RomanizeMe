@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('romanize-button').addEventListener('click', function () {
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('romanize-button').addEventListener('click', function() {
+    console.log('罗马音化按钮被点击');
+    console.log("Romanize button clicked");
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      console.log("Tabs queried:", tabs);
       const tabId = tabs[0].id;
       const selectedLanguages = getSelectedLanguages();
       chrome.scripting.executeScript({
         target: { tabId },
-        // func: romanizePage,
-        func: () => {
-          console.log('罗马音化按钮被点击');
-        },
+        func: romanizePage,
         args: [selectedLanguages]
       }, () => {
         console.log("Script executed");
@@ -17,14 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   document.getElementById("restore-button").addEventListener("click", () => {
+    console.log("Restore button clicked");
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0].id;
       chrome.scripting.executeScript({
         target: { tabId },
-        // func: restorePage
-        func: () => {
-          console.log("还原按钮被点击");
-        }
+        func: restorePage
       });
     });
   });

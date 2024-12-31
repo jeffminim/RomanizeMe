@@ -1,36 +1,110 @@
 #popup-container {
-    width: 200px;
-    padding: 10px;
+  width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #button-section {
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 button {
-    width: 100%;
-    margin-bottom: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+#romanize-button {
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+}
+
+#restore-button {
+  background-color: white;
+  color: #1e90ff;
+  border: 2px solid #1e90ff;
 }
 
 #settings-section {
-    font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
+#settings-section label {
+  margin-bottom: 2px; /* 减小语言列表每行的间距 */
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+#settings-section input[type="checkbox"] {
+  cursor: not-allowed;
+  margin-right: 5px;
+}
+
+#settings-section .disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+#settings-section .disabled::after {
+  content: "（正在开发）";
+  font-size: 12px;
+  color: #aaa;
+  margin-left: 5px;
+}
+
+#note-section {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+#note-section h2 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 2px; /* 减小备注区除软件名称外的间距 */
+}
+
+#note-section p {
+  margin: 0;
+  margin-bottom: 2px; /* 减小备注区除软件名称外的间距 */
+}
 
 .romanized {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .romanized-mark {
-    position: absolute;
-    top: -15px;
-    /* 罗马音标注的位置，调整至字符上方 */
-    left: 0;
-    font-size: 0.75em;
-    /* 可以调整标注的字体大小 */
-    color: #555;
-    /* 标注颜色 */
-    font-family: Arial, sans-serif;
-    /* 可以选择合适的字体 */
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-size: 0.75em;
+  color: #555;
+  font-family: Arial, sans-serif;
 }

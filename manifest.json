@@ -1,22 +1,14 @@
 {
-  "manifest_version": 3,
   "name": "RomanizeMe",
-  "description": "A tool to help you learn pronunciations of non-Latin characters.",
   "version": "1.0",
+  "manifest_version": 3,
+  "description": "RomanizeMe is a Chrome extension that helps you romanize non-Latin languages. ",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
-  "background": {
-    "service_worker": "background/background.js"
-  },
   "action": {
-    "default_popup": "popup/popup.html",
-    "default_icon": {
-      "16": "assets/romanizemelogo16.png",
-      "32": "assets/romanizemelogo32.png",
-      "48": "assets/romanizemelogo48.png",
-      "128": "assets/romanizemelogo128.png"
-    }
+    "default_popup": "popup/popup.html"
   },
   "content_scripts": [
     {
