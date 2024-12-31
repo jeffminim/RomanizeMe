@@ -1,0 +1,36 @@
+#popup-container {
+    width: 200px;
+    padding: 10px;
+}
+
+#button-section {
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#settings-section {
+    font-size: 14px;
+}
+
+
+.romanized {
+    position: relative;
+    display: inline-block;
+}
+
+.romanized-mark {
+    position: absolute;
+    top: -15px;
+    /* 罗马音标注的位置，调整至字符上方 */
+    left: 0;
+    font-size: 0.75em;
+    /* 可以调整标注的字体大小 */
+    color: #555;
+    /* 标注颜色 */
+    font-family: Arial, sans-serif;
+    /* 可以选择合适的字体 */
+}
