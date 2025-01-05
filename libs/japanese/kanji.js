@@ -103,5 +103,3 @@ function getKoreanRomanization(text) {
 
   return result;
 }
-
-// export {getKoreanRomanization};

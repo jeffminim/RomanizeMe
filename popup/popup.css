@@ -61,7 +61,7 @@ button {
 }
 
 #settings-section input[type="checkbox"] {
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   margin-right: 5px;
 }
 
