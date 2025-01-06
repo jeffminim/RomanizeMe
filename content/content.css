@@ -1,12 +1,14 @@
 .romanized-word {
   position: relative;
   display: inline-block;
-  margin-right: 2px;
+  margin: 0 2px;
+  padding-top: 24px;
+  line-height: 1.5;
 }
 
 .romanized-mark {
   position: absolute;
-  top: -1.5em;
+  top: 2px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.8em;
@@ -15,4 +17,24 @@
   pointer-events: none;
   user-select: none;
   font-family: Arial, sans-serif;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 1px 4px;
+  border-radius: 2px;
+  z-index: 1;
+  min-height: 16px;
+  line-height: 1.2;
+}
+
+.romanized-word:hover .romanized-mark {
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  top: 0;
+  transition: all 0.2s ease;
+}
+
+p:has(.romanized-word), 
+div:has(.romanized-word) {
+  margin-bottom: 8px;
+  line-height: 2;
 } 
