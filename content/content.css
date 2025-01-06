@@ -1,12 +1,12 @@
-.romanized-char {
+.romanized-word {
   position: relative;
   display: inline-block;
-  margin-right: 1px;
+  margin-right: 2px;
 }
 
 .romanized-mark {
   position: absolute;
-  top: -1.2em;
+  top: -1.5em;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.8em;

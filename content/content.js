@@ -5,8 +5,9 @@ function restorePage() {
   elements.forEach(element => {
     const originalText = element.getAttribute('data-original-text');
     if (originalText) {
-      element.innerHTML = originalText;
-      element.removeAttribute('data-original-text');
+      // 创建一个文本节点来替换带注音的内容
+      const textNode = document.createTextNode(originalText);
+      element.replaceWith(textNode);
     }
   });
 }
@@ -102,31 +103,14 @@ function romanizePage(selectedLanguages) {
   
   // 确保样式表只被注入一次
   if (!document.querySelector('#romanization-styles')) {
-    const style = document.createElement('style');
+    const style = document.createElement('link');
     style.id = 'romanization-styles';
-    style.textContent = `
-      .romanized-char {
-        position: relative;
-        display: inline-block;
-      }
-      
-      .romanized-mark {
-        position: absolute;
-        top: -1.2em;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.8em;
-        color: #666;
-        white-space: nowrap;
-        pointer-events: none;
-        user-select: none;
-        font-family: Arial, sans-serif;
-      }
-    `;
+    style.rel = 'stylesheet';
+    style.type = 'text/css';
+    style.href = chrome.runtime.getURL('content/content.css');
     document.head.appendChild(style);
   }
 
-  // 获取所有文本节点
   function getAllTextNodes(node) {
     const textNodes = [];
     const walker = document.createTreeWalker(
@@ -148,39 +132,87 @@ function romanizePage(selectedLanguages) {
     return textNodes;
   }
 
-  // 获取所有需要处理的文本节点
+  // 分词函数
+  function splitIntoWords(text) {
+    const words = [];
+    let currentWord = '';
+    let currentType = null;
+
+    for (let i = 0; i < text.length; i++) {
+      const char = text[i];
+      const { language, charType } = detectCharLanguageAndType(char);
+      
+      // 如果是空格或标点，直接作为单独的"词"
+      if (/\s/.test(char) || /[，。！？：；（）、]/g.test(char)) {
+        if (currentWord) {
+          words.push({
+            text: currentWord,
+            type: currentType
+          });
+          currentWord = '';
+        }
+        words.push({
+          text: char,
+          type: 'punctuation'
+        });
+        currentType = null;
+      } else {
+        // 如果当前字符类型与之前不同，说明是新词的开始
+        if (currentType && currentType !== language) {
+          if (currentWord) {
+            words.push({
+              text: currentWord,
+              type: currentType
+            });
+            currentWord = '';
+          }
+        }
+        currentWord += char;
+        currentType = language;
+      }
+    }
+
+    // 处理最后一个词
+    if (currentWord) {
+      words.push({
+        text: currentWord,
+        type: currentType
+      });
+    }
+
+    return words;
+  }
+
   const textNodes = getAllTextNodes(document.body);
   console.log('Found text nodes:', textNodes.length);
 
-  // 处理每个文本节点
   textNodes.forEach(node => {
     const element = node.parentElement;
     if (!element.classList.contains('romanized')) {
       const originalText = node.textContent;
+      const words = splitIntoWords(originalText);
       let newContent = '';
       let hasChanges = false;
-      
-      for (let i = 0; i < originalText.length; i++) {
-        const char = originalText[i];
-        const { language, charType } = detectCharLanguageAndType(char);
-        
-        if (selectedLanguages.includes(language)) {
-          const romanized = getRomanization(char, charType);
-          if (romanized && romanized !== char) {
-            newContent += `<span class="romanized-char">${char}<span class="romanized-mark">${romanized}</span></span>`;
+
+      words.forEach(word => {
+        if (selectedLanguages.includes(word.type)) {
+          // 对整个词进行罗马音转换
+          const romanized = getRomanization(word.text, word.type);
+          if (romanized && romanized !== word.text) {
+            newContent += `<span class="romanized-word">${word.text}<span class="romanized-mark">${romanized}</span></span>`;
             hasChanges = true;
-            console.log('Added romanization for:', {
-              char: char,
+            console.log('Added romanization for word:', {
+              original: word.text,
               romanized: romanized
             });
           } else {
-            newContent += char;
+            newContent += word.text;
           }
         } else {
-          newContent += char;
+          newContent += word.text;
         }
-      }
-      
+      });
+
       if (hasChanges) {
         const tempContainer = document.createElement('span');
         tempContainer.innerHTML = newContent;
@@ -220,17 +252,15 @@ function isCharInRange(char, start, end) {
   return char >= start && char <= end;
 }
 
-function getRomanization(char, charType) {
-  switch (charType) {
+function getRomanization(text, type) {
+  switch (type) {
     case 'korean':
-      const romanized = getKoreanRomanization(char);
-      console.log('Korean romanization:', {
-        char: char,
-        romanized: romanized
-      });
-      return romanized;
+      return getKoreanRomanization(text);
+    case 'japanese':
+      // 添加日语转换逻辑
+      return text;
     default:
-      return char;
+      return text;
   }
 }
 
@@ -248,7 +278,7 @@ var alphabetKorean = {
     'a',   // ㅏ
     'ae',  // ㅐ
     'ya',  // ㅑ
-    'yee', // ㅒ
+    'yae', // ㅒ
     'eo',  // ㅓ
     'e',   // ㅔ
     'yeo', // ㅕ
@@ -290,34 +320,34 @@ var alphabetKorean = {
       'h'   // ㅎ
     ],
     final: [
-      '',
-      'k',  // ㄱ
-      'k',  // ㄲ
-      'kt', // ㄳ
-      'n',  // ㄴ
-      'nt', // ㄵ
-      'nh', // ㄶ
-      't',  // ㄷ
-      'l',  // ㄹ
-      'lk', // ㄺ
-      'lm', // ㄻ
-      'lp', // ㄼ
-      'lt', // ㄽ
-      'lt', // ㄾ
-      'lp', // ㄿ
-      'lh', // ㅀ
-      'm',  // ㅁ
-      'p',  // ㅂ
-      'pt', // ㅄ
-      't',  // ㅅ
-      'tt', // ㅆ
-      'ng', // ㅇ
-      't',  // ㅈ
-      't',  // ㅊ
-      'k',  // ㅋ
-      't',  // ㅌ
-      'p',  // ㅍ
-      'h'   // ㅎ
+      '',    // 没有终声
+      'k',   // ㄱ
+      'k',   // ㄲ
+      'k',   // ㄳ
+      'n',   // ㄴ
+      'n',   // ㄵ
+      'n',   // ㄶ
+      't',   // ㄷ
+      'l',   // ㄹ
+      'k',   // ㄺ
+      'm',   // ㄻ
+      'p',   // ㄼ
+      't',   // ㄽ
+      't',   // ㄾ
+      'p',   // ㄿ
+      'l',   // ㅀ
+      'm',   // ㅁ
+      'p',   // ㅂ
+      'p',   // ㅄ
+      't',   // ㅅ
+      't',   // ㅆ
+      'ng',  // ㅇ
+      't',   // ㅈ
+      't',   // ㅊ
+      'k',   // ㅋ
+      't',   // ㅌ
+      'p',   // ㅍ
+      'h'    // ㅎ
     ]
   }
 };
@@ -325,26 +355,82 @@ var alphabetKorean = {
 function getKoreanRomanization(text) {
   let result = '';
   let currentSyllable = '';
+  let isFirstSyllable = true;
 
   for (let i = 0; i < text.length; i++) {
     const charCode = text.charCodeAt(i);
 
     if (charCode >= 0xAC00 && charCode <= 0xD7A3) {
+      // 处理韩文音节
       const syllableIndex = charCode - 0xAC00;
       const initialIndex = Math.floor(syllableIndex / 588);
       const vowelIndex = Math.floor((syllableIndex % 588) / 28);
       const finalIndex = syllableIndex % 28;
 
-      currentSyllable += alphabetKorean.consonants.initial[initialIndex];
-      currentSyllable += alphabetKorean.vowels[vowelIndex];
-      currentSyllable += alphabetKorean.consonants.final[finalIndex];
-
-      result += currentSyllable;
       currentSyllable = '';
+      
+      // 添加初声（声母）
+      currentSyllable += alphabetKorean.consonants.initial[initialIndex];
+      
+      // 添加中声（元音）
+      currentSyllable += alphabetKorean.vowels[vowelIndex];
+      
+      // 添加终声（韵母），如果有的话
+      if (finalIndex > 0) {
+        currentSyllable += alphabetKorean.consonants.final[finalIndex];
+      }
+
+      // 处理连音规则
+      if (!isFirstSyllable) {
+        // 如果前一个音节以辅音结尾，当前音节以元音开始，需要特殊处理
+        if (result.endsWith('k') || result.endsWith('t') || result.endsWith('p')) {
+          // 处理音变规则
+          const lastChar = result.charAt(result.length - 1);
+          if (currentSyllable.startsWith('i') || currentSyllable.startsWith('y')) {
+            // k, t, p 在 i, y 前变成 g, d, b
+            const changes = { 'k': 'g', 't': 'd', 'p': 'b' };
+            result = result.slice(0, -1) + changes[lastChar];
+          }
+        }
+      }
+
+      // 在音节之间添加分隔
+      if (!isFirstSyllable) {
+        result += '';  // 可以在这里添加音节分隔符，如果需要的话
+      }
+      
+      result += currentSyllable;
+      isFirstSyllable = false;
     } else {
+      // 处理非韩文字符
       result += text[i];
+      isFirstSyllable = true;  // 重置标志
     }
   }
+
+  // 应用一些后处理规则
+  result = result
+    // 处理连音规则
+    .replace(/n(g|k)/g, 'ng')
+    .replace(/l(g|k)/g, 'lg')
+    .replace(/l(m|b)/g, 'lm')
+    .replace(/l(s|t)/g, 'lt')
+    // 处理一些常见的发音规则
+    .replace(/ls/g, 'ss')
+    .replace(/lt/g, 'll')
+    // 优化一些特殊情况
+    .replace(/wi/g, 'ui')
+    .replace(/wo/g, 'wo')
+    // 处理重复的辅音
+    .replace(/kk/g, 'k')
+    .replace(/tt/g, 't')
+    .replace(/pp/g, 'p')
+    .replace(/ss/g, 's');
+
+  console.log('Korean romanization:', {
+    input: text,
+    output: result
+  });
 
   return result;
 }
