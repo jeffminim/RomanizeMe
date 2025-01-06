@@ -1,21 +1,31 @@
-import { romanizeText, restorePage } from '../content/content.js';
-
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('romanize-button').addEventListener('click', function() {
-      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       console.log("Tabs queried:", tabs);
       const tabId = tabs[0].id;
       const selectedLanguages = getSelectedLanguages();
-       chrome.scripting.executeScript({
-        target: { tabId },
-        func: romanizePage,
-        args: [selectedLanguages]
-      }, (results) => {
-        if (chrome.runtime.lastError) {
-          console.error(chrome.runtime.lastError);
-          return;
-        }
-        console.log("Script executed:", results);
+      
+      // 注入内容脚本
+      chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        files: ['content/content.js']
+      }).then(() => {
+        // 执行 romanizePage 函数
+        chrome.scripting.executeScript({
+          target: { tabId: tabId },
+          func: (languages) => {
+            console.log('Executing romanizePage with languages:', languages);
+            // 确保 romanizePage 在全局作用域可用
+            window.romanizePage(languages);
+          },
+          args: [selectedLanguages]
+        }).then(() => {
+          console.log('Romanization completed');
+        }).catch((err) => {
+          console.error('Error during romanization:', err);
+        });
+      }).catch((err) => {
+        console.error('Error injecting content script:', err);
       });
     });
   });
@@ -26,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const tabId = tabs[0].id;
       chrome.scripting.executeScript({
         target: { tabId },
-        func: restorePage
+        func: () => {
+          // 确保 restorePage 在全局作用域可用
+          window.restorePage();
+        }
       });
     });
   });
@@ -38,19 +51,6 @@ function getSelectedLanguages() {
   if (document.getElementById("lang-korean").checked) selectedLanguages.push('korean');
   if (document.getElementById("lang-arabic").checked) selectedLanguages.push('arabic');
   if (document.getElementById("lang-russian").checked) selectedLanguages.push('russian');
+  console.log('Selected languages:', selectedLanguages);
   return selectedLanguages;
-}
-
-function romanizePage(selectedLanguages) {
-  const elements = document.querySelectorAll('*');
-  elements.forEach(element => {
-    console.log("Processing element:", element);
-    const originalText = element.textContent;
-    const romanizedText = romanizeText(originalText, selectedLanguages);
-    if (originalText !== romanizedText) {
-      element.innerHTML = romanizedText;
-      element.classList.add('romanized');
-      element.setAttribute('data-original-text', originalText);
-    }
-  });
 }

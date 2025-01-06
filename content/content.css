@@ -1,0 +1,18 @@
+.romanized-char {
+  position: relative;
+  display: inline-block;
+  margin-right: 1px;
+}
+
+.romanized-mark {
+  position: absolute;
+  top: -1.2em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8em;
+  color: #666;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  font-family: Arial, sans-serif;
+} 

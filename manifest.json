@@ -16,24 +16,14 @@
         "<all_urls>"
       ],
       "js": [
-        "content/content.js",
-        "libs/korean/kr.js"
-      ],
-      "type": "module"
+        "content/content.js"
+      ]
     }
   ],
-  "web_accessible_resources": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "resources": [
-        "content/content.js",
-        "libs/korean/kr.js"
-      ],
-      "type": "module"
-    }
-  ],
+  "web_accessible_resources": [{
+    "resources": ["content/content.css"],
+    "matches": ["<all_urls>"]
+  }],
   "icons": {
     "16": "assets/romanizemelogo16.png",
     "32": "assets/romanizemelogo32.png",

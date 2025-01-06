@@ -95,16 +95,3 @@ button {
   margin-bottom: 2px; /* 减小备注区除软件名称外的间距 */
 }
 
-.romanized {
-  position: relative;
-  display: inline-block;
-}
-
-.romanized-mark {
-  position: absolute;
-  top: -15px;
-  left: 0;
-  font-size: 0.75em;
-  color: #555;
-  font-family: Arial, sans-serif;
-}
