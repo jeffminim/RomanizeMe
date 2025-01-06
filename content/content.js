@@ -1,4 +1,6 @@
-// export  { romanizeText, restorePage };
+// 由于Chrome扩展的限制,我们不能使用ES6模块语法
+// getKoreanRomanization 函数已在 ko_hangul.js 中通过 script 标签引入
+
 
 function restorePage() {
   const elements = document.querySelectorAll('.romanized');
@@ -72,11 +74,6 @@ function shouldTranslateElement(element) {
 
 
 function romanizeText(text, selectedLanguages) {
-  console.log('romanizeText input:', {
-    text: text,
-    selectedLanguages: selectedLanguages
-  });
-  
   let romanizedText = '';
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
@@ -84,22 +81,20 @@ function romanizeText(text, selectedLanguages) {
     if (selectedLanguages.includes(language)) {
       const romanized = getRomanization(char, charType);
       romanizedText += romanized;
-      console.log('Romanized char:', {
-        original: char,
-        romanized: romanized,
-        language: language,
-        charType: charType
-      });
+      // console.log('Romanized char:', {
+      //   original: char,
+      //   romanized: romanized,
+      //   language: language,
+      //   charType: charType
+      // });
     } else {
       romanizedText += char;
     }
   }
-  
-  console.log('romanizeText output:', romanizedText);
+
   return romanizedText;
 }
 function romanizePage(selectedLanguages) {
-  console.log('Starting romanizePage with languages:', selectedLanguages);
   
   // 确保样式表只被注入一次
   if (!document.querySelector('#romanization-styles')) {
@@ -201,10 +196,6 @@ function romanizePage(selectedLanguages) {
           if (romanized && romanized !== word.text) {
             newContent += `<span class="romanized-word">${word.text}<span class="romanized-mark">${romanized}</span></span>`;
             hasChanges = true;
-            console.log('Added romanization for word:', {
-              original: word.text,
-              romanized: romanized
-            });
           } else {
             newContent += word.text;
           }
@@ -220,11 +211,6 @@ function romanizePage(selectedLanguages) {
         tempContainer.setAttribute('data-original-text', originalText);
         
         node.replaceWith(tempContainer);
-        
-        console.log('Node updated:', {
-          original: originalText,
-          new: tempContainer.innerHTML
-        });
       }
     }
   });
@@ -263,176 +249,4 @@ function getRomanization(text, type) {
       return text;
   }
 }
-
-
-
-// --------------------------------------------------------
-// I have to integrate all the codes into this single file to make it work.
-// The following codes are the basic logics for romanization.
-// I will add more languages later.
-
-// ----- Korean romanization ------
-
-var alphabetKorean = {
-  vowels: [
-    'a',   // ㅏ
-    'ae',  // ㅐ
-    'ya',  // ㅑ
-    'yae', // ㅒ
-    'eo',  // ㅓ
-    'e',   // ㅔ
-    'yeo', // ㅕ
-    'ye',  // ㅖ
-    'o',   // ㅗ
-    'wa',  // ㅘ
-    'wae', // ㅙ
-    'oe',  // ㅚ
-    'yo',  // ㅛ
-    'u',   // ㅜ
-    'wo',  // ㅝ
-    'we',  // ㅞ
-    'wi',  // ㅟ
-    'yu',  // ㅠ
-    'eu',  // ㅡ
-    'ui',  // ㅢ
-    'i'    // ㅣ
-  ],
-  consonants: {
-    initial: [
-      'g',  // ㄱ
-      'kk', // ㄲ
-      'n',  // ㄴ
-      'd',  // ㄷ
-      'tt', // ㄸ
-      'r',  // ㄹ
-      'm',  // ㅁ
-      'b',  // ㅂ
-      'pp', // ㅃ
-      's',  // ㅅ
-      'ss', // ㅆ
-      '',   // ㅇ
-      'j',  // ㅈ
-      'jj', // ㅉ
-      'ch', // ㅊ
-      'k',  // ㅋ
-      't',  // ㅌ
-      'p',  // ㅍ
-      'h'   // ㅎ
-    ],
-    final: [
-      '',    // 没有终声
-      'k',   // ㄱ
-      'k',   // ㄲ
-      'k',   // ㄳ
-      'n',   // ㄴ
-      'n',   // ㄵ
-      'n',   // ㄶ
-      't',   // ㄷ
-      'l',   // ㄹ
-      'k',   // ㄺ
-      'm',   // ㄻ
-      'p',   // ㄼ
-      't',   // ㄽ
-      't',   // ㄾ
-      'p',   // ㄿ
-      'l',   // ㅀ
-      'm',   // ㅁ
-      'p',   // ㅂ
-      'p',   // ㅄ
-      't',   // ㅅ
-      't',   // ㅆ
-      'ng',  // ㅇ
-      't',   // ㅈ
-      't',   // ㅊ
-      'k',   // ㅋ
-      't',   // ㅌ
-      'p',   // ㅍ
-      'h'    // ㅎ
-    ]
-  }
-};
-
-function getKoreanRomanization(text) {
-  let result = '';
-  let currentSyllable = '';
-  let isFirstSyllable = true;
-
-  for (let i = 0; i < text.length; i++) {
-    const charCode = text.charCodeAt(i);
-
-    if (charCode >= 0xAC00 && charCode <= 0xD7A3) {
-      // 处理韩文音节
-      const syllableIndex = charCode - 0xAC00;
-      const initialIndex = Math.floor(syllableIndex / 588);
-      const vowelIndex = Math.floor((syllableIndex % 588) / 28);
-      const finalIndex = syllableIndex % 28;
-
-      currentSyllable = '';
-      
-      // 添加初声（声母）
-      currentSyllable += alphabetKorean.consonants.initial[initialIndex];
-      
-      // 添加中声（元音）
-      currentSyllable += alphabetKorean.vowels[vowelIndex];
-      
-      // 添加终声（韵母），如果有的话
-      if (finalIndex > 0) {
-        currentSyllable += alphabetKorean.consonants.final[finalIndex];
-      }
-
-      // 处理连音规则
-      if (!isFirstSyllable) {
-        // 如果前一个音节以辅音结尾，当前音节以元音开始，需要特殊处理
-        if (result.endsWith('k') || result.endsWith('t') || result.endsWith('p')) {
-          // 处理音变规则
-          const lastChar = result.charAt(result.length - 1);
-          if (currentSyllable.startsWith('i') || currentSyllable.startsWith('y')) {
-            // k, t, p 在 i, y 前变成 g, d, b
-            const changes = { 'k': 'g', 't': 'd', 'p': 'b' };
-            result = result.slice(0, -1) + changes[lastChar];
-          }
-        }
-      }
-
-      // 在音节之间添加分隔
-      if (!isFirstSyllable) {
-        result += '';  // 可以在这里添加音节分隔符，如果需要的话
-      }
-      
-      result += currentSyllable;
-      isFirstSyllable = false;
-    } else {
-      // 处理非韩文字符
-      result += text[i];
-      isFirstSyllable = true;  // 重置标志
-    }
-  }
-
-  // 应用一些后处理规则
-  result = result
-    // 处理连音规则
-    .replace(/n(g|k)/g, 'ng')
-    .replace(/l(g|k)/g, 'lg')
-    .replace(/l(m|b)/g, 'lm')
-    .replace(/l(s|t)/g, 'lt')
-    // 处理一些常见的发音规则
-    .replace(/ls/g, 'ss')
-    .replace(/lt/g, 'll')
-    // 优化一些特殊情况
-    .replace(/wi/g, 'ui')
-    .replace(/wo/g, 'wo')
-    // 处理重复的辅音
-    .replace(/kk/g, 'k')
-    .replace(/tt/g, 't')
-    .replace(/pp/g, 'p')
-    .replace(/ss/g, 's');
-
-  console.log('Korean romanization:', {
-    input: text,
-    output: result
-  });
-
-  return result;
-}
-
 

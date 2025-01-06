@@ -16,8 +16,10 @@
         "<all_urls>"
       ],
       "js": [
+        "libs/ko_hangul.js",
         "content/content.js"
-      ]
+      ],
+      "type": "module"
     }
   ],
   "web_accessible_resources": [{

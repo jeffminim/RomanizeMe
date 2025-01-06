@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.scripting.executeScript({
           target: { tabId: tabId },
           func: (languages) => {
-            console.log('Executing romanizePage with languages:', languages);
             // 确保 romanizePage 在全局作用域可用
             window.romanizePage(languages);
           },
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.getElementById("restore-button").addEventListener("click", () => {
-    console.log("Restore button clicked");
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0].id;
       chrome.scripting.executeScript({
@@ -51,6 +49,5 @@ function getSelectedLanguages() {
   if (document.getElementById("lang-korean").checked) selectedLanguages.push('korean');
   if (document.getElementById("lang-arabic").checked) selectedLanguages.push('arabic');
   if (document.getElementById("lang-russian").checked) selectedLanguages.push('russian');
-  console.log('Selected languages:', selectedLanguages);
   return selectedLanguages;
 }
