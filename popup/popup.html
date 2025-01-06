@@ -8,25 +8,36 @@
 </head>
 <body>
   <div id="popup-container">
-    <div class="card" id="button-section">
+    <div id="button-section" class="card">
       <button id="romanize-button">罗马音化</button>
-      <button id="restore-button">还原页面</button>
+      <button id="restore-button">还原</button>
     </div>
-    <div class="card" id="settings-section">
-      <label><input type="checkbox" id="lang-japanese"> 日文</label><br>
-      <label><input type="checkbox" id="lang-korean"> 韩文</label><br>
-      <label class="disabled"><input type="checkbox" id="lang-arabic" disabled>阿拉伯文</label><br>
-      <label class="disabled"><input type="checkbox" id="lang-russian" disabled>俄语</label><br>
+
+    <div id="settings-section" class="card">
+      <div class="checkbox-group">
+        <input type="checkbox" id="lang-japanese">
+        <label for="lang-japanese">日语</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="lang-korean">
+        <label for="lang-korean">韩语</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="lang-arabic" disabled>
+        <label for="lang-arabic" class="disabled">阿拉伯语</label>
+      </div>
+      <div class="checkbox-group">
+        <input type="checkbox" id="lang-russian" disabled>
+        <label for="lang-russian" class="disabled">俄语</label>
+      </div>
     </div>
-    <div class="card" id="note-section">
+
+    <div id="note-section" class="card">
       <h2>RomanizeMe</h2>
-      <p>版本号：v1.0</p>
+      <p>版本：1.0</p>
       <p>作者：Jeff H</p>
     </div>
   </div>
-  <!-- <script type="module" src="./content/content.js"></script> -->
   <script type="module" src="popup.js"></script>
-  
-
 </body>
 </html>

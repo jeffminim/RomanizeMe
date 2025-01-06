@@ -1,43 +1,75 @@
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('romanize-button').addEventListener('click', function() {
+  // 获取按钮和语言选择框元素
+  const romanizeButton = document.getElementById('romanize-button');
+  const restoreButton = document.getElementById('restore-button');
+  
+  // 分别获取可用和禁用的语言选择框
+  const availableCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([disabled])');
+  const disabledCheckboxes = document.querySelectorAll('input[type="checkbox"][disabled]');
+  
+  // 初始状态设置
+  restoreButton.disabled = true;  // 初始时"还原"按钮禁用
+
+  // 罗马音化按钮点击事件
+  romanizeButton.addEventListener('click', function() {
+    const selectedLanguages = getSelectedLanguages();
+    
+    if (selectedLanguages.length === 0) {
+      alert('请至少选择一种语言');
+      return;
+    }
+
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      console.log("Tabs queried:", tabs);
       const tabId = tabs[0].id;
-      const selectedLanguages = getSelectedLanguages();
       
-      // 注入内容脚本
       chrome.scripting.executeScript({
         target: { tabId: tabId },
         files: ['content/content.js']
       }).then(() => {
-        // 执行 romanizePage 函数
         chrome.scripting.executeScript({
           target: { tabId: tabId },
           func: (languages) => {
-            // 确保 romanizePage 在全局作用域可用
             window.romanizePage(languages);
           },
           args: [selectedLanguages]
         }).then(() => {
-          console.log('Romanization completed');
-        }).catch((err) => {
-          console.error('Error during romanization:', err);
+          // 更新按钮状态
+          romanizeButton.disabled = true;
+          restoreButton.disabled = false;
+          
+          // 只禁用可用的语言选择框
+          availableCheckboxes.forEach(checkbox => {
+            checkbox.disabled = true;
+          });
         });
-      }).catch((err) => {
-        console.error('Error injecting content script:', err);
       });
     });
   });
 
-  document.getElementById("restore-button").addEventListener("click", () => {
+  // 还原按钮点击事件
+  restoreButton.addEventListener('click', function() {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       const tabId = tabs[0].id;
       chrome.scripting.executeScript({
         target: { tabId },
         func: () => {
-          // 确保 restorePage 在全局作用域可用
           window.restorePage();
         }
+      }).then(() => {
+        // 更新按钮状态
+        romanizeButton.disabled = false;
+        restoreButton.disabled = true;
+        
+        // 只启用原本可用的语言选择框
+        availableCheckboxes.forEach(checkbox => {
+          checkbox.disabled = false;
+        });
+        
+        // 确保开发中的选择框保持禁用状态
+        disabledCheckboxes.forEach(checkbox => {
+          checkbox.disabled = true;
+          checkbox.checked = false; // 确保未选中状态
+        });
       });
     });
   });
@@ -47,7 +79,6 @@ function getSelectedLanguages() {
   const selectedLanguages = [];
   if (document.getElementById("lang-japanese").checked) selectedLanguages.push('japanese');
   if (document.getElementById("lang-korean").checked) selectedLanguages.push('korean');
-  if (document.getElementById("lang-arabic").checked) selectedLanguages.push('arabic');
-  if (document.getElementById("lang-russian").checked) selectedLanguages.push('russian');
+  // 不检查禁用的选择框
   return selectedLanguages;
 }
