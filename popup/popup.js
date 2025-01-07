@@ -153,3 +153,39 @@ document.querySelectorAll('.script-checkbox').forEach(checkbox => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const scriptCheckboxes = document.querySelectorAll('.script-checkbox');
+
+  scriptCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const scriptSection = this.closest('.script-section');
+      const radioOptions = scriptSection.querySelectorAll('.radio-option input[type="radio"]');
+
+      // 根据复选框的状态更新卡片的样式和单选框的可用性
+      if (this.checked) {
+        scriptSection.classList.add('active'); // 添加选中样式
+        radioOptions.forEach(radio => {
+          radio.disabled = false; // 启用单选框
+        });
+        scriptSection.style.borderColor = '#1a73e8'; // 设置边框颜色为蓝色
+      } else {
+        scriptSection.classList.remove('active'); // 移除选中样式
+        radioOptions.forEach(radio => {
+          radio.disabled = true; // 禁用单选框
+          radio.checked = false; // 取消选中状态
+        });
+        scriptSection.style.borderColor = '#e0e0e0'; // 恢复边框颜色
+      }
+    });
+
+    // 初始化时禁用未选中的单选框
+    const scriptSection = checkbox.closest('.script-section');
+    const radioOptions = scriptSection.querySelectorAll('.radio-option input[type="radio"]');
+    if (!checkbox.checked) {
+      radioOptions.forEach(radio => {
+        radio.disabled = true; // 禁用单选框
+      });
+    }
+  });
+});

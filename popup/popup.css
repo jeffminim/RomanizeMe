@@ -104,23 +104,23 @@ h2 {
 .script-sections-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
   height: 320px;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-right: 8px;
+  padding-right: 4px;
 }
 
 /* 每个文字类型的卡片样式 */
 .script-section {
-  width: calc(50% - 8px);
-  height: fit-content;
+  width: calc(50% - 4px);
   break-inside: avoid;
   page-break-inside: avoid;
-  padding: 12px;
+  padding: 8px;
   border-radius: 8px;
   background: #f8f9fa;
   border: 1px solid #e0e0e0;
+  transition: border-color 0.2s;
 }
 
 .script-section:last-child {
@@ -128,7 +128,12 @@ h2 {
 }
 
 .script-section.active {
-  background-color: #e8f0fe;
+  border-color: #1a73e8;
+}
+
+/* 选中状态的边框颜色 */
+.script-section.selected {
+  border-color: #1a73e8;
 }
 
 /* 区域头部样式 */
@@ -251,15 +256,16 @@ h2 {
 /* 按钮样式 */
 .primary-button {
   width: 100%;
-  padding: 10px 20px;
+  padding: 0 16px;
   background-color: #1a73e8;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   margin-bottom: 8px;
+  height: 48px;
   transition: background-color 0.2s;
 }
 
@@ -269,14 +275,15 @@ h2 {
 
 .secondary-button {
   width: 100%;
-  padding: 10px 24px;
+  padding: 0 16px;
   background-color: #f1f3f4;
   color: #3c4043;
   border: none;
-  border-radius: 8px;
-  font-size: 14px;
+  border-radius: 4px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  height: 48px;
   transition: background-color 0.2s;
 }
 
@@ -327,5 +334,22 @@ button:disabled {
 .script-sections-container::-webkit-scrollbar-thumb {
   background-color: #e0e0e0;
   border-radius: 3px;
+}
+
+/* 禁用状态 */
+.radio-option.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* 禁用状态样式 */
+.radio-option input[type="radio"]:disabled + span {
+  color: #b0b0b0; /* 禁用时文本颜色 */
+  cursor: not-allowed; /* 鼠标样式 */
+}
+
+/* 禁用状态的背景 */
+.radio-option input[type="radio"]:disabled {
+  opacity: 0.5; /* 禁用时降低透明度 */
 }
 
