@@ -109,12 +109,19 @@ h2 {
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 4px;
+  column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  
 }
 
 /* 每个文字类型的卡片样式 */
 .script-section {
   width: calc(50% - 4px);
+  /* height: fit-content; */
   break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   padding: 8px;
   border-radius: 8px;
