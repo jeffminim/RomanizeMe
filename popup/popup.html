@@ -1,43 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RomanizeMe</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div id="popup-container">
-    <div id="button-section" class="card">
-      <button id="romanize-button">罗马音化</button>
-      <button id="restore-button">还原</button>
+    <!-- 左侧语言列表 -->
+    <div class="left-panel">
+      <div class="card list-card">
+        <h2>文字列表</h2>
+        <div class="script-sections-container">
+          <!-- 汉字 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>汉字</span>
+              <div class="switch">
+                <input type="checkbox" id="script-hanzi">
+                <label for="script-hanzi"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="hanzi-lang" value="chinese_mandarin">
+                <span>汉语普通话</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="hanzi-lang" value="japanese">
+                <span>日语</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 假名 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>假名</span>
+              <div class="switch">
+                <input type="checkbox" id="script-kana">
+                <label for="script-kana"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="kana-lang" value="japanese">
+                <span>日语</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 谚文 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>谚文</span>
+              <div class="switch">
+                <input type="checkbox" id="script-hangul">
+                <label for="script-hangul"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="hangul-lang" value="korean">
+                <span>韩语</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 阿拉伯字母 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>阿拉伯字母</span>
+              <div class="switch">
+                <input type="checkbox" id="script-arabic">
+                <label for="script-arabic"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="arabic-lang" value="arabic">
+                <span>阿拉伯语</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 希腊字母 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>希腊字母</span>
+              <div class="switch">
+                <input type="checkbox" id="script-greek">
+                <label for="script-greek"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="greek-lang" value="modern_greek">
+                <span>现代希腊语</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="greek-lang" value="ancient_greek">
+                <span>古希腊语</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 西里尔字母 -->
+          <div class="script-section">
+            <div class="section-header">
+              <span>西里尔字母</span>
+              <div class="switch">
+                <input type="checkbox" id="script-cyrillic">
+                <label for="script-cyrillic"></label>
+              </div>
+            </div>
+            <div class="language-options">
+              <label class="radio-option">
+                <input type="radio" name="cyrillic-lang" value="russian">
+                <span>俄语</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="cyrillic-lang" value="ukrainian">
+                <span>乌克兰语</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="settings-section" class="card">
-      <div class="checkbox-group">
-        <input type="checkbox" id="lang-japanese">
-        <label for="lang-japanese">日语</label>
+    <!-- 右侧面板 -->
+    <div class="right-panel">
+      <!-- 上部按钮区 -->
+      <div class="card button-card">
+        <button id="romanize-button" class="primary-button">罗马音转换</button>
+        <button id="restore-button" class="secondary-button">还原页面</button>
       </div>
-      <div class="checkbox-group">
-        <input type="checkbox" id="lang-korean">
-        <label for="lang-korean">韩语</label>
-      </div>
-      <div class="checkbox-group">
-        <input type="checkbox" id="lang-arabic" disabled>
-        <label for="lang-arabic" class="disabled">阿拉伯语</label>
-      </div>
-      <div class="checkbox-group">
-        <input type="checkbox" id="lang-russian" disabled>
-        <label for="lang-russian" class="disabled">俄语</label>
-      </div>
-    </div>
 
-    <div id="note-section" class="card">
-      <h2>RomanizeMe</h2>
-      <p>版本：1.0</p>
-      <p>作者：Jeff H</p>
+      <!-- 下部版权和Logo区 -->
+      <div class="card copyright-card">
+        <div class="logo">
+          <img src="../assets/romanizemelogo48.png" alt="RomanizeMe Logo">
+        </div>
+        <div class="copyright">
+          <span>RomanizeMe</span>
+          <span class="version">版本：1.0</span>
+        </div>
+      </div>
     </div>
   </div>
-  <script type="module" src="popup.js"></script>
+  <script src="popup.js"></script>
 </body>
 </html>

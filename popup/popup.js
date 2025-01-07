@@ -1,21 +1,54 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // 获取按钮和语言选择框元素
+document.addEventListener('DOMContentLoaded', async function() {
   const romanizeButton = document.getElementById('romanize-button');
   const restoreButton = document.getElementById('restore-button');
   
-  // 分别获取可用和禁用的语言选择框
-  const availableCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([disabled])');
-  const disabledCheckboxes = document.querySelectorAll('input[type="checkbox"][disabled]');
+  // 加载语言配置
+  const response = await fetch(chrome.runtime.getURL('config/languages.json'));
+  const config = await response.json();
   
-  // 初始状态设置
-  restoreButton.disabled = true;  // 初始时"还原"按钮禁用
+  // 初始化时检查当前页面状态
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tabId = tabs[0].id;
+    
+    chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      func: () => {
+        return document.querySelectorAll('.romanized').length > 0;
+      }
+    }).then((results) => {
+      const isCurrentPageRomanized = results[0].result;
+      
+      if (isCurrentPageRomanized) {
+        // 从存储中获取选中的脚本和语言
+        chrome.storage.local.get(['selectedScripts'], function(result) {
+          romanizeButton.disabled = true;
+          restoreButton.disabled = false;
+          
+          if (result.selectedScripts) {
+            restoreRadioSelections(result.selectedScripts);
+            disableAllRadios(true);
+          }
+        });
+      } else {
+        romanizeButton.disabled = false;
+        restoreButton.disabled = true;
+        
+        // 恢复上次的选择
+        chrome.storage.local.get(['selectedScripts'], function(result) {
+          if (result.selectedScripts) {
+            restoreRadioSelections(result.selectedScripts);
+          }
+        });
+      }
+    });
+  });
 
   // 罗马音化按钮点击事件
   romanizeButton.addEventListener('click', function() {
-    const selectedLanguages = getSelectedLanguages();
+    const selectedScripts = getSelectedScripts();
     
-    if (selectedLanguages.length === 0) {
-      alert('请至少选择一种语言');
+    if (Object.keys(selectedScripts).length === 0) {
+      alert('请至少选择一种文字的语言');
       return;
     }
 
@@ -28,18 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }).then(() => {
         chrome.scripting.executeScript({
           target: { tabId: tabId },
-          func: (languages) => {
-            window.romanizePage(languages);
+          func: (scripts, config) => {
+            window.romanizePage(scripts, config);
           },
-          args: [selectedLanguages]
+          args: [selectedScripts, config]
         }).then(() => {
-          // 更新按钮状态
           romanizeButton.disabled = true;
           restoreButton.disabled = false;
+          disableAllRadios(true);
           
-          // 只禁用可用的语言选择框
-          availableCheckboxes.forEach(checkbox => {
-            checkbox.disabled = true;
+          chrome.storage.local.set({
+            isRomanized: true,
+            selectedScripts: selectedScripts
           });
         });
       });
@@ -56,29 +89,67 @@ document.addEventListener('DOMContentLoaded', function() {
           window.restorePage();
         }
       }).then(() => {
-        // 更新按钮状态
         romanizeButton.disabled = false;
         restoreButton.disabled = true;
+        disableAllRadios(false);
         
-        // 只启用原本可用的语言选择框
-        availableCheckboxes.forEach(checkbox => {
-          checkbox.disabled = false;
-        });
-        
-        // 确保开发中的选择框保持禁用状态
-        disabledCheckboxes.forEach(checkbox => {
-          checkbox.disabled = true;
-          checkbox.checked = false; // 确保未选中状态
+        chrome.storage.local.set({
+          isRomanized: false
         });
       });
     });
   });
 });
 
-function getSelectedLanguages() {
-  const selectedLanguages = [];
-  if (document.getElementById("lang-japanese").checked) selectedLanguages.push('japanese');
-  if (document.getElementById("lang-korean").checked) selectedLanguages.push('korean');
-  // 不检查禁用的选择框
-  return selectedLanguages;
+// 获取选中的脚本和语言
+function getSelectedScripts() {
+  const selectedScripts = {};
+  document.querySelectorAll('.script-item').forEach(item => {
+    const scriptCheckbox = item.querySelector('.script-checkbox');
+    const scriptHeader = item.querySelector('.script-header label').textContent;
+    const selectedRadio = item.querySelector('input[type="radio"]:checked');
+    
+    if (scriptCheckbox && scriptCheckbox.checked && selectedRadio && !selectedRadio.disabled) {
+      selectedScripts[scriptHeader] = selectedRadio.value;
+    }
+  });
+  return selectedScripts;
 }
+
+// 恢复单选按钮选择
+function restoreRadioSelections(selections) {
+  Object.entries(selections).forEach(([script, language]) => {
+    const radio = document.querySelector(`input[type="radio"][value="${language}"]`);
+    if (radio) {
+      radio.checked = true;
+    }
+  });
+}
+
+// 禁用/启用所有单选按钮
+function disableAllRadios(disabled) {
+  document.querySelectorAll('.script-group:not(.disabled) input[type="radio"]')
+    .forEach(radio => {
+      radio.disabled = disabled;
+    });
+}
+
+// 添加复选框和单选按钮的联动
+document.querySelectorAll('.script-checkbox').forEach(checkbox => {
+  checkbox.addEventListener('change', function() {
+    const scriptItem = this.closest('.script-item');
+    const radioButtons = scriptItem.querySelectorAll('input[type="radio"]');
+    
+    radioButtons.forEach(radio => {
+      radio.disabled = !this.checked;
+    });
+    
+    // 如果取消选中复选框，同时取消选中对应的单选按钮
+    if (!this.checked) {
+      radioButtons.forEach(radio => radio.checked = false);
+    } else {
+      // 如果选中复选框，默认选中第一个单选按钮
+      radioButtons[0].checked = true;
+    }
+  });
+});

@@ -95,6 +95,8 @@ function romanizeText(text, selectedLanguages) {
   return romanizedText;
 }
 function romanizePage(selectedLanguages) {
+  // 保存选中的语言供检测函数使用
+  window.selectedLanguages = selectedLanguages;
   
   // 确保样式表只被注入一次
   if (!document.querySelector('#romanization-styles')) {
@@ -217,20 +219,30 @@ function romanizePage(selectedLanguages) {
 }
 
 function detectCharLanguageAndType(char) {
+  // 首先检测明确的非汉字字符
   if (isCharInRange(char, '\u30A0', '\u30FF')) { // 片假名
-    return { language: 'japanese', charType: 'katakana' };
+    return { script: 'kana', language: 'japanese', charType: 'katakana' };
   } else if (isCharInRange(char, '\u3040', '\u309F')) { // 平假名
-    return { language: 'japanese', charType: 'hiragana' };
-  } else if (isCharInRange(char, '\u4E00', '\u9FAF')) { // 日文汉字
-    return { language: 'japanese', charType: 'kanji' };
-  } else if (isCharInRange(char, '\uAC00', '\uD7A3')) {
-    return { language: 'korean', charType: 'korean' };
-  } else if (isCharInRange(char, '\u0600', '\u06FF')) {
-    return { language: 'arabic', charType: 'arabic' };
-  } else if (isCharInRange(char, '\u0400', '\u04FF')) {
-    return { language: 'russian', charType: 'russian' };
+    return { script: 'kana', language: 'japanese', charType: 'hiragana' };
+  } else if (isCharInRange(char, '\uAC00', '\uD7A3')) { // 韩文
+    return { script: 'hangul', language: 'korean', charType: 'hangul' };
+  } else if (isCharInRange(char, '\u0600', '\u06FF')) { // 阿拉伯文
+    return { script: 'arabic', language: 'arabic', charType: 'arabic' };
+  } else if (isCharInRange(char, '\u0400', '\u04FF')) { // 俄文
+    return { script: 'cyrillic', language: 'russian', charType: 'cyrillic' };
+  } else if (isCharInRange(char, '\u4E00', '\u9FAF')) { // 汉字范围
+    // 如果用户选择了汉字的语言
+    if (window.selectedScripts && window.selectedScripts['汉字']) {
+      return { 
+        script: 'hanzi',
+        language: window.selectedScripts['汉字'],
+        charType: 'hanzi'
+      };
+    }
+    // 默认作为中文处理
+    return { script: 'hanzi', language: 'chinese_mandarin', charType: 'hanzi' };
   } else {
-    return { language: 'latin', charType: 'latin' };
+    return { script: 'latin', language: 'latin', charType: 'latin' };
   }
 }
 
