@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const languageId = radio.value;
         
         // 从配置中找到对应的语言配置
-        const script = config.scripts.find(s => s.id === scriptId);
+        const script = config.scripts.find(s => s.scriptId === scriptId);
         const language = script.languages.find(l => l.id === languageId);
 
         selectedScripts.push({
@@ -295,7 +295,7 @@ function generateScriptSections(config) {
   const container = document.getElementById('script-sections-container');
   container.innerHTML = '';
 
-  config.scripts.forEach(script => {
+  config.scripts.filter(script => script.isEnabled).forEach(script => {
     // 创建卡片容器
     const section = document.createElement('div');
     section.className = 'script-section';
@@ -306,8 +306,8 @@ function generateScriptSections(config) {
     header.innerHTML = `
       <span>${script.name}</span>
       <div class="switch">
-        <input type="checkbox" class="script-checkbox" id="script-${script.id}">
-        <label for="script-${script.id}"></label>
+        <input type="checkbox" class="script-checkbox" id="script-${script.scriptId}">
+        <label for="script-${script.scriptId}"></label>
       </div>
     `;
     section.appendChild(header);
@@ -322,7 +322,7 @@ function generateScriptSections(config) {
       option.className = 'radio-option';
       option.innerHTML = `
         <input type="radio" 
-               name="${script.id}-lang" 
+               name="${script.scriptId}-lang" 
                value="${lang.id}"
                data-available="${lang.isAvailable}"
                checked="false">
@@ -335,7 +335,7 @@ function generateScriptSections(config) {
     container.appendChild(section);
 
     // 获取当前卡片的开关和选项
-    const checkbox = section.querySelector(`#script-${script.id}`);
+    const checkbox = section.querySelector(`#script-${script.scriptId}`);
     const radios = options.querySelectorAll('input[type="radio"]');
 
     // 初始化状态

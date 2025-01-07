@@ -3,6 +3,7 @@ const config = {
     {
       "scriptId": "hanzi",
       "name": "汉字",
+      "isEnabled": false,
       "unicodeRanges": [
         "4E00-9FFF",
         "3400-4DBF",
@@ -32,6 +33,7 @@ const config = {
     {
       "scriptId": "kana",
       "name": "假名",
+      "isEnabled": true,
       "unicodeRanges": [
         "3040-309F",
         "30A0-30FF",
@@ -65,6 +67,7 @@ const config = {
     {
       "scriptId": "hangul",
       "name": "谚文",
+      "isEnabled": true,
       "unicodeRanges": [
         "AC00-D7AF",
         "1100-11FF",
@@ -85,6 +88,7 @@ const config = {
     {
       "scriptId": "cyrillic",
       "name": "西里尔字母",
+      "isEnabled": false,
       "unicodeRanges": [
         "0400-04FF",
         "0500-052F",
@@ -112,6 +116,7 @@ const config = {
     {
       "scriptId": "greek",
       "name": "希腊字母",
+      "isEnabled": false,
       "unicodeRanges": [
         "0370-03FF",
         "1F00-1FFF"
@@ -136,6 +141,7 @@ const config = {
     {
       "scriptId": "arabic",
       "name": "阿拉伯字母",
+      "isEnabled": false,
       "unicodeRanges": [
         "0600-06FF",
         "0750-077F",
@@ -156,6 +162,7 @@ const config = {
     {
       "scriptId": "hebrew",
       "name": "希伯来字母",
+      "isEnabled": false,
       "unicodeRanges": [
         "0590-05FF",
         "FB1D-FB4F"
@@ -173,6 +180,7 @@ const config = {
     {
       "scriptId": "mongolian",
       "name": "蒙古文字",
+      "isEnabled": false,
       "unicodeRanges": [
         "1800-18AF",
         "11660-1167F"
