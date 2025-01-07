@@ -13,19 +13,20 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
+      "matches": ["<all_urls>"],
+      "css": ["content/content.css"],
       "js": [
+        "config/config.js",
         "libs/ko_hangul.js",
         "content/content.js"
-      ]
+      ],
+      "run_at": "document_end"
     }
   ],
   "web_accessible_resources": [{
     "resources": [
       "content/content.css",
-      "config/languages.json"
+      "assets/*"
     ],
     "matches": ["<all_urls>"]
   }],

@@ -13,40 +13,39 @@ document.addEventListener('DOMContentLoaded', async function() {
   updateRomanizeButtonState();
 
   // 初始化时检查当前页面状态
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
     const tabId = tabs[0].id;
     
-    chrome.scripting.executeScript({
-      target: { tabId: tabId },
-      func: () => {
-        return document.querySelectorAll('.romanized').length > 0;
-      }
-    }).then((results) => {
+    try {
+      // 检查页面是否已经被转换
+      const results = await chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        func: () => {
+          return document.querySelectorAll('.romanized-word').length > 0;
+        }
+      });
+      
       const isCurrentPageRomanized = results[0].result;
       
       if (isCurrentPageRomanized) {
         // 从存储中获取选中的脚本和语言
         chrome.storage.local.get(['selectedScripts'], function(result) {
-          romanizeButton.disabled = true;
-          restoreButton.disabled = false;
-          
           if (result.selectedScripts) {
-            restoreRadioSelections(result.selectedScripts);
-            disableAllRadios(true);
+            // 恢复选中状态
+            restoreSelections(result.selectedScripts);
+            // 更新 UI 状态
+            updateUIAfterRomanization();
           }
         });
       } else {
-        romanizeButton.disabled = false;
-        restoreButton.disabled = true;
-        
-        // 恢复上次的选择
-        chrome.storage.local.get(['selectedScripts'], function(result) {
-          if (result.selectedScripts) {
-            restoreRadioSelections(result.selectedScripts);
-          }
-        });
+        // 确保 UI 处于重置状态
+        resetUIState();
       }
-    });
+    } catch (error) {
+      console.error('Error checking page state:', error);
+      // 发生错误时也确保 UI 处于重置状态
+      resetUIState();
+    }
   });
 
   // 添加罗马音转换按钮点击事件
@@ -62,8 +61,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         // 从配置中找到对应的语言配置
         const script = config.scripts.find(s => s.id === scriptId);
         const language = script.languages.find(l => l.id === languageId);
-        
-        console.log('Selected language config:', language);
 
         selectedScripts.push({
           scriptId: scriptId,
@@ -74,53 +71,128 @@ document.addEventListener('DOMContentLoaded', async function() {
       }
     });
 
-    console.log('Selected scripts:', selectedScripts);
-
     if (selectedScripts.length > 0) {
       try {
-        // 获取当前标签页
         const tabs = await chrome.tabs.query({active: true, currentWindow: true});
         if (!tabs[0]) {
           console.error('No active tab found');
           return;
         }
 
-        // 直接发送消息到 content.js
-        const response = await chrome.tabs.sendMessage(tabs[0].id, {
+        // 发送消息到 content.js
+        await chrome.tabs.sendMessage(tabs[0].id, {
           action: 'romanize',
           scripts: selectedScripts
         });
 
-        console.log('Message sent, response:', response);
+        // 保存当前状态
+        await chrome.storage.local.set({ 
+          selectedScripts: selectedScripts,
+          lastSelection: selectedScripts  // 保存最后一次的选择
+        });
+
+        // 更新 UI 状态
+        updateUIAfterRomanization();
         
-        romanizeButton.disabled = true;
-        restoreButton.disabled = false;
       } catch (error) {
         console.error('Error:', error);
       }
     }
   });
 
-  // 还原按钮点击事件
-  restoreButton.addEventListener('click', function() {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tabId = tabs[0].id;
-      chrome.scripting.executeScript({
-        target: { tabId },
-        func: () => {
-          window.restorePage();
-        }
-      }).then(() => {
-        romanizeButton.disabled = false;
-        restoreButton.disabled = true;
-        disableAllRadios(false);
-        
-        chrome.storage.local.set({
-          isRomanized: false
-        });
-      });
+  // 更新 UI 状态的函数
+  function updateUIAfterRomanization() {
+    // 1. 禁用所有复选框和单选框
+    document.querySelectorAll('.script-checkbox, input[type="radio"]').forEach(input => {
+      input.disabled = true;
     });
+
+    // 2. 高亮选中的卡片
+    document.querySelectorAll('.script-section').forEach(section => {
+      const checkbox = section.querySelector('.script-checkbox');
+      if (checkbox.checked) {
+        section.style.backgroundColor = '#e8f0fe'; // 浅蓝色背景
+        section.style.borderColor = '#1a73e8'; // 蓝色边框
+      }
+    });
+
+    // 3. 更新按钮状态和样式
+    const romanizeButton = document.getElementById('romanize-button');
+    const restoreButton = document.getElementById('restore-button');
+
+    romanizeButton.disabled = true;
+    romanizeButton.style.backgroundColor = '#e0e0e0'; // 置灰
+    romanizeButton.style.cursor = 'not-allowed';
+
+    restoreButton.disabled = false;
+    restoreButton.style.backgroundColor = '#dc3545'; // 红色主题
+    restoreButton.style.borderColor = '#dc3545';
+    restoreButton.style.color = 'white';
+    restoreButton.style.cursor = 'pointer';
+  }
+
+  // 还原按钮点击事件
+  restoreButton.addEventListener('click', async function() {
+    try {
+      const tabs = await chrome.tabs.query({active: true, currentWindow: true});
+      if (!tabs[0]) {
+        console.error('No active tab found');
+        return;
+      }
+
+      // 发送还原消息
+      await chrome.tabs.sendMessage(tabs[0].id, {
+        action: 'restore'
+      });
+
+      // 清除所有存储的状态
+      await chrome.storage.local.remove(['selectedScripts', 'lastSelection']);
+
+      // 重置 UI 状态
+      resetUIState();
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
   });
+
+  // 重置 UI 状态的函数
+  function resetUIState() {
+    // 1. 启用所有复选框
+    document.querySelectorAll('.script-checkbox').forEach(checkbox => {
+      checkbox.disabled = false;
+      checkbox.checked = false;  // 确保取消选中状态
+    });
+
+    // 2. 重置卡片样式
+    document.querySelectorAll('.script-section').forEach(section => {
+      section.style.backgroundColor = '';
+      section.style.borderColor = '#e0e0e0';
+    });
+
+    // 3. 重置按钮状态和样式
+    const romanizeButton = document.getElementById('romanize-button');
+    const restoreButton = document.getElementById('restore-button');
+
+    romanizeButton.disabled = false;
+    romanizeButton.style.backgroundColor = '';
+    romanizeButton.style.cursor = 'pointer';
+
+    restoreButton.disabled = true;
+    restoreButton.style.backgroundColor = '';
+    restoreButton.style.borderColor = '';
+    restoreButton.style.color = '';
+    restoreButton.style.cursor = 'not-allowed';
+
+    // 4. 重置单选框状态
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+      radio.disabled = true;  // 默认禁用所有单选框
+      radio.checked = false;  // 取消选中状态
+    });
+
+    // 5. 清除存储的最后选择
+    chrome.storage.local.remove(['lastSelection']);
+  }
 });
 
 // 获取选中的脚本和语言
@@ -138,12 +210,19 @@ function getSelectedScripts() {
   return selectedScripts;
 }
 
-// 恢复单选按钮选择
-function restoreRadioSelections(selections) {
-  Object.entries(selections).forEach(([script, language]) => {
-    const radio = document.querySelector(`input[type="radio"][value="${language}"]`);
-    if (radio) {
-      radio.checked = true;
+// 恢复选择状态的函数
+function restoreSelections(selectedScripts) {
+  selectedScripts.forEach(script => {
+    // 选中对应的复选框
+    const checkbox = document.querySelector(`#script-${script.scriptId}`);
+    if (checkbox) {
+      checkbox.checked = true;
+      
+      // 选中对应的单选框
+      const radio = document.querySelector(`input[name="${script.scriptId}-lang"][value="${script.languageId}"]`);
+      if (radio) {
+        radio.checked = true;
+      }
     }
   });
 }
