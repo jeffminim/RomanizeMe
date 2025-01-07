@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', async function() {
   const response = await fetch(chrome.runtime.getURL('config/languages.json'));
   const config = await response.json();
   
+  // 生成动态内容
+  generateScriptSections(config);
+  
+  // 初始化按钮状态
+  updateRomanizeButtonState();
+
   // 初始化时检查当前页面状态
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tabId = tabs[0].id;
@@ -43,40 +49,56 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
   });
 
-  // 罗马音化按钮点击事件
-  romanizeButton.addEventListener('click', function() {
-    const selectedScripts = getSelectedScripts();
+  // 添加罗马音转换按钮点击事件
+  romanizeButton.addEventListener('click', async () => {
+    const selectedScripts = [];
     
-    if (Object.keys(selectedScripts).length === 0) {
-      alert('请至少选择一种文字的语言');
-      return;
-    }
+    // 获取所有选中的语言及其对应的转换函数信息
+    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+      if (!radio.disabled) {
+        const scriptId = radio.name.replace('-lang', '');
+        const languageId = radio.value;
+        
+        // 从配置中找到对应的语言配置
+        const script = config.scripts.find(s => s.id === scriptId);
+        const language = script.languages.find(l => l.id === languageId);
+        
+        console.log('Selected language config:', language);
 
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      const tabId = tabs[0].id;
-      
-      chrome.scripting.executeScript({
-        target: { tabId: tabId },
-        files: ['content/content.js']
-      }).then(() => {
-        chrome.scripting.executeScript({
-          target: { tabId: tabId },
-          func: (scripts, config) => {
-            window.romanizePage(scripts, config);
-          },
-          args: [selectedScripts, config]
-        }).then(() => {
-          romanizeButton.disabled = true;
-          restoreButton.disabled = false;
-          disableAllRadios(true);
-          
-          chrome.storage.local.set({
-            isRomanized: true,
-            selectedScripts: selectedScripts
-          });
+        selectedScripts.push({
+          scriptId: scriptId,
+          languageId: languageId,
+          libFile: language.libFile,
+          functionName: language.functionName
         });
-      });
+      }
     });
+
+    console.log('Selected scripts:', selectedScripts);
+
+    if (selectedScripts.length > 0) {
+      try {
+        // 获取当前标签页
+        const tabs = await chrome.tabs.query({active: true, currentWindow: true});
+        if (!tabs[0]) {
+          console.error('No active tab found');
+          return;
+        }
+
+        // 直接发送消息到 content.js
+        const response = await chrome.tabs.sendMessage(tabs[0].id, {
+          action: 'romanize',
+          scripts: selectedScripts
+        });
+
+        console.log('Message sent, response:', response);
+        
+        romanizeButton.disabled = true;
+        restoreButton.disabled = false;
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
   });
 
   // 还原按钮点击事件
@@ -189,3 +211,94 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+function generateScriptSections(config) {
+  const container = document.getElementById('script-sections-container');
+  container.innerHTML = '';
+
+  config.scripts.forEach(script => {
+    // 创建卡片容器
+    const section = document.createElement('div');
+    section.className = 'script-section';
+
+    // 创建卡片头部（包含文字类型名称和开关）
+    const header = document.createElement('div');
+    header.className = 'section-header';
+    header.innerHTML = `
+      <span>${script.name}</span>
+      <div class="switch">
+        <input type="checkbox" class="script-checkbox" id="script-${script.id}">
+        <label for="script-${script.id}"></label>
+      </div>
+    `;
+    section.appendChild(header);
+
+    // 创建语言选项容器
+    const options = document.createElement('div');
+    options.className = 'language-options';
+
+    // 遍历并创建每个语言选项
+    script.languages.forEach(lang => {
+      const option = document.createElement('label');
+      option.className = 'radio-option';
+      option.innerHTML = `
+        <input type="radio" 
+               name="${script.id}-lang" 
+               value="${lang.id}"
+               data-available="${lang.isAvailable}"
+               checked="false">
+        <span>${lang.name}</span>
+      `;
+      options.appendChild(option);
+    });
+
+    section.appendChild(options);
+    container.appendChild(section);
+
+    // 获取当前卡片的开关和选项
+    const checkbox = section.querySelector(`#script-${script.id}`);
+    const radios = options.querySelectorAll('input[type="radio"]');
+
+    // 初始化状态
+    checkbox.checked = false; // 开关默认关闭
+    radios.forEach(radio => {
+      radio.checked = false; // 明确设置所有选项为未选中
+      radio.disabled = true; // 初始状态下禁用所有选项
+    });
+
+    // 添加开关事件监听
+    checkbox.addEventListener('change', () => {
+      const isChecked = checkbox.checked;
+      
+      radios.forEach(radio => {
+        const isAvailable = radio.getAttribute('data-available') === 'true';
+        // 如果开关打开且语言可用，则启用选项；否则禁用
+        radio.disabled = !isChecked || !isAvailable;
+        
+        // 如果开关关闭，取消选中所有选项
+        if (!isChecked) {
+          radio.checked = false;
+        }
+      });
+
+      // 更新罗马音转换按钮状态
+      updateRomanizeButtonState();
+    });
+
+    // 为每个radio添加change事件监听
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        updateRomanizeButtonState();
+      });
+    });
+  });
+}
+
+// 添加检查选中状态的函数
+function updateRomanizeButtonState() {
+  const romanizeButton = document.getElementById('romanize-button');
+  const hasSelection = Array.from(document.querySelectorAll('input[type="radio"]'))
+    .some(radio => radio.checked && !radio.disabled);
+  
+  romanizeButton.disabled = !hasSelection;
+}

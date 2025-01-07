@@ -16,14 +16,14 @@
         {
           "id": "chinese_mandarin",
           "name": "汉语普通话",
-          "disabled": true,
+          "isAvailable": false,
           "libFile": "zh_hanzi.js",
-          "functionName": "getChineseHanziRomanization"
+          "functionName": "getChineseRomanization"
         },
         {
-          "id": "japanese",
-          "name": "日语",
-          "disabled": true,
+          "id": "japanese_kanji",
+          "name": "日语汉字",
+          "isAvailable": false,
           "libFile": "ja_kanji.js",
           "functionName": "getJapaneseKanjiRomanization"
         }
@@ -42,21 +42,21 @@
         {
           "id": "hiragana",
           "name": "平假名",
-          "disabled": true,
+          "isAvailable": false,
           "libFile": "ja_hiragana.js",
           "functionName": "getHiraganaRomanization"
         },
         {
           "id": "katakana_romaji",
           "name": "片假名（罗马音）",
-          "disabled": true,
+          "isAvailable": true,
           "libFile": "ja_katakana_romaji.js",
           "functionName": "getKatakanaRomaji"
         },
         {
           "id": "katakana_original",
           "name": "片假名（原文）",
-          "disabled": true,
+          "isAvailable": false,
           "libFile": "ja_katakana_original.js",
           "functionName": "getKatakanaOriginal"
         }
@@ -76,7 +76,7 @@
         {
           "id": "korean",
           "name": "韩语",
-          "disabled": false,
+          "isAvailable": true,
           "libFile": "ko_hangul.js",
           "functionName": "getKoreanRomanization"
         }
@@ -96,14 +96,14 @@
         {
           "id": "russian",
           "name": "俄语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "ru_cyrillic.js",
           "functionName": "getRussianRomanization"
         },
         {
           "id": "ukrainian",
           "name": "乌克兰语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "uk_cyrillic.js",
           "functionName": "getUkrainianRomanization"
         }
@@ -120,14 +120,14 @@
         {
           "id": "modern_greek",
           "name": "现代希腊语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "el_modern.js",
           "functionName": "getModernGreekRomanization"
         },
         {
           "id": "ancient_greek",
           "name": "古希腊语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "el_ancient.js",
           "functionName": "getAncientGreekRomanization"
         }
@@ -147,7 +147,7 @@
         {
           "id": "arabic",
           "name": "阿拉伯语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "ar_arabic.js",
           "functionName": "getArabicRomanization"
         }
@@ -164,7 +164,7 @@
         {
           "id": "hebrew",
           "name": "希伯来语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "he_hebrew.js",
           "functionName": "getHebrewRomanization"
         }
@@ -181,7 +181,7 @@
         {
           "id": "mongolian",
           "name": "蒙古语",
-          "disabled": true,
+          "disabled": false,
           "libFile": "mn_mongolian.js",
           "functionName": "getMongolianRomanization"
         }

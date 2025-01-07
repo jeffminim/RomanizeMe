@@ -19,12 +19,14 @@
       "js": [
         "libs/ko_hangul.js",
         "content/content.js"
-      ],
-      "type": "module"
+      ]
     }
   ],
   "web_accessible_resources": [{
-    "resources": ["content/content.css"],
+    "resources": [
+      "content/content.css",
+      "config/languages.json"
+    ],
     "matches": ["<all_urls>"]
   }],
   "icons": {

@@ -1,264 +1,186 @@
-// 由于Chrome扩展的限制,我们不能使用ES6模块语法
-// getKoreanRomanization 函数已在 ko_hangul.js 中通过 script 标签引入
+let config;
 
-
-function restorePage() {
-  const elements = document.querySelectorAll('.romanized');
-  elements.forEach(element => {
-    const originalText = element.getAttribute('data-original-text');
-    if (originalText) {
-      // 创建一个文本节点来替换带注音的内容
-      const textNode = document.createTextNode(originalText);
-      element.replaceWith(textNode);
-    }
-  });
+// 加载配置
+async function loadConfig() {
+  const response = await fetch(chrome.runtime.getURL('config/languages.json'));
+  config = await response.json();
 }
 
-function shouldTranslateElement(element) {
-  // 如果元素不可见或没有文本内容，则跳过
-  if (!element.offsetParent || !element.textContent.trim()) {
-    return false;
-  }
-
-  // 检查是否是文本节点
-  if (element.nodeType === Node.TEXT_NODE) {
-    return true;
-  }
-
-  // 排除更多非正文标签
-  const excludedTags = [
-    'script', 'style', 'meta', 'link', 'head', 'title', 
-    'input', 'textarea', 'button', 'select', 'option',
-    'noscript', 'iframe', 'svg', 'path', 'br', 'hr'
-  ];
+// 检测字符所属的文字系统
+function detectCharScript(char) {
+  const charCode = char.charCodeAt(0);
   
-  if (excludedTags.includes(element.tagName.toLowerCase())) {
-    return false;
-  }
+  for (const script of config.scripts) {
+    // 检查字符是否在当前文字系统的任何 Unicode 范围内
+    const isInRange = script.unicodeRanges.some(range => {
+      const [start, end] = range.split('-').map(hex => parseInt(hex, 16));
+      return charCode >= start && charCode <= end;
+    });
 
-  // 排除编辑器、代码块等特殊区域
-  const excludedClasses = [
-    'no-translate', 'code', 'math', 'editor', 
-    'ace_editor', 'highlight', 'prism'
-  ];
-  
-  // 排除常见的非正文区域
-  const excludedIds = [
-    'header', 'footer', 'sidebar', 'nav', 'menu',
-    'toolbar', 'copyright', 'search'
-  ];
-
-  if (
-    excludedClasses.some(cls => element.classList.contains(cls)) || 
-    excludedIds.some(id => element.id.toLowerCase().includes(id))
-  ) {
-    return false;
-  }
-
-  // 检查元素的计算样式
-  const computedStyle = window.getComputedStyle(element);
-  if (
-    computedStyle.display === 'none' ||
-    computedStyle.visibility === 'hidden' ||
-    computedStyle.opacity === '0'
-  ) {
-    return false;
-  }
-
-  // 只处理直接包含文本的元素
-  const hasDirectTextChild = Array.from(element.childNodes)
-    .some(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
-
-  return hasDirectTextChild;
-}
-
-
-function romanizeText(text, selectedLanguages) {
-  let romanizedText = '';
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    const { language, charType } = detectCharLanguageAndType(char);
-    if (selectedLanguages.includes(language)) {
-      const romanized = getRomanization(char, charType);
-      romanizedText += romanized;
-      // console.log('Romanized char:', {
-      //   original: char,
-      //   romanized: romanized,
-      //   language: language,
-      //   charType: charType
-      // });
-    } else {
-      romanizedText += char;
+    if (isInRange) {
+      return script;
     }
   }
-
-  return romanizedText;
-}
-function romanizePage(selectedLanguages) {
-  // 保存选中的语言供检测函数使用
-  window.selectedLanguages = selectedLanguages;
   
-  // 确保样式表只被注入一次
-  if (!document.querySelector('#romanization-styles')) {
-    const style = document.createElement('link');
-    style.id = 'romanization-styles';
-    style.rel = 'stylesheet';
-    style.type = 'text/css';
-    style.href = chrome.runtime.getURL('content/content.css');
-    document.head.appendChild(style);
-  }
+  return null;
+}
 
-  function getAllTextNodes(node) {
-    const textNodes = [];
-    const walker = document.createTreeWalker(
-      node,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode: function(node) {
-          return shouldTranslateElement(node.parentElement) 
-            ? NodeFilter.FILTER_ACCEPT 
-            : NodeFilter.FILTER_REJECT;
+// 监听来自 popup 的消息
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log('Received message:', request);
+  
+  if (request.action === 'romanize') {
+    romanizePage(request.scripts);
+    sendResponse({status: 'started'});
+  }
+  return true;
+});
+
+async function romanizePage(selectedScripts) {
+  console.log('Starting romanization with scripts:', selectedScripts);
+
+  try {
+    // 确保配置已加载
+    if (!config) {
+      await loadConfig();
+    }
+
+    // 确保样式表只被注入一次
+    if (!document.querySelector('#romanization-styles')) {
+      const style = document.createElement('link');
+      style.id = 'romanization-styles';
+      style.rel = 'stylesheet';
+      style.type = 'text/css';
+      style.href = chrome.runtime.getURL('content/content.css');
+      document.head.appendChild(style);
+    }
+
+    // 获取所有文本节点
+    const textNodes = getAllTextNodes(document.body);
+    console.log('Found text nodes:', textNodes.length);
+    
+    // 处理每个文本节点
+    textNodes.forEach(node => {
+      const originalText = node.textContent;
+      let newText = '';
+      let hasConversion = false;
+      let currentWord = '';
+      let currentScript = null;
+      
+      // 逐字符处理文本，收集词
+      for (let i = 0; i < originalText.length; i++) {
+        const char = originalText[i];
+        const script = detectCharScript(char);
+        
+        // 如果是空格或标点，或者文字系统改变，则处理当前收集的词
+        if (char.trim() === '' || /[.,!?;:，。！？；：]/.test(char) || 
+            (currentScript && script !== currentScript)) {
+          // 处理之前收集的词
+          if (currentWord && currentScript) {
+            const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.id);
+            if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
+              const romanized = window[selectedScript.functionName](currentWord);
+              if (romanized !== currentWord) {
+                newText += `<span class="romanized-word"><span class="romanized-mark">${romanized}</span>${currentWord}</span>`;
+                hasConversion = true;
+              } else {
+                newText += currentWord;
+              }
+            } else {
+              newText += currentWord;
+            }
+          }
+          
+          // 添加空格或标点
+          newText += char;
+          
+          // 重置收集器
+          currentWord = '';
+          currentScript = null;
+        } else if (script) {
+          // 如果是相同文字系统的字符，继续收集
+          if (!currentScript) {
+            currentScript = script;
+          }
+          currentWord += char;
+        } else {
+          // 处理之前收集的词
+          if (currentWord && currentScript) {
+            const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.id);
+            if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
+              const romanized = window[selectedScript.functionName](currentWord);
+              if (romanized !== currentWord) {
+                newText += `<span class="romanized-word"><span class="romanized">${romanized}</span>${currentWord}</span>`;
+                hasConversion = true;
+              } else {
+                newText += currentWord;
+              }
+            } else {
+              newText += currentWord;
+            }
+            currentWord = '';
+            currentScript = null;
+          }
+          // 添加非目标文字系统的字符
+          newText += char;
         }
       }
-    );
+      
+      // 处理最后一个词
+      if (currentWord && currentScript) {
+        const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.id);
+        if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
+          const romanized = window[selectedScript.functionName](currentWord);
+          if (romanized !== currentWord) {
+            newText += `<span class="romanized-word"><span class="romanized">${romanized}</span>${currentWord}</span>`;
+            hasConversion = true;
+          } else {
+            newText += currentWord;
+          }
+        } else {
+          newText += currentWord;
+        }
+      }
 
-    let currentNode;
-    while (currentNode = walker.nextNode()) {
-      textNodes.push(currentNode);
-    }
+      // 只有当有转换发生时才替换节点
+      if (hasConversion) {
+        const wrapper = document.createElement('span');
+        wrapper.innerHTML = newText;
+        node.parentNode.replaceChild(wrapper, node);
+      }
+    });
+  } catch (error) {
+    console.error('Error in romanizePage:', error);
+  }
+}
+
+// 获取所有文本节点的辅助函数
+function getAllTextNodes(node) {
+  const textNodes = [];
+  
+  // 如果是文本节点且不是空白节点
+  if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+    textNodes.push(node);
     return textNodes;
   }
 
-  // 分词函数
-  function splitIntoWords(text) {
-    const words = [];
-    let currentWord = '';
-    let currentType = null;
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const { language, charType } = detectCharLanguageAndType(char);
-      
-      // 如果是空格或标点，直接作为单独的"词"
-      if (/\s/.test(char) || /[，。！？：；（）、]/g.test(char)) {
-        if (currentWord) {
-          words.push({
-            text: currentWord,
-            type: currentType
-          });
-          currentWord = '';
-        }
-        words.push({
-          text: char,
-          type: 'punctuation'
-        });
-        currentType = null;
-      } else {
-        // 如果当前字符类型与之前不同，说明是新词的开始
-        if (currentType && currentType !== language) {
-          if (currentWord) {
-            words.push({
-              text: currentWord,
-              type: currentType
-            });
-            currentWord = '';
-          }
-        }
-        currentWord += char;
-        currentType = language;
-      }
-    }
-
-    // 处理最后一个词
-    if (currentWord) {
-      words.push({
-        text: currentWord,
-        type: currentType
-      });
-    }
-
-    return words;
+  // 如果节点已经被处理过，或者是不需要处理的节点，则跳过
+  if (node.classList && (
+    node.classList.contains('romanized-text') || 
+    node.classList.contains('romanized-word') ||
+    node.tagName === 'SCRIPT' || 
+    node.tagName === 'STYLE' || 
+    node.tagName === 'NOSCRIPT'
+  )) {
+    return textNodes;
   }
 
-  const textNodes = getAllTextNodes(document.body);
-  console.log('Found text nodes:', textNodes.length);
-
-  textNodes.forEach(node => {
-    const element = node.parentElement;
-    if (!element.classList.contains('romanized')) {
-      const originalText = node.textContent;
-      const words = splitIntoWords(originalText);
-      let newContent = '';
-      let hasChanges = false;
-
-      words.forEach(word => {
-        if (selectedLanguages.includes(word.type)) {
-          // 对整个词进行罗马音转换
-          const romanized = getRomanization(word.text, word.type);
-          if (romanized && romanized !== word.text) {
-            newContent += `<span class="romanized-word">${word.text}<span class="romanized-mark">${romanized}</span></span>`;
-            hasChanges = true;
-          } else {
-            newContent += word.text;
-          }
-        } else {
-          newContent += word.text;
-        }
-      });
-
-      if (hasChanges) {
-        const tempContainer = document.createElement('span');
-        tempContainer.innerHTML = newContent;
-        tempContainer.classList.add('romanized');
-        tempContainer.setAttribute('data-original-text', originalText);
-        
-        node.replaceWith(tempContainer);
-      }
-    }
-  });
-}
-
-function detectCharLanguageAndType(char) {
-  // 首先检测明确的非汉字字符
-  if (isCharInRange(char, '\u30A0', '\u30FF')) { // 片假名
-    return { script: 'kana', language: 'japanese', charType: 'katakana' };
-  } else if (isCharInRange(char, '\u3040', '\u309F')) { // 平假名
-    return { script: 'kana', language: 'japanese', charType: 'hiragana' };
-  } else if (isCharInRange(char, '\uAC00', '\uD7A3')) { // 韩文
-    return { script: 'hangul', language: 'korean', charType: 'hangul' };
-  } else if (isCharInRange(char, '\u0600', '\u06FF')) { // 阿拉伯文
-    return { script: 'arabic', language: 'arabic', charType: 'arabic' };
-  } else if (isCharInRange(char, '\u0400', '\u04FF')) { // 俄文
-    return { script: 'cyrillic', language: 'russian', charType: 'cyrillic' };
-  } else if (isCharInRange(char, '\u4E00', '\u9FAF')) { // 汉字范围
-    // 如果用户选择了汉字的语言
-    if (window.selectedScripts && window.selectedScripts['汉字']) {
-      return { 
-        script: 'hanzi',
-        language: window.selectedScripts['汉字'],
-        charType: 'hanzi'
-      };
-    }
-    // 默认作为中文处理
-    return { script: 'hanzi', language: 'chinese_mandarin', charType: 'hanzi' };
-  } else {
-    return { script: 'latin', language: 'latin', charType: 'latin' };
+  // 递归处理子节点
+  const children = node.childNodes;
+  for (let i = 0; i < children.length; i++) {
+    textNodes.push(...getAllTextNodes(children[i]));
   }
-}
 
-function isCharInRange(char, start, end) {
-  return char >= start && char <= end;
-}
-
-function getRomanization(text, type) {
-  switch (type) {
-    case 'korean':
-      return getKoreanRomanization(text);
-    case 'japanese':
-      // 添加日语转换逻辑
-      return text;
-    default:
-      return text;
-  }
+  return textNodes;
 }
 
