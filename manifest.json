@@ -29,6 +29,9 @@
       "assets/*"
     ],
     "matches": ["<all_urls>"]
+  }, {
+    "resources": ["config/languages.json"],
+    "matches": ["<all_urls>"]
   }],
   "icons": {
     "16": "assets/romanizemelogo16.png",

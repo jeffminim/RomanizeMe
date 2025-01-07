@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', async function() {
   
   // 加载语言配置
   const response = await fetch(chrome.runtime.getURL('config/languages.json'));
-  const config = await response.json();
+  window.languageConfig = await response.json();
   
   // 生成动态内容
-  generateScriptSections(config);
+  generateScriptSections(window.languageConfig);
   
   // 初始化按钮状态
   updateRomanizeButtonState();
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const languageId = radio.value;
         
         // 从配置中找到对应的语言配置
-        const script = config.scripts.find(s => s.scriptId === scriptId);
+        const script = window.languageConfig.scripts.find(s => s.scriptId === scriptId);
         const language = script.languages.find(l => l.id === languageId);
 
         selectedScripts.push({

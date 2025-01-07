@@ -1,5 +1,14 @@
-// 直接使用全局配置变量
-// const config 已经由 config.js 定义
+// 在文件开头加载配置
+let languageConfig;
+
+(async function loadConfig() {
+  try {
+    const response = await fetch(chrome.runtime.getURL('config/languages.json'));
+    languageConfig = await response.json();
+  } catch (error) {
+    console.error('Error loading language config:', error);
+  }
+})();
 
 // 检测字符所属的文字系统
 function detectCharScript(char, selectedScripts) {
@@ -7,7 +16,7 @@ function detectCharScript(char, selectedScripts) {
   
   // 只检查用户在 popup 中选中的文字系统
   for (const selected of selectedScripts) {
-    const scriptConfig = config.scripts.find(s => s.scriptId === selected.scriptId);
+    const scriptConfig = languageConfig.scripts.find(s => s.scriptId === selected.scriptId);
     if (!scriptConfig) continue;
     
     const isInRange = scriptConfig.unicodeRanges.some(range => {
