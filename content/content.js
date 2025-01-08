@@ -51,95 +51,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 function romanizePage(selectedScripts) {
   console.log('Starting romanization with scripts:', selectedScripts);
   try {
-    // 获取所有文本节点
     const textNodes = getAllTextNodes(document.body);
     console.log('Found text nodes:', textNodes.length);
     
-    // 处理每个文本节点
-    textNodes.forEach((node, index) => {
+    textNodes.forEach((node) => {
       const originalText = node.textContent;
-      let newText = '';
-      let hasConversion = false;
-      let currentWord = '';
-      let currentScript = null;
-      
-      // 逐字符处理文本，收集词
-      for (let i = 0; i < originalText.length; i++) {
-        const char = originalText[i];
-        const script = detectCharScript(char, selectedScripts);
-        
-        // 如果是空格或标点，或者文字系统改变，则处理当前收集的词
-        if (char.trim() === '' || /[.,!?;:，。！？；：]/.test(char) || 
-            (currentScript && script !== currentScript)) {
-          // 处理之前收集的词
-          if (currentWord && currentScript) {
-            const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.scriptId);
-            if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
-              const romanized = window[selectedScript.functionName](currentWord);
-              if (romanized !== currentWord) {
-                newText += `<span class="romanized-word"><span class="romanized-mark">${romanized}</span>${currentWord}</span>`;
-                hasConversion = true;
-              } else {
-                newText += currentWord;
-              }
-            } else {
-              newText += currentWord;
-            }
-          }
-          
-          // 添加空格或标点
-          newText += char;
-          
-          // 重置收集器
-          currentWord = '';
-          currentScript = null;
-        } else if (script) {
-          // 如果是相同文字系统的字符，继续收集
-          if (!currentScript) {
-            currentScript = script;
-          }
-          currentWord += char;
-        } else {
-          // 处理之前收集的词
-          if (currentWord && currentScript) {
-            const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.scriptId);
-            if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
-              const romanized = window[selectedScript.functionName](currentWord);
-              if (romanized !== currentWord) {
-                newText += `<span class="romanized-word"><span class="romanized-mark">${romanized}</span>${currentWord}</span>`;
-                hasConversion = true;
-              } else {
-                newText += currentWord;
-              }
-            } else {
-              newText += currentWord;
-            }
-            currentWord = '';
-            currentScript = null;
-          }
-          // 添加非目标文字系统的字符
-          newText += char;
-        }
-      }
-      
-      // 处理最后一个词
-      if (currentWord && currentScript) {
-        const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.scriptId);
-        if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
-          const romanized = window[selectedScript.functionName](currentWord);
-          if (romanized !== currentWord) {
-            newText += `<span class="romanized-word"><span class="romanized-mark">${romanized}</span>${currentWord}</span>`;
-            hasConversion = true;
-          } else {
-            newText += currentWord;
-          }
-        } else {
-          newText += currentWord;
-        }
-      }
-
-      // 只有当有转换发生时才替换节点
-      if (hasConversion) {
+      const newText = processText(originalText, selectedScripts); // 调用新函数处理文本
+      if (newText) {
         const wrapper = document.createElement('span');
         wrapper.innerHTML = newText;
         node.parentNode.replaceChild(wrapper, node);
@@ -148,6 +66,90 @@ function romanizePage(selectedScripts) {
   } catch (error) {
     console.error('Error in romanizePage:', error);
   }
+}
+
+// 处理文本的主函数，根据语言设置决定调用哪种分割方式
+function processText(originalText, selectedScripts) {
+  const languageConfig = getLanguageConfig(selectedScripts); // 获取语言配置
+  let newText = '';
+
+  if (languageConfig.splitBy === 'word') {
+    newText = splitTextByWord(originalText, selectedScripts);
+  } else if (languageConfig.splitBy === 'char') {
+    newText = splitTextByChar(originalText, selectedScripts);
+  }
+
+  return newText; // 返回处理后的文本
+}
+
+// 新的函数，用于按词分割文本
+function splitTextByWord(originalText, selectedScripts) {
+  let newText = '';
+  let hasConversion = false;
+  let currentWord = '';
+  let currentScript = null;
+
+  for (let i = 0; i < originalText.length; i++) {
+    const char = originalText[i];
+    const script = detectCharScript(char, selectedScripts);
+    
+    if (char.trim() === '' || /[.,!?;:，。！？；：]/.test(char) || 
+        (currentScript && script !== currentScript)) {
+      if (currentWord && currentScript) {
+        newText += processWord(currentWord, currentScript, selectedScripts); // 传递 selectedScripts
+        hasConversion = true;
+      }
+      newText += char;
+      currentWord = '';
+      currentScript = null;
+    } else if (script) {
+      if (!currentScript) {
+        currentScript = script;
+      }
+      currentWord += char;
+    } else {
+      newText += char;
+    }
+  }
+
+  if (currentWord && currentScript) {
+    newText += processWord(currentWord, currentScript, selectedScripts); // 传递 selectedScripts
+    hasConversion = true;
+  }
+
+  return hasConversion ? newText : null; // 只有在有转换时才返回新文本
+}
+
+// 新的函数，用于按字分割文本
+function splitTextByChar(originalText, selectedScripts) {
+  let newText = '';
+  let hasConversion = false;
+
+  for (let i = 0; i < originalText.length; i++) {
+    const char = originalText[i];
+    const script = detectCharScript(char, selectedScripts);
+    
+    if (script) {
+      newText += processWord(char, script, selectedScripts); // 传递 selectedScripts
+      hasConversion = true;
+    } else {
+      newText += char;
+    }
+  }
+
+  return hasConversion ? newText : null; // 只有在有转换时才返回新文本
+}
+
+// 处理单个词的函数
+function processWord(word, currentScript, selectedScripts) { // 添加 selectedScripts 参数
+  const selectedScript = selectedScripts.find(s => s.scriptId === currentScript.scriptId);
+  if (selectedScript && typeof window[selectedScript.functionName] === 'function') {
+    const romanized = window[selectedScript.functionName](word);
+    if (romanized !== word) {
+      return `<span class="romanized-word"><span class="romanized-mark">${romanized}</span>${word}</span>`;
+    }
+  }
+  return word; // 如果没有转换，返回原始词
 }
 
 // 获取所有文本节点的辅助函数
@@ -208,4 +210,13 @@ function restorePage() {
     console.error('Error in restorePage:', error);
   }
 }
+
+// 获取语言配置的函数（示例）
+function getLanguageConfig(selectedScripts) {
+  // 假设从 languages.json 中获取配置
+  // 这里需要根据实际情况实现
+  return { splitBy: 'word' }; // 示例返回值
+}
+
+
 
