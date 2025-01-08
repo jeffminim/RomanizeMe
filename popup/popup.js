@@ -185,33 +185,19 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 });
 
-// 获取选中的脚本和语言
-function getSelectedScripts() {
-  const selectedScripts = {};
-  document.querySelectorAll('.script-item').forEach(item => {
-    const scriptCheckbox = item.querySelector('.script-checkbox');
-    const scriptHeader = item.querySelector('.script-header label').textContent;
-    const selectedRadio = item.querySelector('input[type="radio"]:checked');
-    
-    if (scriptCheckbox && scriptCheckbox.checked && selectedRadio && !selectedRadio.disabled) {
-      selectedScripts[scriptHeader] = selectedRadio.value;
-    }
-  });
-  return selectedScripts;
-}
 
 // 恢复选择状态的函数
 function restoreSelections(selectedScripts) {
   selectedScripts.forEach(script => {
-    // 选中对应的复选框
-    const checkbox = document.querySelector(`#script-${script.scriptId}`);
-    if (checkbox) {
-      checkbox.checked = true;
-      
-      // 选中对应的单选框
-      const radio = document.querySelector(`input[name="${script.scriptId}-lang"][value="${script.languageId}"]`);
-      if (radio) {
-        radio.checked = true;
+    // 直接查找对应的单选框
+    const radio = document.querySelector(`input[name="language-option"][value="${script.scriptId}|${script.languageId}"]`);
+    if (radio) {
+      radio.checked = true;
+      // 触发UI更新
+      const section = radio.closest('.script-section');
+      if (section) {
+        section.style.backgroundColor = '#e8f0fe';
+        section.style.borderColor = '#1a73e8';
       }
     }
   });
@@ -224,62 +210,6 @@ function disableAllRadios(disabled) {
       radio.disabled = disabled;
     });
 }
-
-// // 添加复选框和单选按钮的联动
-// document.querySelectorAll('.script-checkbox').forEach(checkbox => {
-//   checkbox.addEventListener('change', function() {
-//     const scriptItem = this.closest('.script-item');
-//     const radioButtons = scriptItem.querySelectorAll('input[type="radio"]');
-    
-//     radioButtons.forEach(radio => {
-//       radio.disabled = !this.checked;
-//     });
-    
-//     // 如果取消选中复选框，同时取消选中对应的单选按钮
-//     if (!this.checked) {
-//       radioButtons.forEach(radio => radio.checked = false);
-//     } else {
-//       // 如果选中复选框，默认选中第一个单选按钮
-//       radioButtons[0].checked = true;
-//     }
-//   });
-// });
-
-document.addEventListener('DOMContentLoaded', function() {
-  const scriptCheckboxes = document.querySelectorAll('.script-checkbox');
-
-  scriptCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
-      const scriptSection = this.closest('.script-section');
-      const radioOptions = scriptSection.querySelectorAll('.radio-option input[type="radio"]');
-
-      // 根据复选框的状态更新卡片的样式和单选框的可用性
-      if (this.checked) {
-        scriptSection.classList.add('active'); // 添加选中样式
-        radioOptions.forEach(radio => {
-          radio.disabled = false; // 启用单选框
-        });
-        scriptSection.style.borderColor = '#1a73e8'; // 设置边框颜色为蓝色
-      } else {
-        scriptSection.classList.remove('active'); // 移除选中样式
-        radioOptions.forEach(radio => {
-          radio.disabled = true; // 禁用单选框
-          radio.checked = false; // 取消选中状态
-        });
-        scriptSection.style.borderColor = '#e0e0e0'; // 恢复边框颜色
-      }
-    });
-
-    // 初始化时禁用未选中的单选框
-    const scriptSection = checkbox.closest('.script-section');
-    const radioOptions = scriptSection.querySelectorAll('.radio-option input[type="radio"]');
-    if (!checkbox.checked) {
-      radioOptions.forEach(radio => {
-        radio.disabled = true; // 禁用单选框
-      });
-    }
-  });
-});
 
 function generateScriptSections(config) {
   const container = document.getElementById('script-sections-container');
