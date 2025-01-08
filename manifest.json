@@ -16,7 +16,6 @@
       "matches": ["<all_urls>"],
       "css": ["content/content.css"],
       "js": [
-        "config/config.js",
         "libs/ko_hangul.js",
         "content/content.js"
       ],
