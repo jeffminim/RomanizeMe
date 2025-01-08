@@ -150,6 +150,11 @@ document.addEventListener('DOMContentLoaded', async function() {
       // 重置 UI 状态
       resetUIState();
 
+      // 移除所有激活状态
+      document.querySelectorAll('.radio-option').forEach(option => {
+        option.classList.remove('active');
+      });
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -250,16 +255,9 @@ function generateScriptSections(config) {
 
       // 创建语言选项容器
       const options = document.createElement('div');
-      options.className = 'language-options';
+      options.className = 'script-section-options';
 
-      // 遍历并创建每个可用的语言选项
       availableLanguages.forEach(lang => {
-        // 确保语言对象有效
-        if (!lang || !lang.id || !lang.name) {
-          console.warn('Invalid language object:', lang);
-          return;
-        }
-
         const option = document.createElement('label');
         option.className = 'radio-option';
         option.innerHTML = `
@@ -285,3 +283,21 @@ function updateRomanizeButtonState() {
   
   romanizeButton.disabled = !hasSelection;
 }
+
+// 在罗马音转换按钮点击事件中添加激活状态
+document.getElementById('romanize-button').addEventListener('click', () => {
+  // 获取当前选中的语言选项
+  const selectedOption = document.querySelector('input[name="language-option"]:checked');
+  
+  // 移除所有激活状态
+  document.querySelectorAll('.radio-option').forEach(option => {
+    option.classList.remove('active');
+  });
+  
+  // 为当前选中的选项添加激活状态
+  if (selectedOption) {
+    selectedOption.closest('.radio-option').classList.add('active');
+  }
+  
+  // ... 其他转换逻辑保持不变 ...
+});

@@ -79,8 +79,8 @@ body {
 }
 
 .logo img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
 }
 
 .copyright {
@@ -112,7 +112,7 @@ h2 {
   display: flex;
   justify-content: space-between; /* 左右分布 */
   align-items: center; /* 垂直居中 */
-  padding: 12px;
+  padding: 6px 12px;
   border-radius: 8px;
   background: #f8f9fa;
   border: 1px solid #e0e0e0;
@@ -184,53 +184,70 @@ h2 {
   transform: translateX(16px);
 }
 
-/* 语言选项样式 */
-.language-options {
-  display: flex;
-  gap: 12px; /* 语言选项之间的间距 */
-}
-
-/* 调整单选按钮样式 */
+/* 修改单选按钮为按钮样式 */
 .radio-option {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-}
-
-.radio-option:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-}
-
-.radio-option input[type="radio"] {
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #5f6368;
-  border-radius: 50%;
-  margin: 0;
-  position: relative;
+  /* padding: 6px 12px; */
+  margin: 4px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.radio-option input[type="radio"]:checked {
+.radio-option:hover {
+  background-color: #e8f0fe;
   border-color: #1a73e8;
 }
 
-.radio-option input[type="radio"]:checked:after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #1a73e8;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* 选中状态 */
+.radio-option input[type="radio"]:checked + span {
+  color: #1a73e8;
+}
+
+.radio-option input[type="radio"]:checked ~ span {
+  background-color: #1a73e8;
+  color: white;
+}
+
+/* 修改单选按钮样式 */
+.radio-option input[type="radio"] {
+  display: none; /* 隐藏原生单选框 */
 }
 
 .radio-option span {
   font-size: 14px;
   color: #3c4043;
-  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+/* 选中状态的按钮样式 */
+.radio-option input[type="radio"]:checked ~ span {
+  background-color: #1a73e8;
+  color: white;
+  border-color: #1a73e8;
+}
+
+/* 禁用状态 */
+.radio-option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f0f0f0;
+}
+
+.radio-option.disabled:hover {
+  background-color: #f0f0f0;
+  border-color: #e0e0e0;
+}
+
+.radio-option input[type="radio"]:disabled ~ span {
+  background-color: #f0f0f0;
+  color: #b0b0b0;
+  cursor: not-allowed;
 }
 
 /* 按钮样式 */
@@ -316,20 +333,19 @@ button:disabled {
   border-radius: 3px;
 }
 
-/* 禁用状态 */
-.radio-option.disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
+/* 添加激活状态样式 */
+.radio-option.active {
+  background-color: #e8f0fe; /* 浅蓝色背景 */
+  border-color: #1a73e8; /* 蓝色边框 */
 }
 
-/* 禁用状态样式 */
-.radio-option input[type="radio"]:disabled + span {
-  color: #b0b0b0; /* 禁用时文本颜色 */
-  cursor: not-allowed; /* 鼠标样式 */
+.radio-option.active span {
+  color: #1a73e8; /* 蓝色文字 */
 }
 
-/* 禁用状态的背景 */
-.radio-option input[type="radio"]:disabled {
-  opacity: 0.5; /* 禁用时降低透明度 */
+/* 选中且激活状态 */
+.radio-option.active input[type="radio"]:checked ~ span {
+  background-color: #1a73e8;
+  color: white;
 }
 
