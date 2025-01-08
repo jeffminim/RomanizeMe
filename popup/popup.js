@@ -52,25 +52,24 @@ document.addEventListener('DOMContentLoaded', async function() {
   romanizeButton.addEventListener('click', async () => {
     const selectedScripts = [];
     
-    // 获取所有选中的语言及其对应的转换函数信息
-    document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
-      if (!radio.disabled) {
-        const scriptId = radio.name.replace('-lang', '');
-        const languageId = radio.value;
-        
-        // 从配置中找到对应的语言配置
-        const script = window.languageConfig.scripts.find(s => s.scriptId === scriptId);
-        const language = script.languages.find(l => l.id === languageId);
-
-        selectedScripts.push({
-          scriptId: scriptId,
-          languageId: languageId,
-          libFile: language.libFile,
-          functionName: language.functionName
-        });
-      }
-    });
-
+    // 获取选中的语言及其对应的转换函数信息
+    const selectedRadio = document.querySelector('input[type="radio"]:checked');
+    if (selectedRadio) {
+      // 现在value直接包含scriptId和languageId，用分隔符连接
+      const [scriptId, languageId] = selectedRadio.value.split('|');
+      
+      // 从配置中找到对应的语言配置
+      const script = window.languageConfig.scripts.find(s => s.scriptId === scriptId);
+      const language = script.languages.find(l => l.id === languageId);
+      
+      selectedScripts.push({
+        scriptId: scriptId,
+        languageId: languageId,
+        libFile: language.libFile,
+        functionName: language.functionName
+      });
+    }
+    
     if (selectedScripts.length > 0) {
       try {
         const tabs = await chrome.tabs.query({active: true, currentWindow: true});
@@ -78,19 +77,19 @@ document.addEventListener('DOMContentLoaded', async function() {
           console.error('No active tab found');
           return;
         }
-
+        
         // 发送消息到 content.js
         await chrome.tabs.sendMessage(tabs[0].id, {
           action: 'romanize',
           scripts: selectedScripts
         });
-
+        
         // 保存当前状态
         await chrome.storage.local.set({ 
           selectedScripts: selectedScripts,
           lastSelection: selectedScripts  // 保存最后一次的选择
         });
-
+        
         // 更新 UI 状态
         updateUIAfterRomanization();
         
@@ -102,17 +101,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // 更新 UI 状态的函数
   function updateUIAfterRomanization() {
-    // 1. 禁用所有复选框和单选框
-    document.querySelectorAll('.script-checkbox, input[type="radio"]').forEach(input => {
+    // 1. 禁用所有单选框
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
       input.disabled = true;
     });
 
     // 2. 高亮选中的卡片
     document.querySelectorAll('.script-section').forEach(section => {
-      const checkbox = section.querySelector('.script-checkbox');
-      if (checkbox.checked) {
-        section.style.backgroundColor = '#e8f0fe'; // 浅蓝色背景
-        section.style.borderColor = '#1a73e8'; // 蓝色边框
+      const radio = section.querySelector('input[type="radio"]:checked');
+      if (radio) {
+        section.style.backgroundColor = '#e8f0fe';
+        section.style.borderColor = '#1a73e8';
       }
     });
 
@@ -121,11 +120,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     const restoreButton = document.getElementById('restore-button');
 
     romanizeButton.disabled = true;
-    romanizeButton.style.backgroundColor = '#e0e0e0'; // 置灰
+    romanizeButton.style.backgroundColor = '#e0e0e0';
     romanizeButton.style.cursor = 'not-allowed';
 
     restoreButton.disabled = false;
-    restoreButton.style.backgroundColor = '#dc3545'; // 红色主题
+    restoreButton.style.backgroundColor = '#dc3545';
     restoreButton.style.borderColor = '#dc3545';
     restoreButton.style.color = 'white';
     restoreButton.style.cursor = 'pointer';
@@ -158,19 +157,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // 重置 UI 状态的函数
   function resetUIState() {
-    // 1. 启用所有复选框
-    document.querySelectorAll('.script-checkbox').forEach(checkbox => {
-      checkbox.disabled = false;
-      checkbox.checked = false;  // 确保取消选中状态
-    });
-
-    // 2. 重置卡片样式
+    // 1. 重置卡片样式
     document.querySelectorAll('.script-section').forEach(section => {
       section.style.backgroundColor = '';
       section.style.borderColor = '#e0e0e0';
     });
 
-    // 3. 重置按钮状态和样式
+    // 2. 重置按钮状态和样式
     const romanizeButton = document.getElementById('romanize-button');
     const restoreButton = document.getElementById('restore-button');
 
@@ -184,14 +177,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     restoreButton.style.color = '';
     restoreButton.style.cursor = 'not-allowed';
 
-    // 4. 重置单选框状态
+    // 3. 启用所有单选框
     document.querySelectorAll('input[type="radio"]').forEach(radio => {
-      radio.disabled = true;  // 默认禁用所有单选框
-      radio.checked = false;  // 取消选中状态
+      radio.disabled = false;
+      radio.checked = false;
     });
-
-    // 5. 清除存储的最后选择
-    chrome.storage.local.remove(['lastSelection']);
   }
 });
 
@@ -235,25 +225,25 @@ function disableAllRadios(disabled) {
     });
 }
 
-// 添加复选框和单选按钮的联动
-document.querySelectorAll('.script-checkbox').forEach(checkbox => {
-  checkbox.addEventListener('change', function() {
-    const scriptItem = this.closest('.script-item');
-    const radioButtons = scriptItem.querySelectorAll('input[type="radio"]');
+// // 添加复选框和单选按钮的联动
+// document.querySelectorAll('.script-checkbox').forEach(checkbox => {
+//   checkbox.addEventListener('change', function() {
+//     const scriptItem = this.closest('.script-item');
+//     const radioButtons = scriptItem.querySelectorAll('input[type="radio"]');
     
-    radioButtons.forEach(radio => {
-      radio.disabled = !this.checked;
-    });
+//     radioButtons.forEach(radio => {
+//       radio.disabled = !this.checked;
+//     });
     
-    // 如果取消选中复选框，同时取消选中对应的单选按钮
-    if (!this.checked) {
-      radioButtons.forEach(radio => radio.checked = false);
-    } else {
-      // 如果选中复选框，默认选中第一个单选按钮
-      radioButtons[0].checked = true;
-    }
-  });
-});
+//     // 如果取消选中复选框，同时取消选中对应的单选按钮
+//     if (!this.checked) {
+//       radioButtons.forEach(radio => radio.checked = false);
+//     } else {
+//       // 如果选中复选框，默认选中第一个单选按钮
+//       radioButtons[0].checked = true;
+//     }
+//   });
+// });
 
 document.addEventListener('DOMContentLoaded', function() {
   const scriptCheckboxes = document.querySelectorAll('.script-checkbox');
@@ -293,83 +283,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function generateScriptSections(config) {
   const container = document.getElementById('script-sections-container');
+  if (!container) {
+    console.error('Container element not found');
+    return;
+  }
   container.innerHTML = '';
 
-  config.scripts.filter(script => script.isEnabled).forEach(script => {
-    // 创建卡片容器
-    const section = document.createElement('div');
-    section.className = 'script-section';
+  // 确保config和scripts存在
+  if (!config || !Array.isArray(config.scripts)) {
+    console.error('Invalid config format');
+    return;
+  }
 
-    // 创建卡片头部（包含文字类型名称和开关）
-    const header = document.createElement('div');
-    header.className = 'section-header';
-    header.innerHTML = `
-      <span>${script.name}</span>
-      <div class="switch">
-        <input type="checkbox" class="script-checkbox" id="script-${script.scriptId}">
-        <label for="script-${script.scriptId}"></label>
-      </div>
-    `;
-    section.appendChild(header);
+  // 过滤出启用的脚本
+  config.scripts.filter(script => script && script.isEnabled).forEach(script => {
+    // 确保脚本有语言选项
+    if (!script.languages || !Array.isArray(script.languages)) {
+      console.warn(`Script "${script.name}" does not have valid languages.`);
+      return;
+    }
 
-    // 创建语言选项容器
-    const options = document.createElement('div');
-    options.className = 'language-options';
+    // 过滤出可用的语言
+    const availableLanguages = script.languages.filter(lang => lang && lang.isAvailable);
+    
+    // 如果有可用的语言才创建卡片
+    if (availableLanguages.length > 0) {
+      // 创建卡片容器
+      const section = document.createElement('div');
+      section.className = 'script-section';
 
-    // 遍历并创建每个语言选项
-    script.languages.forEach(lang => {
-      const option = document.createElement('label');
-      option.className = 'radio-option';
-      option.innerHTML = `
-        <input type="radio" 
-               name="${script.scriptId}-lang" 
-               value="${lang.id}"
-               data-available="${lang.isAvailable}"
-               checked="false">
-        <span>${lang.name}</span>
-      `;
-      options.appendChild(option);
-    });
+      // 创建卡片头部（包含文字类型名称）
+      const header = document.createElement('div');
+      header.className = 'section-header';
+      header.innerHTML = `<span>${script.name || 'Unnamed Script'}</span>`;
+      section.appendChild(header);
 
-    section.appendChild(options);
-    container.appendChild(section);
+      // 创建语言选项容器
+      const options = document.createElement('div');
+      options.className = 'language-options';
 
-    // 获取当前卡片的开关和选项
-    const checkbox = section.querySelector(`#script-${script.scriptId}`);
-    const radios = options.querySelectorAll('input[type="radio"]');
-
-    // 初始化状态
-    checkbox.checked = false; // 开关默认关闭
-    radios.forEach(radio => {
-      radio.checked = false; // 明确设置所有选项为未选中
-      radio.disabled = true; // 初始状态下禁用所有选项
-    });
-
-    // 添加开关事件监听
-    checkbox.addEventListener('change', () => {
-      const isChecked = checkbox.checked;
-      
-      radios.forEach(radio => {
-        const isAvailable = radio.getAttribute('data-available') === 'true';
-        // 如果开关打开且语言可用，则启用选项；否则禁用
-        radio.disabled = !isChecked || !isAvailable;
-        
-        // 如果开关关闭，取消选中所有选项
-        if (!isChecked) {
-          radio.checked = false;
+      // 遍历并创建每个可用的语言选项
+      availableLanguages.forEach(lang => {
+        // 确保语言对象有效
+        if (!lang || !lang.id || !lang.name) {
+          console.warn('Invalid language object:', lang);
+          return;
         }
+
+        const option = document.createElement('label');
+        option.className = 'radio-option';
+        option.innerHTML = `
+          <input type="radio" 
+                 name="language-option"
+                 value="${script.scriptId}|${lang.id}">
+          <span>${lang.name}</span>
+        `;
+        options.appendChild(option);
       });
 
-      // 更新罗马音转换按钮状态
-      updateRomanizeButtonState();
-    });
-
-    // 为每个radio添加change事件监听
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        updateRomanizeButtonState();
-      });
-    });
+      section.appendChild(options);
+      container.appendChild(section);
+    }
   });
 }
 

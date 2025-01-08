@@ -103,27 +103,16 @@ h2 {
 /* 文字列表容器 */
 .script-sections-container {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  height: 320px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding-right: 4px;
-  column-count: 2;
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  
+  flex-direction: column; /* 垂直排列 */
+  gap: 16px; /* 卡片之间的间距 */
 }
 
 /* 每个文字类型的卡片样式 */
 .script-section {
-  width: calc(50% - 4px);
-  /* height: fit-content; */
-  break-inside: avoid;
-  -moz-column-break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  padding: 8px;
+  display: flex;
+  justify-content: space-between; /* 左右分布 */
+  align-items: center; /* 垂直居中 */
+  padding: 12px;
   border-radius: 8px;
   background: #f8f9fa;
   border: 1px solid #e0e0e0;
@@ -145,15 +134,9 @@ h2 {
 
 /* 区域头部样式 */
 .section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.section-header span {
-  font-size: 14px;
-  color: #5f6368;
+  font-size: 16px;
+  font-weight: bold;
+  color: #3c4043;
 }
 
 /* 开关按钮样式 */
@@ -204,23 +187,13 @@ h2 {
 /* 语言选项样式 */
 .language-options {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 4px 0;
-  background: none;
-  box-shadow: none;
+  gap: 12px; /* 语言选项之间的间距 */
 }
 
 /* 调整单选按钮样式 */
 .radio-option {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 8px;
-  border-radius: 4px;
-  background: none;
-  border: none;
-  transition: background-color 0.2s;
 }
 
 .radio-option:hover {

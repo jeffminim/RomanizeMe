@@ -3,7 +3,7 @@
     {
       "scriptId": "hanzi",
       "name": "汉字",
-      "isEnabled": false,
+      "isEnabled": true,
       "unicodeRanges": [
         "4E00-9FFF",
         "3400-4DBF",
@@ -17,7 +17,7 @@
         {
           "id": "chinese_mandarin",
           "name": "汉语普通话",
-          "isAvailable": false,
+          "isAvailable": true,
           "libFile": "zh_hanzi.js",
           "functionName": "getChineseRomanization",
           "segmentation": "character"
