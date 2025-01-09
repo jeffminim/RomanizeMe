@@ -35,7 +35,7 @@
     {
       "scriptId": "kana",
       "name": "假名",
-      "isEnabled": true,
+      "isEnabled": false,
       "unicodeRanges": [
         "3040-309F",
         "30A0-30FF",
