@@ -3,7 +3,7 @@
     {
       "scriptId": "hanzi",
       "name": "汉字",
-      "isEnabled": true,
+      "isEnabled": false,
       "unicodeRanges": [
         "4E00-9FFF",
         "3400-4DBF",
@@ -44,19 +44,11 @@
       ],
       "languages": [
         {
-          "id": "hiragana",
-          "name": "平假名",
-          "isAvailable": false,
-          "libFile": "ja_hiragana.js",
-          "functionName": "getHiraganaRomanization",
-          "segmentation": "character"
-        },
-        {
-          "id": "katakana_romaji",
-          "name": "片假名（罗马音）",
+          "id": "japanese_romaji",
+          "name": "日语罗马音",
           "isAvailable": true,
-          "libFile": "ja_katakana_romaji.js",
-          "functionName": "getKatakanaRomaji",
+          "libFile": "ja_romaji.js",
+          "functionName": "getJapaneseRomanization",
           "segmentation": "character"
         },
         {
