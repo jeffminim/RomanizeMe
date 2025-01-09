@@ -1,114 +1,108 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Chrome Extension Logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">RomanizeMe - A Browser Extension for Romanization of non-Latin Characters</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/yourusername/extension-name.svg)](https://github.com/yourusername/extension-name/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/yourusername/extension-name.svg)](https://github.com/yourusername/extension-name/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
+[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/extension-name/releases/tag/v1.0.0)
+
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> 专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。
     <br> 
 </p>
 
-## 📝 Table of Contents
+## 📝 目录
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [关于](#关于)
+- [安装使用](#安装使用)
+- [功能特性](#功能特性)
+- [支持语言](#支持语言)
+- [开发计划](#开发计划)
+- [常见问题](#常见问题)
+- [贡献指南](../CONTRIBUTING.md)
+- [作者](#作者)
+- [致谢](#致谢)
 
-## 🧐 About <a name = "about"></a>
+## 🧐 关于 <a name = "关于"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+版本：1.0.0
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+这是一个专为语言学习者设计的浏览器扩展，主要功能包括：
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+- 为非拉丁字母文字标注罗马音发音
+- 可扩展的语言支持架构
+- 简单易用的界面
 
-### Prerequisites
+## 🏁 安装使用 <a name = "安装使用"></a>
 
-What things you need to install the software and how to install them.
+### 安装步骤
 
-```
-Give examples
-```
+- Chrome
 
-### Installing
+- Edge
 
-A step by step series of examples that tell you how to get a development env running.
+- ~~Firefox~~
 
-Say what the step will be
+### 使用方法
 
-```
-Give the example
-```
+1. 打开任意包含非拉丁文字内容的网页
+2. 点击浏览器工具栏中的扩展图标
+3. 选中你想要注音的文字/语言
+4. 点击“罗马音转换”
+5. 将鼠标移动到具体的文字上查看。
 
-And repeat
+## 🌍 支持语言 <a name = "支持语言"></a>
 
-```
-until finished
-```
+当前支持：
 
-End with an example of getting some data out of the system or using it for a little demo.
+- 韩语（谚文）
 
-## 🔧 Running the tests <a name = "tests"></a>
+计划支持：
 
-Explain how to run the automated tests for this system.
+- 日语（假名、日语汉字）
+- 汉语（普通话、粤语等）
+- 西里尔字母（俄语、乌克兰语等）
+- 阿拉伯语
+- 更多语言...
 
-### Break down into end to end tests
+## 📅 开发计划 <a name = "开发计划"></a>
 
-Explain what these tests test and why
+### TODO List
 
-```
-Give an example
-```
+- [ ] 添加快捷键支持
+- [ ] 开发设置页面
+- [ ] 实现标注样式自定义
+- [ ] 添加发音音频支持
 
-### And coding style tests
+## ❓ 常见问题 <a name = "常见问题"></a>
 
-Explain what these tests test and why
+**Q: 扩展支持哪些浏览器？**
+A: 目前支持Chrome及所有基于Chromium的浏览器（如Edge、Brave等）
 
-```
-Give an example
-```
+**Q: 如何更新扩展？**
+A: 只需下载最新版本并重新加载即可
 
-## 🎈 Usage <a name="usage"></a>
+**Q: 扩展会收集用户数据吗？**
+A: 不会，所有数据都存储在本地
 
-Add notes about how to use the system.
+## ✍️ 作者 <a name = "作者"></a>
 
-## 🚀 Deployment <a name = "deployment"></a>
+- [@Jeff H]([jeffminim · GitHub](https://github.com/jeffminim)) - 项目创建者 & 主要开发者
 
-Add additional notes about how to deploy this on a live system.
+## 🎉 致谢 <a name = "致谢"></a>
 
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- 感谢Chrome/Edge扩展开发文档
+- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、
