@@ -105,4 +105,4 @@ A: 不会，所有数据都存储在本地
 ## 🎉 致谢 <a name = "致谢"></a>
 
 - 感谢Chrome/Edge扩展开发文档
-- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、
+- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、通义千问等
