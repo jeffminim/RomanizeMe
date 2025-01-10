@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Chrome Extension Logo"></a>
+ <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
 </p>
 
 <h3 align="center">RomanizeMe - A Browser Extension for Romanization of non-Latin Characters</h3>
@@ -31,12 +31,11 @@
 - [支持语言](#支持语言)
 - [开发计划](#开发计划)
 - [常见问题](#常见问题)
+- [版本](#版本)
 - [作者](#作者)
 - [致谢](#致谢)
 
 ## 🧐 关于 <a name = "关于"></a>
-
-版本：1.0.0
 
 这是一个专为语言学习者设计的浏览器扩展，主要功能包括：
 
@@ -48,11 +47,13 @@
 
 ### 安装步骤
 
-- Chrome
+- ~~Chrome~~（正在申请Google Chrome Web Store认证）
 
-- Edge
+- ~~Edge~~（正在申请Microsoft Partner Center认证）
 
-- ~~Firefox~~
+- ~~Firefox~~（正在申请Mozilla Add-ons认证）
+
+但目前，您可以手动下载安装包，并拖入浏览器中进行安装。
 
 ### 使用方法
 
@@ -62,19 +63,26 @@
 4. 点击“罗马音转换”
 5. 将鼠标移动到具体的文字上查看。
 
-## 🌍 支持语言 <a name = "支持语言"></a>
+## 🌍 支持文字/语言 <a name = "支持语言"></a>
 
-当前支持：
-
-- 韩语（谚文）
-
-计划支持：
-
-- 日语（假名、日语汉字）
-- 汉语（普通话、粤语等）
-- 西里尔字母（俄语、乌克兰语等）
-- 阿拉伯语
-- 更多语言...
+- [X] 谚文（韩语）
+- [x] 日文
+  - [x] 假名（罗马音）
+  - [ ] 日语汉字
+  - [ ] 片假名（原语言，如英语）
+- [ ] 汉字
+  - [ ] 普通话
+  - [ ] 粤语
+  - [ ] 更多方言...
+- [ ] 西里尔字母
+  - [ ] 俄语
+  - [ ] 乌克兰语
+  - [ ] 更多语言...
+- [ ] 阿拉伯文
+  - [ ] 阿拉伯语
+  - [ ] 更多语言...
+- [ ] 藏文（藏语）
+- [ ] 更多文字/语言...
 
 ## 📅 开发计划 <a name = "开发计划"></a>
 
@@ -95,6 +103,17 @@ A: 只需下载最新版本并重新加载即可
 
 **Q: 扩展会收集用户数据吗？**
 A: 不会，所有数据都存储在本地
+
+
+## 📅 版本 <a name = "版本"></a>
+
+- 1.0.0 (2025-01-08)
+  - 实际基础功能。
+  - 支持谚文（韩语）
+
+- 1.1.0 (2025-01-10)
+  - 支持日文（假名-罗马音）
+
 
 ## ✍️ 作者 <a name = "作者"></a>
 

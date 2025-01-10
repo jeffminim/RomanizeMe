@@ -213,7 +213,7 @@ function restorePage() {
 
 // 获取语言配置的函数
 function getLanguageConfig(selectedScripts) {
-  console.log('getLanguageConfig', selectedScripts);
+  // console.log('getLanguageConfig', selectedScripts);
   
   if (!languageConfig || !selectedScripts) {
     console.log('getLanguageConfig2', 'default');  
@@ -225,7 +225,7 @@ function getLanguageConfig(selectedScripts) {
   if (!selectedScript) return 'word';
 
 
-  console.log('getLanguageConfig2', selectedScripts[0]?.segmentation);
+  // console.log('getLanguageConfig2', selectedScripts[0]?.segmentation);
   // 返回分割方式，如果没有配置则使用默认值
   return selectedScripts[0]?.segmentation === 'character' ? 'char' : 'word';
 }
