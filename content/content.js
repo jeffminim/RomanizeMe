@@ -73,9 +73,9 @@ function processText(originalText, selectedScripts) {
   const languageConfig = getLanguageConfig(selectedScripts); // 获取语言配置
   let newText = '';
 
-  if (languageConfig.splitBy === 'word') {
+  if (languageConfig === 'word') {
     newText = splitTextByWord(originalText, selectedScripts);
-  } else if (languageConfig.splitBy === 'char') {
+  } else if (languageConfig === 'char') {
     newText = splitTextByChar(originalText, selectedScripts);
   }
 
@@ -211,11 +211,23 @@ function restorePage() {
   }
 }
 
-// 获取语言配置的函数（示例）
+// 获取语言配置的函数
 function getLanguageConfig(selectedScripts) {
-  // 假设从 languages.json 中获取配置
-  // 这里需要根据实际情况实现
-  return { splitBy: 'word' }; // 示例返回值
+  console.log('getLanguageConfig', selectedScripts);
+  
+  if (!languageConfig || !selectedScripts) {
+    console.log('getLanguageConfig2', 'default');  
+    return 'word'; // 默认值
+  }
+
+  // 获取第一个选中语言的配置
+  const selectedScript = selectedScripts[0];
+  if (!selectedScript) return 'word';
+
+
+  console.log('getLanguageConfig2', selectedScripts[0]?.segmentation);
+  // 返回分割方式，如果没有配置则使用默认值
+  return selectedScripts[0]?.segmentation === 'character' ? 'char' : 'word';
 }
 
 

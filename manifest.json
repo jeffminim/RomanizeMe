@@ -17,6 +17,7 @@
       "css": ["content/content.css"],
       "js": [
         "libs/ko_hangul.js",
+        "libs/ja_romaji.js",
         "content/content.js"
       ],
       "run_at": "document_end"

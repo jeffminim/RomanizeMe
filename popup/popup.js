@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         scriptId: scriptId,
         languageId: languageId,
         libFile: language.libFile,
-        functionName: language.functionName
+        functionName: language.functionName,
+        segmentation: language.segmentation
       });
     }
     
