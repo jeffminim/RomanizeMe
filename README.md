@@ -1,6 +1,8 @@
 <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
+ <br>
+  <a href="./README.zh.md">中文版</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a>
 </p>
 
 <h3 align="center">RomanizeMe - A Browser Extension for Romanization of non-Latin Characters</h3>
@@ -8,8 +10,6 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/yourusername/extension-name.svg)](https://github.com/yourusername/extension-name/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/yourusername/extension-name.svg)](https://github.com/yourusername/extension-name/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
@@ -19,116 +19,115 @@
 
 ---
 
-<p align="center"> 专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。
+<p align="center"> A browser extension designed for language enthusiasts to provide romanization for non-Latin characters.
     <br> 
 </p>
 
-## 📝 目录
+## 📝 Table of Contents
 
-- [📝 目录](#-目录)
-- [🧐 关于 ](#-关于-)
-- [🏁 安装使用 ](#-安装使用-)
-  - [安装步骤](#安装步骤)
-  - [使用方法](#使用方法)
-- [🌍 支持文字/语言 ](#-支持文字语言-)
-- [📅 版本 ](#-版本-)
-- [📅 开发计划 ](#-开发计划-)
+- [📝 Table of Contents](#-table-of-contents)
+- [🧐 About ](#-about-)
+- [🏁 Getting Started ](#-getting-started-)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [📅 Version History ](#-version-history-)
+- [📅 Development Roadmap ](#-development-roadmap-)
+  - [🌍 Supported Scripts/Languages ](#-supported-scriptslanguages-)
   - [TODO List](#todo-list)
-- [❓ 常见问题 ](#-常见问题-)
-- [✍️ 作者 ](#️-作者-)
-- [🎉 致谢 ](#-致谢-)
+- [❓ FAQ ](#-faq-)
+- [✍️ Author ](#️-author-)
+- [🎉 Acknowledgement ](#-acknowledgement-)
 
-## 🧐 关于 <a name = "关于"></a>
+## 🧐 About <a name = "about"></a>
 
-这是一个专为语言学习者设计的浏览器扩展，主要功能包括：
+This is a browser extension designed for language learners, with main features including:
 
-- 为非拉丁字母文字标注罗马音发音
-- 可扩展的语言支持架构
-- 简单易用的界面
+- Romanization for non-Latin scripts
+- Extensible language support architecture
+- Simple and intuitive interface
 
-## 🏁 安装使用 <a name = "安装使用"></a>
+## 🏁 Getting Started <a name = "getting-started"></a>
 
-### 安装步骤
+### Installation
 
-- ~~Chrome~~（正在申请Google Chrome Web Store认证）
+- ~~Chrome~~ (Pending Google Chrome Web Store approval)
 
-- ~~Edge~~（正在申请Microsoft Partner Center认证）
+- ~~Edge~~ (Pending Microsoft Partner Center approval)
 
-- ~~Firefox~~（正在申请Mozilla Add-ons认证）
+- ~~Firefox~~ (Pending Mozilla Add-ons approval)
 
-但目前，您可以手动下载安装包，并拖入浏览器中进行安装。
+For now, you can manually download the package and install it by dragging into your browser.
 
-### 使用方法
+### Usage
 
-1. 打开任意包含非拉丁文字内容的网页
-2. 点击浏览器工具栏中的扩展图标
-3. 选中你想要注音的文字/语言
-4. 点击“罗马音转换”
-5. 将鼠标移动到具体的文字上查看。
+1. Open any webpage containing non-Latin text
+2. Click the extension icon in browser toolbar
+3. Select the script/language you want to romanize
+4. Click "Romanize"
+5. Hover over specific characters to see their romanization
 
-## 🌍 支持文字/语言 <a name = "支持语言"></a>
-
-- [X] 谚文（韩语）
-
-- [x] 日文
-  - [x] 假名（罗马音）
-  - [ ] 日语汉字
-  - [ ] 片假名（原语言，如英语）
-- [ ] 汉字
-  - [ ] 普通话
-  - [ ] 粤语
-  - [ ] 更多方言...
-- [ ] 西里尔字母
-  - [ ] 俄语
-  - [ ] 乌克兰语
-  - [ ] 更多语言...
-- [ ] 阿拉伯文
-  - [ ] 阿拉伯语
-  - [ ] 更多语言...
-- [ ] 藏文（藏语）
-- [ ] 更多文字/语言...
-
-## 📅 版本 <a name = "版本"></a>
+## 📅 Version History <a name = "version-history"></a>
 
 - 1.0.0 (2025-01-08)
   
-  - 实际基础功能。
-  - 支持谚文（韩语）
+  - Basic functionality implemented
+  - Hangul (Korean) support
 
 - 1.1.0 (2025-01-16)
   
-  - 支持日文（假名-罗马音）
+  - Japanese Kana (Romaji) support
 
-## 📅 开发计划 <a name = "开发计划"></a>
+## 📅 Development Roadmap <a name = "development-roadmap"></a>
+
+### 🌍 Supported Scripts/Languages <a name = "supported-scriptslanguages"></a>
+
+- [ ] Chinese Characters
+  - [ ] Mandarin
+  - [ ] Cantonese
+  - [ ] More dialects...
+- [X] Hangul (Korean)
+- [x] Japanese
+  - [x] Kana (Romaji)
+  - [ ] Kanji
+  - [ ] Katakana (Original language, e.g. English)
+- [ ] Cyrillic
+  - [ ] Russian
+  - [ ] Ukrainian
+  - [ ] More languages...
+- [ ] Arabic
+  - [ ] Arabic
+  - [ ] More languages...
+- [ ] Tibetan
+- [ ] More scripts/languages...
 
 ### TODO List
 
-- [ ] 添加快捷键支持
-- [ ] 添加i18n支持
-- [ ] 开发设置页面
-- [ ] 实现标注样式自定义
-- [ ] 添加发音音频支持
-- [ ] 添加更多语言支持
-- [ ] 适配主流浏览器
+- [ ] Add keyboard shortcut support
+- [ ] Implement i18n support
+- [ ] Develop settings page
+- [ ] Customizable annotation styles
+- [ ] Add audio pronunciation support
+- [ ] Support more languages
+- [ ] Compatibility with major browsers
 
-## ❓ 常见问题 <a name = "常见问题"></a>
+## ❓ FAQ <a name = "faq"></a>
 
-**Q: 扩展支持哪些浏览器？**
-A: 目前支持Chrome及所有基于Chromium的浏览器（如Edge、Brave等）
+**Q: Which browsers are supported?**
+A: Currently supports Chrome and all Chromium-based browsers (e.g. Edge)
 
-**Q: 如何更新扩展？**
-A: 只需下载最新版本并重新加载即可
+**Q: How to update the extension?**
+A: Simply download the latest version and reload
 
-**Q: 扩展会收集用户数据吗？**
-A: 不会，所有数据都存储在本地
+**Q: Does the extension collect user data?**
+A: No. In fact, the extension doesn't need to collect any user data at all.
 
 
 
-## ✍️ 作者 <a name = "作者"></a>
+## ✍️ Author <a name = "Author"></a>
 
-- [@Jeff H]([jeffminim · GitHub](https://github.com/jeffminim)) - 项目创建者 & 主要开发者
+- [@Jeff H]([jeffminim · GitHub](https://github.com/jeffminim)) - Author
 
-## 🎉 致谢 <a name = "致谢"></a>
+## 🎉 Acknowledgement <a name = "Acknowledgement"></a>
 
 - 感谢Chrome/Edge扩展开发文档
-- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、通义千问等
+- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、QWen等
