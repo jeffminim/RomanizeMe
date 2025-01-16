@@ -49,7 +49,7 @@
           "isAvailable": true,
           "libFile": "ja_romaji.js",
           "functionName": "getJapaneseRomanization",
-          "segmentation": "word"
+          "segmentation": "tokenizeJapanese"
         },
         {
           "id": "katakana_original",
@@ -201,4 +201,4 @@
       ]
     }
   ]
-} 
+}

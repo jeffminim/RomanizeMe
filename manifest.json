@@ -18,7 +18,9 @@
       "js": [
         "libs/ko_hangul.js",
         "libs/ja_romaji.js",
-        "content/content.js"
+        "content/text_segmenter.js",
+        "content/content.js",
+        "libs/extra/TinySegmenterJapanese/tiny_segmenter-0.2.js"
       ],
       "run_at": "document_end"
     }
