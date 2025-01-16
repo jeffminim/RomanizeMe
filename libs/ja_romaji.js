@@ -20,7 +20,24 @@ function getJapaneseRomanization(text) {
       'ざ': 'za', 'じ': 'ji', 'ず': 'zu', 'ぜ': 'ze', 'ぞ': 'zo',
       'だ': 'da', 'ぢ': 'ji', 'づ': 'zu', 'で': 'de', 'ど': 'do',
       'ば': 'ba', 'び': 'bi', 'ぶ': 'bu', 'べ': 'be', 'ぼ': 'bo',
-      'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po'
+      'ぱ': 'pa', 'ぴ': 'pi', 'ぷ': 'pu', 'ぺ': 'pe', 'ぽ': 'po',
+      // 拗音-清音
+      'きゃ': 'kya', 'きゅ': 'kyu', 'きょ': 'kyo',
+      'しゃ': 'sha', 'しゅ': 'shu', 'しょ': 'sho',
+      'ちゃ': 'cha', 'ちゅ': 'chu', 'ちょ': 'cho',
+      'にゃ': 'nya', 'にゅ': 'nyu', 'にょ': 'nyo',
+      'ひゃ': 'hya', 'ひゅ': 'hyu', 'ひょ': 'hyo',
+      'みゃ': 'mya', 'みゅ': 'myu', 'みょ': 'myo',
+      'りゃ': 'rya', 'りゅ': 'ryu', 'りょ': 'ryo',
+      // 拗音-浊音
+      'ぎゃ': 'gya', 'ぎゅ': 'gyu', 'ぎょ': 'gyo',
+      'じゃ': 'ja',  'じゅ': 'ju',  'じょ': 'jo',
+      'ぢゃ': 'ja',  'ぢゅ': 'ju',  'ぢょ': 'jo',
+      'びゃ': 'bya', 'びゅ': 'byu', 'びょ': 'byo',
+      // 拗音-半浊音
+      'ぴゃ': 'pya', 'ぴゅ': 'pyu', 'ぴょ': 'pyo',
+      // 合拗音
+      'くゎ': 'kwa', 'ぐゎ': 'gwa'
     };
 
     // 片假名到罗马音的映射表
@@ -39,26 +56,50 @@ function getJapaneseRomanization(text) {
       'ザ': 'za', 'ジ': 'ji', 'ズ': 'zu', 'ゼ': 'ze', 'ゾ': 'zo',
       'ダ': 'da', 'ヂ': 'ji', 'ヅ': 'zu', 'デ': 'de', 'ド': 'do',
       'バ': 'ba', 'ビ': 'bi', 'ブ': 'bu', 'ベ': 'be', 'ボ': 'bo',
-      'パ': 'pa', 'ピ': 'pi', 'プ': 'pu', 'ペ': 'pe', 'ポ': 'po'
+      'パ': 'pa', 'ピ': 'pi', 'プ': 'pu', 'ペ': 'pe', 'ポ': 'po',
+      // 拗音-清音
+      'キャ': 'kya', 'キュ': 'kyu', 'キョ': 'kyo',
+      'シャ': 'sha', 'シュ': 'shu', 'ショ': 'sho',
+      'チャ': 'cha', 'チュ': 'chu', 'チョ': 'cho',
+      'ニャ': 'nya', 'ニュ': 'nyu', 'ニョ': 'nyo',
+      'ヒャ': 'hya', 'ヒュ': 'hyu', 'ヒョ': 'hyo',
+      'ミャ': 'mya', 'ミュ': 'myu', 'ミョ': 'myo',
+      'リャ': 'rya', 'リュ': 'ryu', 'リョ': 'ryo',
+      // 拗音-浊音
+      'ギャ': 'gya', 'ギュ': 'gyu', 'ギョ': 'gyo',
+      'ジャ': 'ja',  'ジュ': 'ju',  'ジョ': 'jo',
+      'ヂャ': 'ja',  'ヂュ': 'ju',  'ヂョ': 'jo',
+      'ビャ': 'bya', 'ビュ': 'byu', 'ビョ': 'byo',
+      // 拗音-半浊音
+      'ピャ': 'pya', 'ピュ': 'pyu', 'ピョ': 'pyo',
+      // 合拗音
+      'クヮ': 'kwa', 'グヮ': 'gwa'
     };
 
     let result = '';
+    let i = 0;
     
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      
-      // 检查平假名
-      if (hiraganaMap[char]) {
-        result += hiraganaMap[char];
-      }
-      // 检查片假名
-      else if (katakanaMap[char]) {
-        result += katakanaMap[char];
-      }
-      // 其他字符保持不变
-      else {
-        result += char;
-      }
+    while (i < text.length) {
+        // 先检查两个字符的组合
+        if (i + 1 < text.length) {
+            const twoChars = text[i] + text[i + 1];
+            if (hiraganaMap[twoChars] || katakanaMap[twoChars]) {
+                result += hiraganaMap[twoChars] || katakanaMap[twoChars];
+                i += 2;
+                continue;
+            }
+        }
+        
+        // 单字符处理
+        const char = text[i];
+        if (hiraganaMap[char]) {
+            result += hiraganaMap[char];
+        } else if (katakanaMap[char]) {
+            result += katakanaMap[char];
+        } else {
+            result += char;
+        }
+        i++;
     }
 
     return result;

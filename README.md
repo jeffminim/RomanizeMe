@@ -13,8 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/yourusername/extension-name/releases/tag/v1.0.0)
-
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.1.0)
 
 </div>
 
@@ -66,6 +65,7 @@
 ## 🌍 支持文字/语言 <a name = "支持语言"></a>
 
 - [X] 谚文（韩语）
+
 - [x] 日文
   - [x] 假名（罗马音）
   - [ ] 日语汉字
@@ -94,6 +94,7 @@
 - [ ] 实现标注样式自定义
 - [ ] 添加发音音频支持
 - [ ] 添加更多语言支持
+- [ ] 适配主流浏览器
 
 ## ❓ 常见问题 <a name = "常见问题"></a>
 
@@ -106,16 +107,16 @@ A: 只需下载最新版本并重新加载即可
 **Q: 扩展会收集用户数据吗？**
 A: 不会，所有数据都存储在本地
 
-
 ## 📅 版本 <a name = "版本"></a>
 
 - 1.0.0 (2025-01-08)
+  
   - 实际基础功能。
   - 支持谚文（韩语）
 
 - 1.1.0 (2025-01-10)
+  
   - 支持日文（假名-罗马音）
-
 
 ## ✍️ 作者 <a name = "作者"></a>
 
