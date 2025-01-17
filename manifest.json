@@ -2,7 +2,8 @@
   "manifest_version": 3,
   "name": "RomanizeMe",
   "version": "1.0",
-  "description": "RomanizeMe is a Chrome extension that helps you romanize non-Latin languages. ",
+  "description": "RomanizeMe is a browser extension that helps you romanize non-Latin languages. ",
+  "default_locale": "en",
   "permissions": [
     "activeTab",
     "scripting",
@@ -32,7 +33,7 @@
     ],
     "matches": ["<all_urls>"]
   }, {
-    "resources": ["config/languages.json"],
+    "resources": ["config/languages.json", "config/locales.json"],
     "matches": ["<all_urls>"]
   }],
   "icons": {

@@ -1,3 +1,6 @@
+let currentLocale = getBrowserLanguage(); // 默认语言
+let localesConfig = null;
+
 document.addEventListener('DOMContentLoaded', async function() {
   const romanizeButton = document.getElementById('romanize-button');
   const restoreButton = document.getElementById('restore-button');
@@ -5,6 +8,24 @@ document.addEventListener('DOMContentLoaded', async function() {
   // 加载语言配置
   const response = await fetch(chrome.runtime.getURL('config/languages.json'));
   window.languageConfig = await response.json();
+  
+  // 加载语言配置
+  const localesResponse = await fetch(chrome.runtime.getURL('config/locales.json'));
+  localesConfig = await localesResponse.json();
+  
+  // 初始化语言选择器
+  initializeLanguageSelector();
+  
+  // 从存储中获取上次选择的语言,如果没有则使用浏览器语言
+  chrome.storage.local.get(['selectedLocale'], function(result) {
+    if (result.selectedLocale) {
+      currentLocale = result.selectedLocale;
+    }
+    // 设置语言选择器的值
+    document.getElementById('language-selector').value = currentLocale;
+    // 更新界面语言
+    updateUILanguage();
+  });
   
   // 生成动态内容
   generateScriptSections(window.languageConfig);
@@ -247,6 +268,7 @@ function generateScriptSections(config) {
       // 创建卡片容器
       const section = document.createElement('div');
       section.className = 'script-section';
+      section.setAttribute('data-script-id', script.scriptId);
 
       // 创建卡片头部（包含文字类型名称）
       const header = document.createElement('div');
@@ -267,6 +289,7 @@ function generateScriptSections(config) {
                  value="${script.scriptId}|${lang.id}">
           <span>${lang.name}</span>
         `;
+        option.querySelector('span').setAttribute('data-language-id', lang.id);
         options.appendChild(option);
       });
 
@@ -302,3 +325,75 @@ document.getElementById('romanize-button').addEventListener('click', () => {
   
   // ... 其他转换逻辑保持不变 ...
 });
+
+function initializeLanguageSelector() {
+  const languageSelector = document.getElementById('language-selector');
+  languageSelector.addEventListener('change', async function(e) {
+    currentLocale = e.target.value;
+    // 保存语言选择
+    await chrome.storage.local.set({ selectedLocale: currentLocale });
+    updateUILanguage();
+  });
+}
+
+function updateUILanguage() {
+  // 更新按钮文本
+  document.getElementById('romanize-button').textContent = 
+    localesConfig.ui.buttons.romanize[currentLocale];
+  document.getElementById('restore-button').textContent = 
+    localesConfig.ui.buttons.restore[currentLocale];
+  
+  // 更新标题
+  document.querySelector('.list-card h2').textContent = 
+    localesConfig.ui.title[currentLocale];
+  
+  // 更新版本文本
+  document.querySelector('.version').textContent = 
+    `${localesConfig.ui.version[currentLocale]}: 1.0`;
+    
+  // 更新脚本和语言选项的文本
+  updateScriptSectionsLanguage();
+}
+
+function updateScriptSectionsLanguage() {
+  const sections = document.querySelectorAll('.script-section');
+  sections.forEach(section => {
+    const scriptId = section.getAttribute('data-script-id');
+    const scriptConfig = window.languageConfig.scripts.find(s => s.scriptId === scriptId);
+    
+    if (scriptConfig) {
+      // 更新脚本名称
+      section.querySelector('.section-header span').textContent = 
+        scriptConfig.name[currentLocale];
+      
+      // 更新语言选项
+      const options = section.querySelectorAll('.radio-option span');
+      options.forEach(option => {
+        const languageId = option.getAttribute('data-language-id');
+        const language = scriptConfig.languages.find(l => l.id === languageId);
+        if (language) {
+          option.textContent = language.name[currentLocale];
+        }
+      });
+    }
+  });
+}
+
+// 获取浏览器默认语言
+function getBrowserLanguage() {
+  // 获取完整的浏览器语言代码 (例如 "zh-CN", "en-US")
+  const fullLang = navigator.language;
+  
+  // 提取主要语言代码 (例如 "zh", "en")
+  const primaryLang = fullLang.split('-')[0];
+  
+  // 检查是否支持该语言,支持的语言有: zh, en, ja, ko
+  const supportedLanguages = ['zh', 'en', 'ja', 'ko'];
+  
+  if (supportedLanguages.includes(primaryLang)) {
+    return primaryLang;
+  }
+  
+  // 如果不支持,默认返回英文
+  return 'en';
+}

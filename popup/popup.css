@@ -349,3 +349,30 @@ button:disabled {
   color: white;
 }
 
+/* 语言选择卡片样式 */
+.language-card {
+  padding: 12px;
+}
+
+.language-selector {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #3c4043;
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.language-selector:hover {
+  border-color: #1a73e8;
+}
+
+.language-selector:focus {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+

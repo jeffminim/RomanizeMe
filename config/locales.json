@@ -1,0 +1,64 @@
+{
+  "ui": {
+    "title": {
+      "zh": "文字列表",
+      "en": "Script List",
+      "ja": "文字リスト",
+      "ko": "문자 목록"
+    },
+    "buttons": {
+      "romanize": {
+        "zh": "罗马音转换",
+        "en": "Romanize",
+        "ja": "ローマ字変換",
+        "ko": "로마자 변환"
+      },
+      "restore": {
+        "zh": "还原页面",
+        "en": "Restore Page",
+        "ja": "ページを復元",
+        "ko": "페이지 복원"
+      }
+    },
+    "version": {
+      "zh": "版本",
+      "en": "Version",
+      "ja": "バージョン",
+      "ko": "버전"
+    },
+    "languageSelector": {
+      "label": {
+        "zh": "选择语言",
+        "en": "Select Language",
+        "ja": "言語を選択",
+        "ko": "언어 선택"
+      },
+      "options": {
+        "zh": {
+          "zh": "中文",
+          "en": "Chinese",
+          "ja": "中国語",
+          "ko": "중국어"
+        },
+        "en": {
+          "zh": "英文",
+          "en": "English",
+          "ja": "英語",
+          "ko": "영어"
+        },
+        "ja": {
+          "zh": "日文",
+          "en": "Japanese",
+          "ja": "日本語",
+          "ko": "일본어"
+        },
+        "ko": {
+          "zh": "韩文",
+          "en": "Korean",
+          "ja": "韓国語",
+          "ko": "한국어"
+        }
+      }
+    }
+  }
+}

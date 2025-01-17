@@ -2,7 +2,12 @@
   "scripts": [
     {
       "scriptId": "hanzi",
-      "name": "汉字",
+      "name": {
+        "en": "Chinese Characters",
+        "zh": "汉字", 
+        "ja": "漢字",
+        "ko": "한자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "4E00-9FFF",
@@ -16,7 +21,12 @@
       "languages": [
         {
           "id": "chinese_mandarin",
-          "name": "汉语普通话",
+          "name": {
+            "en": "Mandarin Chinese",
+            "zh": "汉语普通话",
+            "ja": "中国語普通話",
+            "ko": "중국어 보통화"
+          },
           "isAvailable": true,
           "libFile": "zh_hanzi.js",
           "functionName": "getChineseRomanization",
@@ -24,7 +34,12 @@
         },
         {
           "id": "japanese_kanji",
-          "name": "日语汉字",
+          "name": {
+            "en": "Japanese Kanji",
+            "zh": "日语汉字",
+            "ja": "日本語漢字",
+            "ko": "일본어 한자"
+          },
           "isAvailable": false,
           "libFile": "ja_kanji.js",
           "functionName": "getJapaneseKanjiRomanization",
@@ -34,7 +49,12 @@
     },
     {
       "scriptId": "kana",
-      "name": "假名",
+      "name": {
+        "en": "Kana",
+        "zh": "假名",
+        "ja": "仮名",
+        "ko": "가나"
+      },
       "isEnabled": true,
       "unicodeRanges": [
         "3040-309F",
@@ -45,7 +65,12 @@
       "languages": [
         {
           "id": "japanese_romaji",
-          "name": "日语罗马音",
+          "name": {
+            "en": "Japanese Romaji",
+            "zh": "日语罗马音",
+            "ja": "日本語ローマ字",
+            "ko": "일본어 로마자"
+          },
           "isAvailable": true,
           "libFile": "ja_romaji.js",
           "functionName": "getJapaneseRomanization",
@@ -53,7 +78,12 @@
         },
         {
           "id": "katakana_original",
-          "name": "片假名（原文）",
+          "name": {
+            "en": "Katakana (Original)",
+            "zh": "片假名（原文）",
+            "ja": "片仮名（原文）",
+            "ko": "가타카나(원문)"
+          },
           "isAvailable": false,
           "libFile": "ja_katakana_original.js",
           "functionName": "getKatakanaOriginal",
@@ -63,7 +93,12 @@
     },
     {
       "scriptId": "hangul",
-      "name": "谚文",
+      "name": {
+        "en": "Hangul",
+        "zh": "谚文",
+        "ja": "ハングル",
+        "ko": "한글"
+      },
       "isEnabled": true,
       "unicodeRanges": [
         "AC00-D7AF",
@@ -75,7 +110,12 @@
       "languages": [
         {
           "id": "korean",
-          "name": "韩语",
+          "name": {
+            "en": "Korean",
+            "zh": "韩语",
+            "ja": "韓国語",
+            "ko": "한국어"
+          },
           "isAvailable": true,
           "libFile": "ko_hangul.js",
           "functionName": "getKoreanRomanization",
@@ -85,7 +125,12 @@
     },
     {
       "scriptId": "cyrillic",
-      "name": "西里尔字母",
+      "name": {
+        "en": "Cyrillic",
+        "zh": "西里尔字母",
+        "ja": "キリル文字",
+        "ko": "키릴 문자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "0400-04FF",
@@ -97,7 +142,12 @@
       "languages": [
         {
           "id": "russian",
-          "name": "俄语",
+          "name": {
+            "en": "Russian",
+            "zh": "俄语",
+            "ja": "ロシア語",
+            "ko": "러시아어"
+          },
           "disabled": false,
           "libFile": "ru_cyrillic.js",
           "functionName": "getRussianRomanization",
@@ -105,7 +155,12 @@
         },
         {
           "id": "ukrainian",
-          "name": "乌克兰语",
+          "name": {
+            "en": "Ukrainian",
+            "zh": "乌克兰语",
+            "ja": "ウクライナ語",
+            "ko": "우크라이나어"
+          },
           "disabled": false,
           "libFile": "uk_cyrillic.js",
           "functionName": "getUkrainianRomanization",
@@ -115,7 +170,12 @@
     },
     {
       "scriptId": "greek",
-      "name": "希腊字母",
+      "name": {
+        "en": "Greek",
+        "zh": "希腊字母",
+        "ja": "ギリシャ文字",
+        "ko": "그리스 문자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "0370-03FF",
@@ -124,7 +184,12 @@
       "languages": [
         {
           "id": "modern_greek",
-          "name": "现代希腊语",
+          "name": {
+            "en": "Modern Greek",
+            "zh": "现代希腊语",
+            "ja": "現代ギリシャ語",
+            "ko": "현대 그리스어"
+          },
           "disabled": false,
           "libFile": "el_modern.js",
           "functionName": "getModernGreekRomanization",
@@ -132,7 +197,12 @@
         },
         {
           "id": "ancient_greek",
-          "name": "古希腊语",
+          "name": {
+            "en": "Ancient Greek",
+            "zh": "古希腊语",
+            "ja": "古代ギリシャ語",
+            "ko": "고대 그리스어"
+          },
           "disabled": false,
           "libFile": "el_ancient.js",
           "functionName": "getAncientGreekRomanization",
@@ -142,7 +212,12 @@
     },
     {
       "scriptId": "arabic",
-      "name": "阿拉伯字母",
+      "name": {
+        "en": "Arabic",
+        "zh": "阿拉伯字母",
+        "ja": "アラビア文字",
+        "ko": "아랍 문자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "0600-06FF",
@@ -154,7 +229,12 @@
       "languages": [
         {
           "id": "arabic",
-          "name": "阿拉伯语",
+          "name": {
+            "en": "Arabic",
+            "zh": "阿拉伯语",
+            "ja": "アラビア語",
+            "ko": "아랍어"
+          },
           "disabled": false,
           "libFile": "ar_arabic.js",
           "functionName": "getArabicRomanization",
@@ -164,7 +244,12 @@
     },
     {
       "scriptId": "hebrew",
-      "name": "希伯来字母",
+      "name": {
+        "en": "Hebrew",
+        "zh": "希伯来字母",
+        "ja": "ヘブライ文字",
+        "ko": "히브리 문자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "0590-05FF",
@@ -173,7 +258,12 @@
       "languages": [
         {
           "id": "hebrew",
-          "name": "希伯来语",
+          "name": {
+            "en": "Hebrew",
+            "zh": "希伯来语",
+            "ja": "ヘブライ語",
+            "ko": "히브리어"
+          },
           "disabled": false,
           "libFile": "he_hebrew.js",
           "functionName": "getHebrewRomanization",
@@ -183,7 +273,12 @@
     },
     {
       "scriptId": "mongolian",
-      "name": "蒙古文字",
+      "name": {
+        "en": "Mongolian",
+        "zh": "蒙古文字",
+        "ja": "モンゴル文字",
+        "ko": "몽골 문자"
+      },
       "isEnabled": false,
       "unicodeRanges": [
         "1800-18AF",
@@ -192,7 +287,12 @@
       "languages": [
         {
           "id": "mongolian",
-          "name": "蒙古语",
+          "name": {
+            "en": "Mongolian",
+            "zh": "蒙古语",
+            "ja": "モンゴル語",
+            "ko": "몽골어"
+          },
           "disabled": false,
           "libFile": "mn_mongolian.js",
           "functionName": "getMongolianRomanization",

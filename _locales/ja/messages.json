@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "拡張機能名"
+  },
+  "extensionDescription": {
+    "message": "非ラテン文字のローマ字化を提供する言語愛好家向けのブラウザ拡張機能です。",
+    "description": "拡張機能の説明"
+  }
+}

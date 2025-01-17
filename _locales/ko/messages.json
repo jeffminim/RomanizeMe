@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "확장 프로그램 이름"
+  },
+  "extensionDescription": {
+    "message": "비라틴 문자를 로마자로 변환해주는 언어 학습자를 위한 브라우저 확장 프로그램입니다。",
+    "description": "확장 프로그램 설명"
+  }
+}
