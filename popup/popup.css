@@ -58,8 +58,14 @@ body {
 }
 
 .card.list-card h2 {
+  font-size: 16px;
+  font-weight: 1000;
   margin-bottom: 16px;
   flex-shrink: 0;
+}
+
+.card.list-card :hover {
+  color: #1a73e8;
 }
 
 /* 按钮卡片样式 */
@@ -118,6 +124,20 @@ h2 {
   color: #3c4043;
   margin-bottom: 16px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  width: 20px;
+  height: 20px;
+  fill: #5f6368;
+  transition: fill 0.2s;
+}
+
+h2:hover .section-icon {
+  fill: #1a73e8;
 }
 
 

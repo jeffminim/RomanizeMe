@@ -347,7 +347,7 @@ function updateUILanguage() {
     localesConfig.ui.buttons.restore[currentLocale];
   
   // 更新标题
-  document.querySelector('.list-card h2').textContent = 
+  document.querySelector('.list-card h2 span').textContent = 
     localesConfig.ui.title[currentLocale];
   
   // 更新版本文本
