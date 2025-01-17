@@ -5,7 +5,7 @@
  <a href="./README.zh.md">中文版</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a>
 </p>
 
-<h3 align="center">RomanizeMe - A Browser Extension for Romanization of non-Latin Characters</h3>
+<h3 align="center">RomanizeMe - 一个为非拉丁文字注音的浏览器扩展程序</h3>
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.1.0)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
 
 </div>
 
@@ -69,13 +69,14 @@
 ## 📅 版本 <a name = "版本"></a>
 
 - 1.0.0 (2025-01-08)
-  
   - 实际基础功能。
   - 支持谚文（韩语）
 
 - 1.1.0 (2025-01-16)
-  
   - 支持日文（假名-罗马音）
+
+- 1.2.0 (2025-01-17)
+  - UI优化与国际化（i18n）支持（现在支持中文、英语、日语、韩语）
 
 ## 📅 开发计划 <a name = "开发计划"></a>
 
@@ -103,7 +104,7 @@
 ### TODO List
 
 - [ ] 添加快捷键支持
-- [ ] 添加i18n支持
+- [x] 添加i18n支持
 - [ ] 开发设置页面
 - [ ] 实现标注样式自定义
 - [ ] 添加发音音频支持
@@ -119,4 +120,5 @@ A: 目前支持Chrome及所有基于Chromium的浏览器（如Edge等）
 A: 只需下载最新版本并重新加载即可
 
 **Q: 扩展会收集用户数据吗？**
+A: 不会。事实上，扩展本身并不需要收集任何用户数据。
 A: 不会。事实上，扩展本身并不需要收集任何用户数据。

@@ -294,17 +294,21 @@ h2:hover .section-icon {
 /* 按钮样式 */
 .primary-button {
   width: 100%;
-  padding: 0 16px;
+  padding: 0 16px 0 32px;
   background-color: #1a73e8;
   color: white;
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   margin-bottom: 8px;
   height: 48px;
   transition: background-color 0.2s;
+  background-image: url("../assets/iconTranslate.svg");
+  background-repeat: no-repeat;
+  background-position: -10px -6px;
+  background-size: 50px;
 }
 
 .primary-button:hover {
@@ -313,16 +317,20 @@ h2:hover .section-icon {
 
 .secondary-button {
   width: 100%;
-  padding: 0 16px;
+  padding: 0 16px 0 32px;
   background-color: #f1f3f4;
   color: #3c4043;
   border: none;
   border-radius: 4px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   height: 48px;
   transition: background-color 0.2s;
+  background-image: url("../assets/iconRestore.svg");
+  background-repeat: no-repeat;
+  background-position: -10px -6px;
+  background-size: 50px;
 }
 
 .secondary-button:hover {

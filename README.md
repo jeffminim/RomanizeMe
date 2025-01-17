@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.1.0)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
 
 </div>
 
@@ -35,8 +35,6 @@
   - [🌍 Supported Scripts/Languages ](#-supported-scriptslanguages-)
   - [TODO List](#todo-list)
 - [❓ FAQ ](#-faq-)
-- [✍️ Author ](#️-author-)
-- [🎉 Acknowledgement ](#-acknowledgement-)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -76,6 +74,10 @@ For now, you can manually download the package and install it by dragging into y
 - 1.1.0 (2025-01-16)
   
   - Japanese Kana (Romaji) support
+
+- 1.2.0 (2025-01-17)
+  
+  - UI optimization and i18n support (now supports Chinese, English, Japanese, Korean)
 
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
@@ -120,14 +122,3 @@ A: Simply download the latest version and reload
 
 **Q: Does the extension collect user data?**
 A: No. In fact, the extension doesn't need to collect any user data at all.
-
-
-
-## ✍️ Author <a name = "Author"></a>
-
-- [@Jeff H]([jeffminim · GitHub](https://github.com/jeffminim)) - Author
-
-## 🎉 Acknowledgement <a name = "Acknowledgement"></a>
-
-- 感谢Chrome/Edge扩展开发文档
-- 感谢Cursor/vscode及相应的Coder模型：Claude、GPT-4o-mini、Deepseek、QWen等

@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.1.0)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
 
 </div>
 
@@ -76,6 +76,10 @@
 - 1.1.0 (2025-01-16)
   
   - 일본어 가나(로마자) 지원
+
+- 1.2.0 (2025-01-17)
+  
+  - UI 최적화 및 i18n 지원(현재 중국어, 영어, 일본어, 한국어 지원)
 
 ## 📅 개발 로드맵 <a name = "development-roadmap"></a>
 
