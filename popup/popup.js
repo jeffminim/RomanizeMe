@@ -337,6 +337,9 @@ function initializeLanguageSelector() {
 }
 
 function updateUILanguage() {
+  // 版本号
+  const versionText = '1.0';
+
   // 更新按钮文本
   document.getElementById('romanize-button').textContent = 
     localesConfig.ui.buttons.romanize[currentLocale];
@@ -349,7 +352,7 @@ function updateUILanguage() {
   
   // 更新版本文本
   document.querySelector('.version').textContent = 
-    `${localesConfig.ui.version[currentLocale]}: 1.0`;
+    `${localesConfig.ui.version[currentLocale]}: ${versionText}`;
     
   // 更新脚本和语言选项的文本
   updateScriptSectionsLanguage();
