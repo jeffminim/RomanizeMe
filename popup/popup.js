@@ -338,7 +338,7 @@ function initializeLanguageSelector() {
 
 function updateUILanguage() {
   // 版本号
-  const versionText = '1.0';
+  const versionText = '1.2.0';
 
   // 更新按钮文本
   document.getElementById('romanize-button').textContent = 
