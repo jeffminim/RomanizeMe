@@ -391,7 +391,7 @@ function getBrowserLanguage() {
   const primaryLang = fullLang.split('-')[0];
   
   // 检查是否支持该语言,支持的语言有: zh, en, ja, ko
-  const supportedLanguages = ['zh', 'en', 'ja', 'ko'];
+  const supportedLanguages = ['zh', 'en', 'ja', 'ko', 'fr'];
   
   if (supportedLanguages.includes(primaryLang)) {
     return primaryLang;
