@@ -1,25 +1,25 @@
 <p align="center">
-  <a href="" rel="noopener">
+  <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
  <br>
- <a href="./README.zh.md">中文版</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
-<h3 align="center">RomanizeMe - A browser extension for romanizing non-Latin scripts</h3>
+<h3 align="center">RomanizeMe - Browser Extension for Romanizing Non-Latin Scripts</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
+[![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
+[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
 
 </div>
 
 ---
 
-<p align="center"> A browser extension designed for language enthusiasts to add romanization to non-Latin scripts.
+<p align="center"> A browser extension for romanizing the pronunciation of non-Latin scripts.
     <br> 
 </p>
 
@@ -31,7 +31,7 @@
   - [🔧 Installation](#-installation)
   - [🖱️ Usage](#️-usage)
 - [📅 Version History ](#-version-history-)
-- [📅 Roadmap ](#-roadmap-)
+- [📅 Development Roadmap ](#-development-roadmap-)
   - [🌍 Supported Scripts/Languages ](#-supported-scriptslanguages-)
   - [✅ TODO List](#-todo-list)
 - [❓ FAQ ](#-faq-)
@@ -41,11 +41,11 @@
 
 ## 🧐 About <a name = "about"></a>
 
-A browser extension designed for language learners, with main features including:
+This is a browser extension for language learners with the following main features:
 
-- Adding romanization to non-Latin scripts
+- Romanize pronunciation of non-Latin scripts
 - Extensible language support architecture
-- Simple and user-friendly interface
+- Simple and easy-to-use interface
 
 ## 🏁 Getting Started <a name = "getting-started"></a>
 
@@ -55,86 +55,89 @@ A browser extension designed for language learners, with main features including
 
 - ~~Edge~~ (Pending Microsoft Partner Center approval)
 
-- ~~Firefox~~ (Still learning how to adapt Firefox)
+- ~~Firefox~~ (Not yet supported. Researching adaptation for Firefox.)
 
-For now, you can manually download the package and drag it into your browser for installation.
+For now, you can manually download the installation package and drag & drop it into your browser to install.
 
 ### 🖱️ Usage
 
-1. Open any webpage containing non-Latin scripts
+1. Open a web page containing non-Latin scripts
 2. Click the extension icon in the browser toolbar
 3. Select the script/language you want to romanize
 4. Click "Romanize"
-5. Hover over specific characters to view the romanization
+5. Hover over characters to see their pronunciation
 
 ## 📅 Version History <a name = "version-history"></a>
 
 - 1.0.0 (2025-01-08)
-  - Basic functionality implemented
-  - Support for Hangul (Korean)
+  - Basic functionality implementation
+  - Hangul (Korean) support
 
 - 1.1.0 (2025-01-16)
-  - Support for Japanese (Kana to Romaji)
+  - Japanese Kana (Romaji) support
 
 - 1.2.0 (2025-01-17)
-  - UI improvements and i18n support (now supports Chinese, English, Japanese, Korean)
+  - UI optimization and i18n support (Chinese, English, Japanese, Korean)
 
-## 📅 Roadmap <a name = "roadmap"></a>
+- 1.2.1 (2025-01-19)
+  - i18n support (French added)
+
+## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
 ### 🌍 Supported Scripts/Languages <a name = "supported-scriptslanguages"></a>
 
-- [ ] Chinese Characters
-  - [ ] Mandarin (Planned for v1.3.0)
+- [ ] Hanzi
+  - [ ] Mandarin (planned for v1.3.0)
   - [ ] Cantonese
-  - [ ] More dialects...
-- [X] Hangul (Korean)
+  - [ ] Other dialects...
+- [X] Hangul
 - [x] Japanese
   - [x] Kana (Romaji)
   - [ ] Kanji
-  - [ ] Katakana (Original language, e.g., English)
+  - [ ] Katakana (original language, e.g. English)
 - [ ] Cyrillic
   - [ ] Russian
   - [ ] Ukrainian
-  - [ ] More languages...
+  - [ ] Other languages...
 - [ ] Arabic
   - [ ] Arabic
-  - [ ] More languages...
-- [ ] Tibetan (Tibetan)
-- [ ] More scripts/languages...
+  - [ ] Other languages...
+- [ ] Tibetan
+- [ ] Other scripts/languages...
 
 ### ✅ TODO List
 
-- [ ] Add keyboard shortcut support
-- [x] Add i18n support
-- [ ] Develop settings page
-- [ ] Implement annotation style customization
-- [ ] Add pronunciation audio support
-- [ ] Add more language support
-- [ ] Support major browsers
+- [ ] Shortcut key support
+- [x] i18n support
+- [ ] Settings page development
+- [ ] Annotation style customization
+- [ ] Pronunciation audio support
+- [ ] Support for more languages
+- [ ] Adaptation for major browsers
 
 ## ❓ FAQ <a name = "faq"></a>
 
 **Q: Which browsers are supported?**
-A: Currently supports Chrome and all Chromium-based browsers (e.g., Edge)
+A: Currently Chrome and Chromium-based browsers (e.g. Edge) are supported.
 
-**Q: How to update the extension?**
-A: Simply download the latest version and reload
+**Q: How do I update the extension?**
+A: Just download the latest version and reload.
 
 **Q: Does the extension collect user data?**
-A: No. In fact, the extension doesn't need to collect any user data.
+A: No. In fact, the extension has no need to collect user data.
 
 ## 🤝 Contributing <a name = "contributing"></a>
 
-We welcome contributions to the RomanizeMe project! If you have any questions, suggestions, or code contributions, please follow these steps:
+Contributions to the RomanizeMe project are welcome! If you have questions, suggestions, or code contributions, please follow these steps:
 
-1. Submit an Issue on GitHub describing your question or suggestion.
-2. Fork the project repository and make your changes in your local environment.
+1. Create an Issue on GitHub describing the problem.
+2. Fork the repository and make changes in your local environment.
 3. Submit a Pull Request with detailed description of your changes.
 
 ## 🙏 Acknowledgments <a name = "acknowledgments"></a>
 
-Special thanks to the [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) project, a JavaScript library for Japanese text segmentation that provides important functionality for RomanizeMe. Tiny Segmenter is free software that can be used and redistributed under the modified BSD license.
+Thanks to the [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) project. This is a JavaScript library for segmenting Japanese text, providing critical functionality for RomanizeMe. Tiny Segmenter is free software available under the modified BSD license.
 
 ## 📜 License <a name = "license"></a>
 
-RomanizeMe is licensed under the [MIT License](/LICENSE).
+RomanizeMe is distributed under the [MIT License](/LICENSE).

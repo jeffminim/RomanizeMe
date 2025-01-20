@@ -5,21 +5,21 @@
  <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
-<h3 align="center">RomanizeMe - Une extension de navigateur pour romaniser les textes non latins</h3>
+<h3 align="center">RomanizeMe - Extension de navigateur pour romaniser les écritures non latines</h3>
 
 <div align="center">
 
-[![Statut](https://img.shields.io/badge/status-active-success.svg)]()
-[![Licence](https://img.shields.io/badge/licence-MIT-blue.svg)](/LICENSE)
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
 
 </div>
 
 ---
 
-<p align="center"> Une extension de navigateur conçue pour les amateurs de langues, permettant de romaniser la prononciation des textes non latins.
+<p align="center"> Une extension de navigateur pour romaniser la prononciation des écritures non latines.
     <br> 
 </p>
 
@@ -27,114 +27,117 @@
 
 - [📝 Table des matières](#-table-des-matières)
 - [🧐 À propos ](#-à-propos-)
-- [🏁 Installation et utilisation ](#-installation-et-utilisation-)
-  - [🔧 Étapes d'installation](#-étapes-dinstallation)
-  - [🖱️ Mode d'emploi](#️-mode-demploi)
-- [📅 Versions ](#-versions-)
-- [📅 Plan de développement ](#-plan-de-développement-)
-  - [🌍 Langues/écritures supportées ](#-languesécritures-supportées-)
+- [🏁 Commencer ](#-commencer-)
+  - [🔧 Installation](#-installation)
+  - [🖱️ Utilisation](#️-utilisation)
+- [📅 Historique des versions ](#-historique-des-versions-)
+- [📅 Feuille de route de développement ](#-feuille-de-route-de-développement-)
+  - [🌍 Écritures/langues prises en charge ](#-écritureslangues-prises-en-charge-)
   - [✅ Liste des tâches](#-liste-des-tâches)
 - [❓ FAQ ](#-faq-)
-- [🤝 Guide de contribution ](#-guide-de-contribution-)
+- [🤝 Contribuer ](#-contribuer-)
 - [🙏 Remerciements ](#-remerciements-)
 - [📜 Licence ](#-licence-)
 
 ## 🧐 À propos <a name = "à-propos"></a>
 
-Il s'agit d'une extension de navigateur conçue pour les apprenants de langues, avec les fonctionnalités principales suivantes :
+Il s'agit d'une extension de navigateur pour les apprenants de langues avec les principales fonctionnalités suivantes :
 
-- Romanisation de la prononciation des textes non latins
-- Architecture extensible pour le support des langues
-- Interface simple et intuitive
+- Romaniser la prononciation des écritures non latines
+- Architecture de support linguistique extensible
+- Interface simple et facile à utiliser
 
-## 🏁 Installation et utilisation <a name = "installation-et-utilisation"></a>
+## 🏁 Commencer <a name = "commencer"></a>
 
-### 🔧 Étapes d'installation
+### 🔧 Installation
 
-- ~~Chrome~~ (en attente de certification sur le Chrome Web Store)
+- ~~Chrome~~ (En attente d'approbation du Google Chrome Web Store)
 
-- ~~Edge~~ (en attente de certification sur le Microsoft Partner Center)
+- ~~Edge~~ (En attente d'approbation du Microsoft Partner Center)
 
-- ~~Firefox~~ (Pas encore supporté, je travaille encore sur la façon de l'adapter à Firefox add-ons.)
+- ~~Firefox~~ (Pas encore supporté. Recherche en cours pour l'adaptation à Firefox.)
 
-Pour le moment, vous pouvez télécharger manuellement le package d'installation et le glisser-déposer dans votre navigateur.
+Pour l'instant, vous pouvez télécharger manuellement le package d'installation et le glisser-déposer dans votre navigateur pour l'installer.
 
-### 🖱️ Mode d'emploi
+### 🖱️ Utilisation
 
-1. Ouvrez une page web contenant du texte non latin
+1. Ouvrez une page web contenant des écritures non latines
 2. Cliquez sur l'icône de l'extension dans la barre d'outils du navigateur
-3. Sélectionnez la langue/écriture que vous souhaitez romaniser
+3. Sélectionnez l'écriture/langue que vous souhaitez romaniser
 4. Cliquez sur "Romaniser"
-5. Passez la souris sur les caractères pour voir leur prononciation.
+5. Survolez les caractères pour voir leur prononciation
 
-## 📅 Versions <a name = "versions"></a>
+## 📅 Historique des versions <a name = "historique-des-versions"></a>
 
 - 1.0.0 (2025-01-08)
-  - Fonctionnalités de base
+  - Implémentation des fonctionnalités de base
   - Support du hangul (coréen)
 
 - 1.1.0 (2025-01-16)
   - Support des kana japonais (romaji)
 
 - 1.2.0 (2025-01-17)
-  - Optimisation de l'interface et support de l'internationalisation (i18n) (maintenant disponible en chinois, anglais, japonais et coréen)
+  - Optimisation de l'interface et support i18n (chinois, anglais, japonais, coréen)
 
-## 📅 Plan de développement <a name = "plan-de-développement"></a>
+- 1.2.1 (2025-01-19)
+  - Support i18n (ajout du français)
 
-### 🌍 Langues/écritures supportées <a name = "langues-supportées"></a>
+## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
-- [ ] Caractères chinois
-  - [ ] Mandarin (prévu pour la v1.3.0)
+### 🌍 Écritures/langues prises en charge <a name = "écritureslangues-prises-en-charge"></a>
+
+- [ ] Hanzi
+  - [ ] Mandarin (prévu pour v1.3.0)
   - [ ] Cantonais
-  - [ ] Plus de dialectes...
-- [X] Hangul (coréen)
+  - [ ] Autres dialectes...
+- [X] Hangul
 - [x] Japonais
   - [x] Kana (romaji)
-  - [ ] Kanji japonais
+  - [ ] Kanji
   - [ ] Katakana (langue d'origine, par exemple anglais)
-- [ ] Alphabet cyrillique
+- [ ] Cyrillique
   - [ ] Russe
   - [ ] Ukrainien
-  - [ ] Plus de langues...
+  - [ ] Autres langues...
 - [ ] Arabe
   - [ ] Arabe
-  - [ ] Plus de langues...
+  - [ ] Autres langues...
 - [ ] Tibétain
-- [ ] Plus d'écritures/langues...
+- [ ] Autres écritures/langues...
 
 ### ✅ Liste des tâches
 
-- [ ] Ajouter le support des raccourcis clavier
-- [x] Ajouter le support i18n
-- [ ] Développer une page de paramètres
-- [ ] Implémenter la personnalisation du style des annotations
-- [ ] Ajouter le support audio de prononciation
-- [ ] Ajouter le support de plus de langues
-- [ ] Adapter aux principaux navigateurs
+- [ ] Support des raccourcis clavier
+- [x] Support i18n
+- [ ] Développement de la page des paramètres
+- [ ] Personnalisation du style des annotations
+- [ ] Support audio de la prononciation
+- [ ] Support de plus de langues
+- [ ] Adaptation aux principaux navigateurs
 
 ## ❓ FAQ <a name = "faq"></a>
 
-**Q: Quels navigateurs sont supportés ?**
-A: Actuellement, Chrome et tous les navigateurs basés sur Chromium (comme Edge) sont supportés.
+**Q: Quels navigateurs sont pris en charge ?**
+R: Actuellement, Chrome et les navigateurs basés sur Chromium (par exemple Edge) sont pris en charge.
 
 **Q: Comment mettre à jour l'extension ?**
-A: Il suffit de télécharger la dernière version et de recharger l'extension.
+R: Il suffit de télécharger la dernière version et de recharger.
 
 **Q: L'extension collecte-t-elle des données utilisateur ?**
-A: Non. En fait, l'extension n'a pas besoin de collecter de données utilisateur.
+R: Non. En fait, l'extension n'a pas besoin de collecter des données utilisateur.
 
-## 🤝 Guide de contribution <a name = "guide-de-contribution"></a>
+## 🤝 Contribuer <a name = "contribuer"></a>
 
-Nous vous invitons à contribuer au projet RomanizeMe ! Si vous avez des questions, des suggestions ou des contributions de code, veuillez suivre ces étapes :
+Les contributions au projet RomanizeMe sont les bienvenues ! Si vous avez des questions, des suggestions ou des contributions de code, veuillez suivre ces étapes :
 
-1. Ouvrez une Issue sur GitHub pour décrire votre problème ou suggestion.
-2. Forkez le dépôt et apportez vos modifications dans votre environnement local.
-3. Soumettez une Pull Request en détaillant vos modifications.
+1. Créez un Issue sur GitHub décrivant le problème.
+2. Forkez le dépôt et effectuez les modifications dans votre environnement local.
+3. Soumettez une Pull Request avec une description détaillée de vos modifications.
 
 ## 🙏 Remerciements <a name = "remerciements"></a>
 
-Un grand merci au projet [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/), une bibliothèque JavaScript pour la segmentation de texte japonais, qui fournit un support essentiel à RomanizeMe. Tiny Segmenter est un logiciel libre disponible sous licence BSD modifiée.
+Merci au projet [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/). Il s'agit d'une bibliothèque JavaScript pour la segmentation de texte japonais, fournissant une fonctionnalité essentielle pour RomanizeMe. Tiny Segmenter est un logiciel libre disponible sous licence BSD modifiée.
 
 ## 📜 Licence <a name = "licence"></a>
 
-RomanizeMe est distribué sous licence [MIT](/LICENSE).
+RomanizeMe est distribué sous la [licence MIT](/LICENSE).

@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
 
 </div>
 
@@ -78,6 +78,9 @@
 
 - 1.2.0 (2025-01-17)
   - UI优化与国际化（i18n）支持（现在支持中文、英语、日语、韩语）
+
+- 1.2.1 (2025-01-19)
+  - 国际化（i18n）支持（新增法语）
 
 ## 📅 开发计划 <a name = "开发计划"></a>
 
