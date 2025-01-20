@@ -1,25 +1,25 @@
 <p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
+  <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
+ <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - ブラウザ拡張機能のロゴ"></a>
  <br>
- <a href="./README.zh.md">中文版</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a>
+ <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
-<h3 align="center">RomanizeMe - 非ラテン文字のローマ字化ブラウザ拡張機能</h3>
+<h3 align="center">RomanizeMe - 非ラテン文字をローマ字化するブラウザ拡張機能</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/your-extension-id.svg)](https://chrome.google.com/webstore/detail/your-extension-id)
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-blue.svg)](https://microsoftedge.microsoft.com/addons/detail/your-extension-id)
-[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.0)
+[![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
+[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
 
 </div>
 
 ---
 
-<p align="center"> 非ラテン文字のローマ字化を提供する言語愛好家向けのブラウザ拡張機能です。
+<p align="center"> 非ラテン文字の発音をローマ字化するブラウザ拡張機能です。
     <br> 
 </p>
 
@@ -27,68 +27,70 @@
 
 - [📝 目次](#-目次)
 - [🧐 概要 ](#-概要-)
-- [🏁 始め方 ](#-始め方-)
-  - [インストール](#インストール)
-  - [使用方法](#使用方法)
+- [🏁 始める ](#-始める-)
+  - [🔧 インストール](#-インストール)
+  - [🖱️ 使い方](#️-使い方)
 - [📅 バージョン履歴 ](#-バージョン履歴-)
 - [📅 開発ロードマップ ](#-開発ロードマップ-)
-  - [🌍 対応文字/言語 ](#-対応文字言語-)
-  - [TODOリスト](#todoリスト)
-- [❓ よくある質問 ](#-よくある質問-)
+  - [🌍 対応スクリプト/言語 ](#-対応スクリプト言語-)
+  - [✅ TODOリスト](#-todoリスト)
+- [❓ FAQ ](#-faq-)
+- [🤝 貢献 ](#-貢献-)
+- [🙏 謝辞 ](#-謝辞-)
+- [📜 ライセンス ](#-ライセンス-)
 
 ## 🧐 概要 <a name = "概要"></a>
 
-これは言語学習者向けに設計されたブラウザ拡張機能で、主な機能は以下の通りです：
+これは言語学習者向けのブラウザ拡張機能で、以下の主な機能があります：
 
-- 非ラテン文字のローマ字化
+- 非ラテン文字の発音をローマ字化
 - 拡張可能な言語サポートアーキテクチャ
-- シンプルで直感的なインターフェース
+- シンプルで使いやすいインターフェース
 
-## 🏁 始め方 <a name = "始め方"></a>
+## 🏁 始める <a name = "始める"></a>
 
-### インストール
+### 🔧 インストール
 
-- ~~Chrome~~（Google Chrome Web Storeの承認待ち）
+- ~~Chrome~~ (Google Chrome Web Storeの承認待ち)
 
-- ~~Edge~~（Microsoft Partner Centerの承認待ち）
+- ~~Edge~~ (Microsoft Partner Centerの承認待ち)
 
-- ~~Firefox~~（Mozilla Add-onsの承認待ち）
+- ~~Firefox~~ (まだサポートされていません。Firefoxへの適応を研究中です。)
 
-現在は、手動でパッケージをダウンロードし、ブラウザにドラッグしてインストールできます。
+今のところ、インストールパッケージを手動でダウンロードし、ブラウザにドラッグ＆ドロップしてインストールできます。
 
-### 使用方法
+### 🖱️ 使い方
 
-1. 非ラテン文字を含む任意のウェブページを開く
-2. ブラウザのツールバーにある拡張機能アイコンをクリック
-3. ローマ字化したい文字/言語を選択
+1. 非ラテン文字を含むウェブページを開く
+2. ブラウザのツールバーにある拡張機能のアイコンをクリック
+3. ローマ字化したいスクリプト/言語を選択
 4. 「ローマ字化」をクリック
-5. 特定の文字にマウスを合わせて表示
-
+5. 文字の上にカーソルを合わせると発音が表示されます
 
 ## 📅 バージョン履歴 <a name = "バージョン履歴"></a>
 
 - 1.0.0 (2025-01-08)
-  
-  - 基本的な機能を実装
-  - ハングル（韓国語）対応
+  - 基本機能の実装
+  - ハングル（韓国語）のサポート
 
 - 1.1.0 (2025-01-16)
-  
-  - 日本語仮名（ローマ字）対応
+  - 日本語仮名（ローマ字）のサポート
 
 - 1.2.0 (2025-01-17)
-  
-  - UI最適化とi18nサポート（現在は中国語、英語、日本語、韓国語をサポート）
+  - UIの最適化とi18nサポート（中国語、英語、日本語、韓国語）
+
+- 1.2.1 (2025-01-19)
+  - i18nサポート（フランス語追加）
 
 ## 📅 開発ロードマップ <a name = "開発ロードマップ"></a>
 
-### 🌍 対応文字/言語 <a name = "対応文字言語"></a>
+### 🌍 対応スクリプト/言語 <a name = "対応スクリプト言語"></a>
 
 - [ ] 漢字
-  - [ ] 北京語
+  - [ ] 普通話（v1.3.0で予定）
   - [ ] 広東語
   - [ ] その他の方言...
-- [X] ハングル（韓国語）
+- [X] ハングル
 - [x] 日本語
   - [x] 仮名（ローマ字）
   - [ ] 漢字
@@ -101,25 +103,41 @@
   - [ ] アラビア語
   - [ ] その他の言語...
 - [ ] チベット文字
-- [ ] その他の文字/言語...
+- [ ] その他のスクリプト/言語...
 
-### TODOリスト
+### ✅ TODOリスト
 
-- [ ] キーボードショートカットの追加
-- [ ] i18nサポートの実装
+- [ ] ショートカットキーのサポート
+- [x] i18nサポート
 - [ ] 設定ページの開発
 - [ ] 注釈スタイルのカスタマイズ
-- [ ] 発音音声サポートの追加
+- [ ] 発音音声のサポート
 - [ ] より多くの言語のサポート
-- [ ] 主要ブラウザへの対応
+- [ ] 主要ブラウザへの適応
 
-## ❓ よくある質問 <a name = "よくある質問"></a>
+## ❓ FAQ <a name = "FAQ"></a>
 
 **Q: どのブラウザがサポートされていますか？**
-A: 現在はChromeとChromiumベースのブラウザ（Edgeなど）をサポートしています
+A: 現在、ChromeとChromiumベースのブラウザ（例：Edge）がサポートされています。
 
 **Q: 拡張機能を更新するにはどうすればよいですか？**
-A: 最新バージョンをダウンロードして再読み込みするだけです
+A: 最新バージョンをダウンロードしてリロードするだけです。
 
 **Q: 拡張機能はユーザーデータを収集しますか？**
-A: いいえ。実際、拡張機能はユーザーデータを一切収集する必要がありません。
+A: いいえ。実際、拡張機能はユーザーデータを収集する必要がありません。
+
+## 🤝 貢献 <a name = "貢献"></a>
+
+RomanizeMeプロジェクトへの貢献を歓迎します！質問、提案、コードの貢献がある場合は、以下の手順に従ってください：
+
+1. GitHubで問題を説明するIssueを作成します。
+2. リポジトリをフォークし、ローカル環境で変更を行います。
+3. 変更内容を詳細に説明したPull Requestを提出します。
+
+## 🙏 謝辞 <a name = "謝辞"></a>
+
+[Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/)プロジェクトに感謝します。これは日本語テキストの分節化を行うJavaScriptライブラリで、RomanizeMeにとって重要な機能を提供しています。Tiny Segmenterは修正BSDライセンスの下で利用可能なフリーソフトウェアです。
+
+## 📜 ライセンス <a name = "ライセンス"></a>
+
+RomanizeMeは[MITライセンス](/LICENSE)の下で配布されています。

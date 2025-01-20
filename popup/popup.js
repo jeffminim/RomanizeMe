@@ -1,5 +1,8 @@
 let currentLocale = getBrowserLanguage(); // 默认语言
 let localesConfig = null;
+// 版本号
+const versionText = '1.2.1';
+
 
 document.addEventListener('DOMContentLoaded', async function() {
   const romanizeButton = document.getElementById('romanize-button');
@@ -337,9 +340,7 @@ function initializeLanguageSelector() {
 }
 
 function updateUILanguage() {
-  // 版本号
-  const versionText = '1.0';
-
+  
   // 更新按钮文本
   document.getElementById('romanize-button').textContent = 
     localesConfig.ui.buttons.romanize[currentLocale];
@@ -391,7 +392,7 @@ function getBrowserLanguage() {
   const primaryLang = fullLang.split('-')[0];
   
   // 检查是否支持该语言,支持的语言有: zh, en, ja, ko
-  const supportedLanguages = ['zh', 'en', 'ja', 'ko'];
+  const supportedLanguages = ['zh', 'en', 'ja', 'ko', 'fr'];
   
   if (supportedLanguages.includes(primaryLang)) {
     return primaryLang;
