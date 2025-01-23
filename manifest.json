@@ -1,8 +1,30 @@
 {
   "manifest_version": 3,
   "name": "RomanizeMe",
-  "version": "1.2.1",
-  "description": "RomanizeMe is a browser extension that helps you romanize non-Latin languages. ",
+  "languages": [
+    {
+      "code": "en",
+      "name": "English"
+    },
+    {
+      "code": "zh",
+      "name": "中文"
+    },
+    {
+      "code": "ja",
+      "name": "日本語"
+    },
+    {
+      "code": "ko",
+      "name": "한국어"
+    },
+    {
+      "code": "fr",
+      "name": "Français"
+    }
+  ],
+  "version": "1.2.2",
+  "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "windminim@outlook.com",
   "homepage_url":"https://github.com/jeffminim/RomanizeMe",

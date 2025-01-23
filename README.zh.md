@@ -12,8 +12,8 @@
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
+[![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
+[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
 
 </div>
 
@@ -53,7 +53,7 @@
 
 - ~~Chrome~~（正在申请Google Chrome Web Store认证）
 
-- ~~Edge~~（正在申请Microsoft Partner Center认证）
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~（暂不支持，还在研究怎么适配Firefox）
 
@@ -70,16 +70,20 @@
 ## 📅 版本 <a name = "版本"></a>
 
 - 1.0.0 (2025-01-08)
-  - 实际基础功能。
+  
+  - 实现基础功能。
   - 支持谚文（韩语）
 
 - 1.1.0 (2025-01-16)
+  
   - 支持日文（假名-罗马音）
 
 - 1.2.0 (2025-01-17)
+  
   - UI优化与国际化（i18n）支持（现在支持中文、英语、日语、韩语）
 
-- 1.2.1 (2025-01-19)
+- 1.2.1 & 1.2.2 (2025-01-23)
+  
   - 国际化（i18n）支持（新增法语）
 
 ## 📅 开发计划 <a name = "开发计划"></a>
@@ -90,7 +94,7 @@
   - [ ] 普通话（计划于v1.3.0支持）
   - [ ] 粤语
   - [ ] 更多方言...
-- [X] 谚文（韩语）
+- [x] 谚文（韩语）
 - [x] 日文
   - [x] 假名（罗马音）
   - [ ] 日语汉字

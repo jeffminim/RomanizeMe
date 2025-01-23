@@ -1,7 +1,7 @@
 let currentLocale = getBrowserLanguage(); // 默认语言
 let localesConfig = null;
 // 版本号
-const versionText = '1.2.1';
+const versionText = '1.2.2';
 
 
 document.addEventListener('DOMContentLoaded', async function() {

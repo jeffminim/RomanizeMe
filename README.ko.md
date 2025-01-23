@@ -12,8 +12,8 @@
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
+[![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
+[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
 
 </div>
 
@@ -79,7 +79,7 @@
 - 1.2.0 (2025-01-17)
   - UI 최적화 및 i18n 지원(중국어, 영어, 일본어, 한국어)
 
-- 1.2.1 (2025-01-19)
+- 1.2.1 & 1.2.2 (2025-01-23)
   - i18n 지원(프랑스어 추가)
 
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
