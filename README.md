@@ -53,7 +53,7 @@ This is a browser extension for language learners with the following main featur
 
 - ~~Chrome~~ (Pending Google Chrome Web Store approval)
 
-- ~~Edge~~ (Pending Microsoft Partner Center approval)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (Not yet supported. Researching adaptation for Firefox.)
 
@@ -109,6 +109,7 @@ For now, you can manually download the installation package and drag & drop it i
 
 - [ ] Shortcut key support
 - [x] i18n support
+- [ ] Function guide and sample page
 - [ ] Settings page development
 - [ ] Annotation style customization
 - [ ] Pronunciation audio support

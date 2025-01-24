@@ -53,7 +53,7 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 
 - ~~Chrome~~ (En attente d'approbation du Google Chrome Web Store)
 
-- ~~Edge~~ (En attente d'approbation du Microsoft Partner Center)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (Pas encore supporté. Recherche en cours pour l'adaptation à Firefox.)
 
@@ -109,6 +109,7 @@ Pour l'instant, vous pouvez télécharger manuellement le package d'installation
 
 - [ ] Support des raccourcis clavier
 - [x] Support i18n
+- [ ] Augmenter les pages de guide et d'exemple des fonctionnalités
 - [ ] Développement de la page des paramètres
 - [ ] Personnalisation du style des annotations
 - [ ] Support audio de la prononciation

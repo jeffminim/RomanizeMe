@@ -53,7 +53,7 @@
 
 - ~~Chrome~~ (Google Chrome Web Store 승인 대기 중)
 
-- ~~Edge~~ (Microsoft Partner Center 승인 대기 중)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (아직 지원되지 않음. Firefox 적응 연구 중.)
 
@@ -109,6 +109,7 @@
 
 - [ ] 단축키 지원
 - [x] i18n 지원
+- [ ] 기능 안내 및 예시 페이지 추가합니다
 - [ ] 설정 페이지 개발
 - [ ] 주석 스타일 커스터마이징
 - [ ] 발음 음성 지원

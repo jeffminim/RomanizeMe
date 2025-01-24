@@ -53,7 +53,7 @@
 
 - ~~Chrome~~ (Google Chrome Web Storeの承認待ち)
 
-- ~~Edge~~ (Microsoft Partner Centerの承認待ち)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (まだサポートされていません。Firefoxへの適応を研究中です。)
 
@@ -109,6 +109,7 @@
 
 - [ ] ショートカットキーのサポート
 - [x] i18nサポート
+- [ ] 機能の追加ガイドとサンプルページ
 - [ ] 設定ページの開発
 - [ ] 注釈スタイルのカスタマイズ
 - [ ] 発音音声のサポート
