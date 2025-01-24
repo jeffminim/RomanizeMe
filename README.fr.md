@@ -12,8 +12,8 @@
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
+[![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
+[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
 
 </div>
 
@@ -53,7 +53,7 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 
 - ~~Chrome~~ (En attente d'approbation du Google Chrome Web Store)
 
-- ~~Edge~~ (En attente d'approbation du Microsoft Partner Center)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (Pas encore supporté. Recherche en cours pour l'adaptation à Firefox.)
 
@@ -79,7 +79,7 @@ Pour l'instant, vous pouvez télécharger manuellement le package d'installation
 - 1.2.0 (2025-01-17)
   - Optimisation de l'interface et support i18n (chinois, anglais, japonais, coréen)
 
-- 1.2.1 (2025-01-19)
+- 1.2.1 & 1.2.2 (2025-01-23)
   - Support i18n (ajout du français)
 
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
@@ -109,6 +109,7 @@ Pour l'instant, vous pouvez télécharger manuellement le package d'installation
 
 - [ ] Support des raccourcis clavier
 - [x] Support i18n
+- [ ] Augmenter les pages de guide et d'exemple des fonctionnalités
 - [ ] Développement de la page des paramètres
 - [ ] Personnalisation du style des annotations
 - [ ] Support audio de la prononciation

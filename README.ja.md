@@ -12,8 +12,8 @@
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
-[![Edge Add-ons](https://img.shields.io/badge/edge-add--ons-coming_soon-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.2.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.1)
+[![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
+[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
 
 </div>
 
@@ -53,7 +53,7 @@
 
 - ~~Chrome~~ (Google Chrome Web Storeの承認待ち)
 
-- ~~Edge~~ (Microsoft Partner Centerの承認待ち)
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
 - ~~Firefox~~ (まだサポートされていません。Firefoxへの適応を研究中です。)
 
@@ -79,7 +79,7 @@
 - 1.2.0 (2025-01-17)
   - UIの最適化とi18nサポート（中国語、英語、日本語、韓国語）
 
-- 1.2.1 (2025-01-19)
+- 1.2.1 & 1.2.2 (2025-01-23)
   - i18nサポート（フランス語追加）
 
 ## 📅 開発ロードマップ <a name = "開発ロードマップ"></a>
@@ -109,6 +109,7 @@
 
 - [ ] ショートカットキーのサポート
 - [x] i18nサポート
+- [ ] 機能の追加ガイドとサンプルページ
 - [ ] 設定ページの開発
 - [ ] 注釈スタイルのカスタマイズ
 - [ ] 発音音声のサポート

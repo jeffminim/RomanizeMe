@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "Nom de l'extension"
+  },
+  "extensionDescription": {
+    "message": "Une extension de navigateur pour les amateurs de langues qui aide à romaniser les langues non latines.",
+    "description": "Description de l'extension"
+  }
+}
