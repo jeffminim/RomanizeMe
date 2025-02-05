@@ -4,6 +4,8 @@
   margin: 0 2px;
   padding-top: 24px;
   line-height: 1.5;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
 }
 
 .romanized-mark {
@@ -23,18 +25,26 @@
   z-index: 1;
   min-height: 16px;
   line-height: 1.2;
+  transition: all 0.2s ease;
+}
+
+.romanized-word:hover {
+  /* background-color: rgba(242, 246, 249, 0.5); */
+  background-color: rgba(21,88,176,0.3);
 }
 
 .romanized-word:hover .romanized-mark {
   z-index: 2;
-  background-color: rgba(242, 246, 249, 0.98);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(242, 246, 249, 0.98); */
+  background-color: rgba(51, 100, 205, 0.8);
+  color: #1557b0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
   top: 0;
-  transition: all 0.2s ease;
 }
 
-p:has(.romanized-word), 
+p:has(.romanized-word),
 div:has(.romanized-word) {
   margin-bottom: 8px;
   line-height: 2;
-} 
+}

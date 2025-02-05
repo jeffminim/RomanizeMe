@@ -81,6 +81,7 @@ function processText(originalText, selectedScripts) {
   const methodMap = {
     'character': 'splitTextByChar',
     'tokenizeJapanese': 'tokenizeJapanese',
+    'tokenizeChinese': 'tokenizeChinese',
     'word': 'splitTextByWord'
   };
 

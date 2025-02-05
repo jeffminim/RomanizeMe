@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Logo de l'extension de navigateur"></a>
  <br>
- <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - Extension de navigateur pour romaniser les écritures non latines</h3>
@@ -10,10 +10,10 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
 
 </div>
 
@@ -57,8 +57,6 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 
 - ~~Firefox~~ (Pas encore supporté. Recherche en cours pour l'adaptation à Firefox.)
 
-Pour l'instant, vous pouvez télécharger manuellement le package d'installation et le glisser-déposer dans votre navigateur pour l'installer.
-
 ### 🖱️ Utilisation
 
 1. Ouvrez une page web contenant des écritures non latines
@@ -82,15 +80,18 @@ Pour l'instant, vous pouvez télécharger manuellement le package d'installation
 - 1.2.1 & 1.2.2 (2025-01-23)
   - Support i18n (ajout du français)
 
+- 1.3.0 (2025-02-05)
+  - Support du mandarin (prévu pour v1.3.0)
+
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
 ### 🌍 Écritures/langues prises en charge <a name = "écritureslangues-prises-en-charge"></a>
 
-- [ ] Hanzi
-  - [ ] Mandarin (prévu pour v1.3.0)
+- [x] Hanzi
+  - [x] Mandarin (prévu pour v1.3.0)
   - [ ] Cantonais
   - [ ] Autres dialectes...
-- [X] Hangul
+- [x] Hangul
 - [x] Japonais
   - [x] Kana (romaji)
   - [ ] Kanji
@@ -137,7 +138,11 @@ Les contributions au projet RomanizeMe sont les bienvenues ! Si vous avez des qu
 
 ## 🙏 Remerciements <a name = "remerciements"></a>
 
-Merci au projet [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/). Il s'agit d'une bibliothèque JavaScript pour la segmentation de texte japonais, fournissant une fonctionnalité essentielle pour RomanizeMe. Tiny Segmenter est un logiciel libre disponible sous licence BSD modifiée.
+Un grand merci au projet [Pinyin-Pro](https://pinyin-pro.cn/), qui est une bibliothèque JavaScript pour la conversion du chinois en pinyin, avec une reconnaissance précise des homophones, légère, performante et riche en fonctionnalités. Pinyin-Pro est un logiciel libre, utilisable et redistribuable sous la licence MIT.
+
+Un grand merci au projet [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/), qui est une bibliothèque JavaScript pour le découpage de texte japonais, fournissant un soutien fonctionnel essentiel à RomanizeMe. Tiny Segmenter est un logiciel libre, utilisable et redistribuable sous la licence BSD modifiée.
+
+Nouveau contenu ajouté...
 
 ## 📜 Licence <a name = "licence"></a>
 

@@ -23,7 +23,7 @@
       "name": "Français"
     }
   ],
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "windminim@outlook.com",
@@ -43,9 +43,10 @@
       "js": [
         "libs/ko_hangul.js",
         "libs/ja_romaji.js",
+        "libs/zh_hanzi.js",
         "content/text_segmenter.js",
         "content/content.js",
-        "libs/extra/TinySegmenterJapanese/tiny_segmenter-0.2.js"
+        "libs/extra/PinyinPro/index.js"
       ],
       "run_at": "document_end"
     }
@@ -53,11 +54,11 @@
   "web_accessible_resources": [{
     "resources": [
       "content/content.css",
-      "assets/*"
+      "assets/*",
+      "config/languages.json",
+      "config/locales.json",
+      "libs/extra/PinyinPro/*"
     ],
-    "matches": ["<all_urls>"]
-  }, {
-    "resources": ["config/languages.json", "config/locales.json"],
     "matches": ["<all_urls>"]
   }],
   "icons": {

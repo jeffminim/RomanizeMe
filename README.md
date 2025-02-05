@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
  <br>
- <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="Readme/README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="Readme/README.ja.md">日本語</a> | <a href="Readme/README.ko.md">한국어</a> | <a href="Readme/README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - Browser Extension for Romanizing Non-Latin Scripts</h3>
@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
 
 </div>
 
@@ -57,8 +57,6 @@ This is a browser extension for language learners with the following main featur
 
 - ~~Firefox~~ (Not yet supported. Researching adaptation for Firefox.)
 
-For now, you can manually download the installation package and drag & drop it into your browser to install.
-
 ### 🖱️ Usage
 
 1. Open a web page containing non-Latin scripts
@@ -70,31 +68,34 @@ For now, you can manually download the installation package and drag & drop it i
 ## 📅 Version History <a name = "version-history"></a>
 
 - 1.0.0 (2025-01-08)
-  - Basic functionality implementation
-  - Hangul (Korean) support
+  - Initial release with basic functionality
+  - Support for Korean (Hangul)
 
 - 1.1.0 (2025-01-16)
-  - Japanese Kana (Romaji) support
+  - Added support for Japanese (Kana-Romaji)
 
 - 1.2.0 (2025-01-17)
-  - UI optimization and i18n support (Chinese, English, Japanese, Korean)
+  - UI improvements and i18n support (now supports Chinese, English, Japanese, Korean)
 
 - 1.2.1 & 1.2.2 (2025-01-23)
-  - i18n support (French added)
+  - Added French language support for i18n
+
+- 1.3.0 (2025-02-05)
+  - Added support for Mandarin Chinese (Pinyin)
 
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
-### 🌍 Supported Scripts/Languages <a name = "supported-scriptslanguages"></a>
+### 🌍 Supported Scripts/Languages <a name = "supported-languages"></a>
 
-- [ ] Hanzi
-  - [ ] Mandarin (planned for v1.3.0)
+- [x] Chinese Characters
+  - [x] Mandarin Chinese (Supported in v1.3.0)
   - [ ] Cantonese
   - [ ] Other dialects...
-- [X] Hangul
+- [x] Hangul (Korean)
 - [x] Japanese
   - [x] Kana (Romaji)
   - [ ] Kanji
-  - [ ] Katakana (original language, e.g. English)
+  - [ ] Katakana (Original language, e.g., English)
 - [ ] Cyrillic
   - [ ] Russian
   - [ ] Ukrainian
@@ -137,7 +138,9 @@ Contributions to the RomanizeMe project are welcome! If you have questions, sugg
 
 ## 🙏 Acknowledgments <a name = "acknowledgments"></a>
 
-Thanks to the [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) project. This is a JavaScript library for segmenting Japanese text, providing critical functionality for RomanizeMe. Tiny Segmenter is free software available under the modified BSD license.
+Thanks to the [Pinyin-Pro](https://pinyin-pro.cn/) project, which is a JavaScript library for converting Chinese to pinyin, featuring accurate polyphonic recognition, lightweight, high performance, and rich functionality. Pinyin-Pro is free software available under the MIT License.
+
+Thanks to the [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) project, which is a JavaScript library for Japanese text segmentation, providing critical functionality for RomanizeMe. Tiny Segmenter is free software available under the modified BSD license.
 
 ## 📜 License <a name = "license"></a>
 
