@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
+[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.1)
 
 </div>
 
@@ -80,8 +80,9 @@ This is a browser extension for language learners with the following main featur
 - 1.2.1 & 1.2.2 (2025-01-23)
   - Added French language support for i18n
 
-- 1.3.0 (2025-02-05)
+- 1.3.0 & 1.3.1 (2025-02-05)
   - Added support for Mandarin Chinese (Pinyin)
+  - Optimized the display effect when overflowing
 
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
@@ -139,8 +140,6 @@ Contributions to the RomanizeMe project are welcome! If you have questions, sugg
 ## 🙏 Acknowledgments <a name = "acknowledgments"></a>
 
 Thanks to the [Pinyin-Pro](https://pinyin-pro.cn/) project, which is a JavaScript library for converting Chinese to pinyin, featuring accurate polyphonic recognition, lightweight, high performance, and rich functionality. Pinyin-Pro is free software available under the MIT License.
-
-Thanks to the [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) project, which is a JavaScript library for Japanese text segmentation, providing critical functionality for RomanizeMe. Tiny Segmenter is free software available under the modified BSD license.
 
 ## 📜 License <a name = "license"></a>
 
