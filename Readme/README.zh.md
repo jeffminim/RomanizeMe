@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
- <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
+ <img width=200px height=200px src="../assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
  <br>
  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
+[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.1)
 
 </div>
 
@@ -84,9 +84,10 @@
   
   - 国际化（i18n）支持（新增法语）
 
-- 1.3.0 (2025-02-05)
+- 1.3.0 & 1.3.1 (2025-02-05)
   
   - 支持中文普通话（汉语拼音）
+  - 优化溢出时的显示效果
 
 ## 📅 开发计划 <a name = "开发计划"></a>
 
@@ -144,8 +145,6 @@ A: 不会。事实上，扩展本身并不需要收集任何用户数据。
 ## 🙏 致谢 <a name = "致谢"></a>
 
 特别感谢 [Pinyin-Pro](https://pinyin-pro.cn/) 项目，这是一个专业的 JavaScript 中文转拼音的库，具备多音字识别准确、体积轻量、性能优异、功能丰富等特点。Pinyin-Pro 是自由软件，可以根据 MIT 许可证进行使用和再分发。
-
-特别感谢 [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) 项目，这是一个用于日语分词的 JavaScript 库，为 RomanizeMe 提供了重要的功能支持。Tiny Segmenter 是自由软件，可以根据修正 BSD 许可证进行使用和再分发。
 
 ## 📜 许可证 <a name = "许可证"></a>
 

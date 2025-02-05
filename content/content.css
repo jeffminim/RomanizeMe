@@ -1,3 +1,8 @@
+/* 添加新的规则来处理所有可能包含 romanized-word 的容器 */
+*:has(.romanized-word) {
+  overflow: visible !important;
+}
+
 .romanized-word {
   position: relative;
   display: inline-block;
@@ -6,6 +11,8 @@
   line-height: 1.5;
   border-radius: 2px;
   transition: background-color 0.2s ease;
+  transform-origin: center bottom;
+  overflow: visible; /* 添加这行确保子元素不会被裁剪 */
 }
 
 .romanized-mark {
@@ -26,6 +33,11 @@
   min-height: 16px;
   line-height: 1.2;
   transition: all 0.2s ease;
+  transform-origin: center bottom;
+  /* 添加这些属性以确保标注始终可见 */
+  /* isolation: isolate;
+  contain: none; */
+  overflow: visible;
 }
 
 .romanized-word:hover {
@@ -35,16 +47,20 @@
 
 .romanized-word:hover .romanized-mark {
   z-index: 2;
-  /* background-color: rgba(242, 246, 249, 0.98); */
-  background-color: rgba(51, 100, 205, 0.8);
+  background-color: rgba(242, 246, 249, 0.98);
+  font-size: larger;
   color: #1557b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 600;
   top: 0;
 }
 
+/* 确保包含 romanized-word 的段落和 div 也不会裁剪内容 */
 p:has(.romanized-word),
 div:has(.romanized-word) {
   margin-bottom: 8px;
   line-height: 2;
+  overflow: visible;
+  /* transform-style: preserve-3d; 创建新的堆叠上下文 */
+  position: relative; /* 确保新的堆叠上下文生效 */
 }
