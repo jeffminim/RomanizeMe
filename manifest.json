@@ -43,6 +43,8 @@
       "js": [
         "libs/ko_hangul.js",
         "libs/ja_romaji.js",
+        "libs/zh_hanzi.js",
+        "libs/extra/PinyinPro/index.js",
         "content/text_segmenter.js",
         "content/content.js",
         "libs/extra/TinySegmenterJapanese/tiny_segmenter-0.2.js"
@@ -53,11 +55,11 @@
   "web_accessible_resources": [{
     "resources": [
       "content/content.css",
-      "assets/*"
+      "assets/*",
+      "config/languages.json",
+      "config/locales.json",
+      "libs/extra/PinyinPro/*"
     ],
-    "matches": ["<all_urls>"]
-  }, {
-    "resources": ["config/languages.json", "config/locales.json"],
     "matches": ["<all_urls>"]
   }],
   "icons": {

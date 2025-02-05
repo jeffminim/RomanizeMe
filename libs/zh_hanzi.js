@@ -4,8 +4,18 @@
  * @returns {string} - 转换后的拼音文本
  */
 function getChineseRomanization(text) {
-  // TODO: 实现汉字转拼音的具体逻辑
-  // 这里可以调用第三方拼音库或实现自己的转换逻辑
-  return text; // 暂时返回原文本
+  if (!window.pinyinPro) {
+    console.error('PinyinPro not initialized');
+    return text;
+  }
+  
+  try {
+    return window.pinyinPro.pinyin(text, {
+      type: 'array'
+    }).join(' ');
+  } catch (error) {
+    console.error('Error converting to pinyin:', error);
+    return text;
+  }
 }
 

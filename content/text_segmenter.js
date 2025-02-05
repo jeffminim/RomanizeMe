@@ -86,4 +86,39 @@ class TextSegmenter {
     // console.log('最终输出:', newText);
     return hasConversion ? newText : null;
   }
+
+  // 中文分词方法
+  static tokenizeChinese(originalText, selectedScripts) {
+    try {
+      const segmenter = new Intl.Segmenter('zh', { granularity: 'word' });
+      const segments = Array.from(segmenter.segment(originalText));
+      
+      let newText = '';
+      let hasConversion = false;
+      
+      for (const segment of segments) {
+        const word = segment.segment;
+        // 跳过空格和标点
+        if (word.trim() === '' || /[.,!?;:，。！？；：]/.test(word)) {
+          newText += word;
+          continue;
+        }
+        
+        const script = detectCharScript(word[0], selectedScripts);
+        if (script) {
+          newText += processWord(word, script, selectedScripts);
+          hasConversion = true;
+        } else {
+          newText += word;
+        }
+      }
+      
+      return hasConversion ? newText : null;
+    } catch (error) {
+      console.error('Error in tokenizeChinese:', error);
+      return null;
+    }
+  }
 }
+
+window.TextSegmenter = TextSegmenter;

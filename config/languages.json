@@ -9,7 +9,7 @@
         "ko": "한자",
         "fr": "Chinois"
       },
-      "isEnabled": false,
+      "isEnabled": true,
       "unicodeRanges": [
         "4E00-9FFF",
         "3400-4DBF",
@@ -32,7 +32,7 @@
           "isAvailable": true,
           "libFile": "zh_hanzi.js",
           "functionName": "getChineseRomanization",
-          "segmentation": "character"
+          "segmentation": "tokenizeChinese"
         },
         {
           "id": "japanese_kanji",
