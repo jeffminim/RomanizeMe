@@ -37,7 +37,8 @@ function getJapaneseRomanization(text) {
       // 拗音-半浊音
       'ぴゃ': 'pya', 'ぴゅ': 'pyu', 'ぴょ': 'pyo',
       // 合拗音
-      'くゎ': 'kwa', 'ぐゎ': 'gwa'
+      'くゎ': 'kwa', 'ぐゎ': 'gwa',
+      'っ': null
     };
 
     // 片假名到罗马音的映射表
@@ -73,13 +74,32 @@ function getJapaneseRomanization(text) {
       // 拗音-半浊音
       'ピャ': 'pya', 'ピュ': 'pyu', 'ピョ': 'pyo',
       // 合拗音
-      'クヮ': 'kwa', 'グヮ': 'gwa'
+      'クヮ': 'kwa', 'グヮ': 'gwa',
+      'ッ': null
     };
 
     let result = '';
     let i = 0;
     
     while (i < text.length) {
+        // 处理促音的情况
+        if (text[i] === 'っ' || text[i] === 'ッ') {
+            if (i + 1 < text.length) {
+                const nextChar = text[i + 1];
+                const nextRomaji = hiraganaMap[nextChar] || katakanaMap[nextChar];
+                if (nextRomaji) {
+                    // 重复后面音的第一个辅音
+                    result += nextRomaji[0];
+                    i++;
+                    continue;
+                }
+            }
+            // 如果是词尾，转换为't'
+            result += 't';
+            i++;
+            continue;
+        }
+
         // 先检查两个字符的组合
         if (i + 1 < text.length) {
             const twoChars = text[i] + text[i + 1];

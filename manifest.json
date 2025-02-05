@@ -46,8 +46,7 @@
         "libs/zh_hanzi.js",
         "content/text_segmenter.js",
         "content/content.js",
-        "libs/extra/PinyinPro/index.js",
-        "libs/extra/TinySegmenterJapanese/tiny_segmenter-0.2.js"
+        "libs/extra/PinyinPro/index.js"
       ],
       "run_at": "document_end"
     }
