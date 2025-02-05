@@ -35,8 +35,9 @@
 
 .romanized-word:hover .romanized-mark {
   z-index: 2;
-  /* background-color: rgba(242, 246, 249, 0.98); */
-  background-color: rgba(51, 100, 205, 0.8);
+  background-color: rgba(242, 246, 249, 0.98);
+  font-size: larger;
+  /* background-color: rgba(21,88,176,0.3); */
   color: #1557b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 600;
