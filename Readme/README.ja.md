@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - ブラウザ拡張機能のロゴ"></a>
  <br>
- <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - 非ラテン文字をローマ字化するブラウザ拡張機能</h3>
@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
 
 </div>
 
@@ -57,8 +57,6 @@
 
 - ~~Firefox~~ (まだサポートされていません。Firefoxへの適応を研究中です。)
 
-今のところ、インストールパッケージを手動でダウンロードし、ブラウザにドラッグ＆ドロップしてインストールできます。
-
 ### 🖱️ 使い方
 
 1. 非ラテン文字を含むウェブページを開く
@@ -81,6 +79,9 @@
 
 - 1.2.1 & 1.2.2 (2025-01-23)
   - i18nサポート（フランス語追加）
+
+- 1.3.0 (2025-02-05)
+  - 普通話（v1.3.0で予定）
 
 ## 📅 開発ロードマップ <a name = "開発ロードマップ"></a>
 
@@ -137,7 +138,9 @@ RomanizeMeプロジェクトへの貢献を歓迎します！質問、提案、�
 
 ## 🙏 謝辞 <a name = "謝辞"></a>
 
-[Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/)プロジェクトに感謝します。これは日本語テキストの分節化を行うJavaScriptライブラリで、RomanizeMeにとって重要な機能を提供しています。Tiny Segmenterは修正BSDライセンスの下で利用可能なフリーソフトウェアです。
+特に、[Pinyin-Pro](https://pinyin-pro.cn/)プロジェクトに感謝します。これは、正確な多音字認識、軽量、優れたパフォーマンス、豊富な機能を備えたJavaScriptの中国語からピンインへの変換ライブラリです。Pinyin-Proは自由ソフトウェアであり、MITライセンスに基づいて使用および再配布できます。
+
+[Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/)プロジェクトに感謝します。これは日本語テキストの分節化を行うJavaScriptライブラリで、RomanizeMeにとって重要な機能を提供しています。Tiny Segmenterは修正BSDライセンスの下で利用可能な自由ソフトウェアです。
 
 ## 📜 ライセンス <a name = "ライセンス"></a>
 

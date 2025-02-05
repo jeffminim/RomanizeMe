@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - 브라우저 확장 프로그램 로고"></a>
  <br>
- <a href="./README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - 비라틴 문자를 로마자로 변환하는 브라우저 확장 프로그램</h3>
@@ -13,7 +13,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
 
 </div>
 
@@ -57,8 +57,6 @@
 
 - ~~Firefox~~ (아직 지원되지 않음. Firefox 적응 연구 중.)
 
-현재는 수동으로 설치 패키지를 다운로드하여 브라우저에 드래그 앤 드롭하여 설치할 수 있습니다.
-
 ### 🖱️ 사용법
 
 1. 비라틴 문자가 포함된 웹 페이지 열기
@@ -81,6 +79,9 @@
 
 - 1.2.1 & 1.2.2 (2025-01-23)
   - i18n 지원(프랑스어 추가)
+
+- 1.3.0 (2025-02-05)
+  - 보통화(v1.3.0 예정)
 
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
 
@@ -137,7 +138,11 @@ RomanizeMe 프로젝트에 기여를 환영합니다! 질문, 제안 또는 코�
 
 ## 🙏 감사의 말 <a name = "감사의-말"></a>
 
-[Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) 프로젝트에 감사드립니다. 이것은 일본어 텍스트 분절을 위한 JavaScript 라이브러리로, RomanizeMe에 필수적인 기능을 제공합니다. Tiny Segmenter는 수정된 BSD 라이선스 하에서 사용 가능한 자유 소프트웨어입니다.
+특히 [Pinyin-Pro](https://pinyin-pro.cn/) 프로젝트에 감사드립니다. 이는 다의어 인식이 정확하고, 경량이며, 성능이 우수하고, 기능이 풍부한 JavaScript 중국어에서 핀인으로 변환하는 라이브러리입니다. Pinyin-Pro는 자유 소프트웨어로 MIT 라이센스에 따라 사용 및 재배포할 수 있습니다.
+
+특히 [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) 프로젝트에 감사드립니다. 이는 일본어 분할에 사용되는 JavaScript 라이브러리로, RomanizeMe에 중요한 기능 지원을 제공합니다. Tiny Segmenter는 자유 소프트웨어로 수정된 BSD 라이센스에 따라 사용 및 재배포할 수 있습니다.
+
+새로 추가된 내용...
 
 ## 📜 라이선스 <a name = "라이선스"></a>
 

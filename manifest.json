@@ -23,7 +23,7 @@
       "name": "Français"
     }
   ],
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "__MSG_extensionDescription__",
   "default_locale": "en",
   "author": "windminim@outlook.com",
@@ -44,9 +44,9 @@
         "libs/ko_hangul.js",
         "libs/ja_romaji.js",
         "libs/zh_hanzi.js",
-        "libs/extra/PinyinPro/index.js",
         "content/text_segmenter.js",
         "content/content.js",
+        "libs/extra/PinyinPro/index.js",
         "libs/extra/TinySegmenterJapanese/tiny_segmenter-0.2.js"
       ],
       "run_at": "document_end"

@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
  <br>
- <a href="./README.zh.md">中文版</a> | <a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+ <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - 一个为非拉丁文字注音的浏览器扩展程序</h3>
@@ -10,10 +10,10 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
 [![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.2.2-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.2.2)
+[![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.0)
 
 </div>
 
@@ -57,8 +57,6 @@
 
 - ~~Firefox~~（暂不支持，还在研究怎么适配Firefox）
 
-但目前，您可以手动下载安装包，并拖入浏览器中进行安装。
-
 ### 🖱️ 使用方法
 
 1. 打开任意包含非拉丁文字内容的网页
@@ -86,12 +84,16 @@
   
   - 国际化（i18n）支持（新增法语）
 
+- 1.3.0 (2025-02-05)
+  
+  - 支持中文普通话（汉语拼音）
+
 ## 📅 开发计划 <a name = "开发计划"></a>
 
 ### 🌍 支持文字/语言 <a name = "支持语言"></a>
 
-- [ ] 汉字
-  - [ ] 普通话（计划于v1.3.0支持）
+- [x] 汉字
+  - [x] 普通话（已于v1.3.0支持）
   - [ ] 粤语
   - [ ] 更多方言...
 - [x] 谚文（韩语）
@@ -141,8 +143,10 @@ A: 不会。事实上，扩展本身并不需要收集任何用户数据。
 
 ## 🙏 致谢 <a name = "致谢"></a>
 
+特别感谢 [Pinyin-Pro](https://pinyin-pro.cn/) 项目，这是一个专业的 JavaScript 中文转拼音的库，具备多音字识别准确、体积轻量、性能优异、功能丰富等特点。Pinyin-Pro 是自由软件，可以根据 MIT 许可证进行使用和再分发。
+
 特别感谢 [Tiny Segmenter](http://www.chasen.org/~taku/software/TinySegmenter/) 项目，这是一个用于日语分词的 JavaScript 库，为 RomanizeMe 提供了重要的功能支持。Tiny Segmenter 是自由软件，可以根据修正 BSD 许可证进行使用和再分发。
 
 ## 📜 许可证 <a name = "许可证"></a>
 
-RomanizeMe 采用 [MIT 许可证](/LICENSE)。
+RomanizeMe 采用 [MIT 许可证](../LICENSE)。
