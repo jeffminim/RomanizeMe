@@ -12,7 +12,7 @@
   border-radius: 2px;
   transition: background-color 0.2s ease;
   transform-origin: center bottom;
-  overflow: visible; /* 添加这行确保子元素不会被裁剪 */
+  overflow: visible !important; /* 添加这行确保子元素不会被裁剪 */
 }
 
 .romanized-mark {
@@ -26,7 +26,7 @@
   pointer-events: none;
   user-select: none;
   font-family: Arial, sans-serif;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.70);
   padding: 1px 4px;
   border-radius: 2px;
   z-index: 1;
@@ -47,7 +47,7 @@
 
 .romanized-word:hover .romanized-mark {
   z-index: 2;
-  background-color: rgba(242, 246, 249, 0.98);
+  background-color: rgba(242, 246, 249, 0.85);
   font-size: larger;
   color: #1557b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
