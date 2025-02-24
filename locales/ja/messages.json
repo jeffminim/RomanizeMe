@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "拡張機能の名前"
+  },
+  "extensionDescription": {
+    "message": "言語愛好家のためのブラウザ拡張機能で、非ラテン文字にローマ字表記を提供します。",
+    "description": "拡張機能の説明"
+  },
+  "btnRomanize": {
+    "message": "ローマ字変換",
+    "description": "ページのテキストをローマ字に変換するボタンのラベル"
+  },
+  "btnRestore": {
+    "message": "ページを復元",
+    "description": "ページを元の状態に復元するボタンのラベル"
+  },
+  "btnProcessing": {
+    "message": "変換中...",
+    "description": "変換中のボタンの状態表示"
+  },
+  "tabScripts": {
+    "message": "言語スクリプト",
+    "description": "サポートされている言語スクリプトを表示するタブのタイトル"
+  },
+  "tabSettings": {
+    "message": "設定",
+    "description": "拡張機能の設定を表示するタブのタイトル"
+  },
+  "tabInstruction": {
+    "message": "操作ガイド",
+    "description": "操作ガイドを表示するタブのタイトル"
+  },
+  "toastCompleteTitle": {
+    "message": "変換完了",
+    "description": "変換が完了したときの通知タイトル"
+  },
+  "toastCompleteDesc": {
+    "message": "正常に変換されました",
+    "description": "変換が完了したときの通知説明"
+  },
+  "toastCompleteWarn": {
+    "message": "ローマ字変換結果は参考用です。",
+    "description": "変換完了時の警告メッセージ"
+  },
+  "toastUnfoundTitle": {
+    "message": "変換可能なテキストが見つかりません",
+    "description": "変換可能なテキストが見つからないときの通知タイトル"
+  },
+  "toastUnfoundDesc": {
+    "message": "適切な言語とスクリプトタイプを選択してください",
+    "description": "変換可能なテキストが見つからないときの通知説明"
+  },
+  "toastRestoredTitle": {
+    "message": "ページ復元完了",
+    "description": "ページの復元が完了したときの通知タイトル"
+  },
+  "toastRestoredDesc": {
+    "message": "ページが元の状態に復元されました",
+    "description": "ページの復元が完了したときの通知説明"
+  },
+  "toastErrorConvTitle": {
+    "message": "変換失敗",
+    "description": "変換が失敗したときのエラー通知タイトル"
+  },
+  "toastErrorConvDesc": {
+    "message": "ページの変換に失敗しました。ページを更新して再試行してください",
+    "description": "変換が失敗したときのエラー通知説明"
+  },
+  "toastErrorRestoreTitle": {
+    "message": "復元失敗",
+    "description": "復元が失敗したときのエラー通知タイトル"
+  },
+  "toastErrorRestoreDesc": {
+    "message": "ページの復元に失敗しました。ページを更新して再試行してください",
+    "description": "復元が失敗したときのエラー通知説明"
+  },
+  "setUILangTitle": {
+    "message": "UI言語",
+    "description": "UI言語設定オプションのタイトル"
+  },
+  "setUILangDesc": {
+    "message": "UI言語を切り替えることができます。",
+    "description": "UI言語設定オプションの説明"
+  },
+  "setUILangReset": {
+    "message": "デフォルトにリセット",
+    "description": "すべてのオプションをデフォルト状態にリセットするボタンラベル"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "확장 프로그램 이름"
+  },
+  "extensionDescription": {
+    "message": "언어 애호가를 위한 브라우저 확장 프로그램으로, 비라틴 문자에 로마자 표기를 제공합니다.",
+    "description": "확장 프로그램 설명"
+  },
+  "btnRomanize": {
+    "message": "로마자 변환",
+    "description": "페이지 텍스트를 로마자로 변환하는 버튼 라벨"
+  },
+  "btnRestore": {
+    "message": "페이지 복원",
+    "description": "페이지를 원래 상태로 복원하는 버튼 라벨"
+  },
+  "btnProcessing": {
+    "message": "변환 중...",
+    "description": "변환 중인 버튼 상태 표시"
+  },
+  "tabScripts": {
+    "message": "언어 스크립트",
+    "description": "지원되는 언어 스크립트를 표시하는 탭 제목"
+  },
+  "tabSettings": {
+    "message": "설정",
+    "description": "확장 프로그램 설정을 표시하는 탭 제목"
+  },
+  "tabInstruction": {
+    "message": "사용자 가이드",
+    "description": "사용자 가이드를 표시하는 탭 제목"
+  },
+  "toastCompleteTitle": {
+    "message": "변환 완료",
+    "description": "변환이 완료되었을 때의 알림 제목"
+  },
+  "toastCompleteDesc": {
+    "message": "성공적으로 변환되었습니다",
+    "description": "변환이 완료되었을 때의 알림 설명"
+  },
+  "toastCompleteWarn": {
+    "message": "로마자 변환 결과는 참고용입니다.",
+    "description": "변환 완료 시 경고 메시지"
+  },
+  "toastUnfoundTitle": {
+    "message": "변환 가능한 텍스트를 찾을 수 없음",
+    "description": "변환 가능한 텍스트를 찾을 수 없을 때의 알림 제목"
+  },
+  "toastUnfoundDesc": {
+    "message": "적절한 언어와 스크립트 유형을 선택하세요",
+    "description": "변환 가능한 텍스트를 찾을 수 없을 때의 알림 설명"
+  },
+  "toastRestoredTitle": {
+    "message": "페이지 복원 완료",
+    "description": "페이지 복원이 완료되었을 때의 알림 제목"
+  },
+  "toastRestoredDesc": {
+    "message": "페이지가 원래 상태로 복원되었습니다",
+    "description": "페이지 복원이 완료되었을 때의 알림 설명"
+  },
+  "toastErrorConvTitle": {
+    "message": "변환 실패",
+    "description": "변환이 실패했을 때의 오류 알림 제목"
+  },
+  "toastErrorConvDesc": {
+    "message": "페이지 변환에 실패했습니다. 페이지를 새로 고치고 다시 시도하세요",
+    "description": "변환이 실패했을 때의 오류 알림 설명"
+  },
+  "toastErrorRestoreTitle": {
+    "message": "복원 실패",
+    "description": "복원이 실패했을 때의 오류 알림 제목"
+  },
+  "toastErrorRestoreDesc": {
+    "message": "페이지 복원에 실패했습니다. 페이지를 새로 고치고 다시 시도하세요",
+    "description": "복원이 실패했을 때의 오류 알림 설명"
+  },
+  "setUILangTitle": {
+    "message": "UI 언어",
+    "description": "UI 언어 설정 옵션 제목"
+  },
+  "setUILangDesc": {
+    "message": "UI 언어를 전환할 수 있습니다.",
+    "description": "UI 언어 설정 옵션 설명"
+  },
+  "setUILangReset": {
+    "message": "기본값으로 재설정",
+    "description": "모든 옵션을 기본 상태로 재설정하는 버튼 레이블"
+  }
+}

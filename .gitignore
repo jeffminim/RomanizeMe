@@ -19,6 +19,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
+
 # local env files
 .env*.local
 
@@ -31,3 +32,14 @@ dist/
 
 # typescript
 .tsbuildinfo
+
+# other
+*lock*
+.github/
+pnpm-lock.yaml
+
+OLD/
+
+# rules
+.clinerules-code
+.cursorrules

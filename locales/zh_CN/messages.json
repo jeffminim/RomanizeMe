@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "扩展名称"
+  },
+  "extensionDescription": {
+    "message": "专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。",
+    "description": "扩展描述"
+  },
+  "btnRomanize": {
+    "message": "罗马音转换",
+    "description": "将页面文本转换为罗马音的按钮标签"
+  },
+  "btnRestore": {
+    "message": "还原页面",
+    "description": "将页面恢复原始状态的按钮标签"
+  },
+  "btnProcessing": {
+    "message": "转换中...",
+    "description": "转换过程中的按钮状态提示"
+  },
+  "tabScripts": {
+    "message": "语言文字列表",
+    "description": "显示支持的语言文字列表的标签页标题"
+  },
+  "tabSettings": {
+    "message": "设置",
+    "description": "显示扩展设置选项的标签页标题"
+  },
+  "tabInstruction": {
+    "message": "操作指引",
+    "description": "显示操作指引的标签页标题"
+  },
+  "toastCompleteTitle": {
+    "message": "转换完成",
+    "description": "转换完成时的通知标题"
+  },
+  "toastCompleteDesc": {
+    "message": "已成功转换为",
+    "description": "转换完成时的通知描述"
+  },
+  "toastCompleteWarn": {
+    "message": "罗马音转换结果仅供参考。",
+    "description": "转换完成时的警告提示"
+  },
+  "toastUnfoundTitle": {
+    "message": "未找到可转换文本",
+    "description": "未找到可转换文本时的通知标题"
+  },
+  "toastUnfoundDesc": {
+    "message": "请选择适当的语言及文字类型",
+    "description": "未找到可转换文本时的通知描述"
+  },
+  "toastRestoredTitle": {
+    "message": "页面已还原",
+    "description": "页面还原完成时的通知标题"
+  },
+  "toastRestoredDesc": {
+    "message": "页面已恢复原始状态",
+    "description": "页面还原完成时的通知描述"
+  },
+  "toastErrorConvTitle": {
+    "message": "转换失败",
+    "description": "转换失败时的错误通知标题"
+  },
+  "toastErrorConvDesc": {
+    "message": "页面转换失败，请刷新后重试",
+    "description": "转换失败时的错误通知描述"
+  },
+  "toastErrorRestoreTitle": {
+    "message": "还原失败",
+    "description": "还原失败时的错误通知标题"
+  },
+  "toastErrorRestoreDesc": {
+    "message": "页面还原失败，请刷新后重试",
+    "description": "还原失败时的错误通知描述"
+  },
+  "setUILangTitle": {
+    "message": "界面语言",
+    "description": "设置界面语言选项的标题"
+  },
+  "setUILangDesc": {
+    "message": "您可以切换界面语言。",
+    "description": "设置界面语言选项的描述"
+  },
+  "setUILangReset": {
+    "message": "重置所有选项",
+    "description": "将所有选项恢复默认状态的按钮标签"
+  }
+}

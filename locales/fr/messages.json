@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "Nom de l'extension"
+  },
+  "extensionDescription": {
+    "message": "Une extension de navigateur conçue pour les amateurs de langues, fournissant la romanisation pour les scripts non latins.",
+    "description": "Description de l'extension"
+  },
+  "btnRomanize": {
+    "message": "Romaniser",
+    "description": "Étiquette du bouton pour convertir le texte de la page en romanisation"
+  },
+  "btnRestore": {
+    "message": "Restaurer",
+    "description": "Étiquette du bouton pour restaurer la page à son état d'origine"
+  },
+  "btnProcessing": {
+    "message": "En cours...",
+    "description": "Invite d'état du bouton pendant la conversion"
+  },
+  "tabScripts": {
+    "message": "Scripts",
+    "description": "Titre de l'onglet pour afficher les scripts de langue pris en charge"
+  },
+  "tabSettings": {
+    "message": "Paramètres",
+    "description": "Titre de l'onglet pour afficher les paramètres de l'extension"
+  },
+  "tabInstruction": {
+    "message": "Guide d'utilisation",
+    "description": "Titre de l'onglet pour afficher le guide d'utilisation"
+  },
+  "toastCompleteTitle": {
+    "message": "Conversion terminée",
+    "description": "Titre de la notification lorsque la conversion est terminée"
+  },
+  "toastCompleteDesc": {
+    "message": "Converti avec succès en",
+    "description": "Description de la notification lorsque la conversion est terminée"
+  },
+  "toastCompleteWarn": {
+    "message": "Les résultats de la romanisation sont à titre indicatif uniquement.",
+    "description": "Avertissement lorsque la conversion est terminée"
+  },
+  "toastUnfoundTitle": {
+    "message": "Aucun texte convertible trouvé",
+    "description": "Titre de la notification lorsqu'aucun texte convertible n'est trouvé"
+  },
+  "toastUnfoundDesc": {
+    "message": "Veuillez sélectionner la langue et le type de script appropriés",
+    "description": "Description de la notification lorsqu'aucun texte convertible n'est trouvé"
+  },
+  "toastRestoredTitle": {
+    "message": "Page restaurée",
+    "description": "Titre de la notification lorsque la restauration de la page est terminée"
+  },
+  "toastRestoredDesc": {
+    "message": "La page a été restaurée à son état d'origine",
+    "description": "Description de la notification lorsque la restauration de la page est terminée"
+  },
+  "toastErrorConvTitle": {
+    "message": "Échec de la conversion",
+    "description": "Titre de la notification d'erreur lorsque la conversion échoue"
+  },
+  "toastErrorConvDesc": {
+    "message": "La conversion de la page a échoué, veuillez actualiser et réessayer",
+    "description": "Description de la notification d'erreur lorsque la conversion échoue"
+  },
+  "toastErrorRestoreTitle": {
+    "message": "Échec de la restauration",
+    "description": "Titre de la notification d'erreur lorsque la restauration échoue"
+  },
+  "toastErrorRestoreDesc": {
+    "message": "La restauration de la page a échoué, veuillez actualiser et réessayer",
+    "description": "Description de la notification d'erreur lorsque la restauration échoue"
+  },
+  "setUILangTitle": {
+    "message": "Langue de l'interface",
+    "description": "Titre de l'option de paramètre de langue de l'interface"
+  },
+  "setUILangDesc": {
+    "message": "Vous pouvez changer la langue de l'interface.",
+    "description": "Description de l'option de paramètre de langue de l'interface"
+  },
+  "setUILangReset": {
+    "message": "Réinitialiser les paramètres par défaut",
+    "description": "Étiquette du bouton pour réinitialiser toutes les options à l'état par défaut"
+  }
+}

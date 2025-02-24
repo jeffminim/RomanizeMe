@@ -1,0 +1,90 @@
+{
+  "extensionName": {
+    "message": "RomanizeMe",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "A browser extension designed for language enthusiasts, providing romanization for non-Latin scripts.",
+    "description": "Extension description"
+  },
+  "btnRomanize": {
+    "message": "Romanize",
+    "description": "Button label to convert page text to romanization"
+  },
+  "btnRestore": {
+    "message": "Restore",
+    "description": "Button label to restore page to original state"
+  },
+  "btnProcessing": {
+    "message": "Processing",
+    "description": "Button state prompt during conversion"
+  },
+  "tabScripts": {
+    "message": "Scripts",
+    "description": "Tab title to display supported language scripts"
+  },
+  "tabSettings": {
+    "message": "Settings",
+    "description": "Tab title to display extension settings"
+  },
+  "tabInstruction": {
+    "message": "User Guide",
+    "description": "Tab title to display user guide"
+  },
+  "toastCompleteTitle": {
+    "message": "Conversion Complete",
+    "description": "Notification title when conversion is complete"
+  },
+  "toastCompleteDesc": {
+    "message": "Successfully converted to",
+    "description": "Notification description when conversion is complete"
+  },
+  "toastCompleteWarn": {
+    "message": "Romanization results are for reference only.",
+    "description": "Warning when conversion is complete"
+  },
+  "toastUnfoundTitle": {
+    "message": "No Convertible Text Found",
+    "description": "Notification title when no convertible text is found"
+  },
+  "toastUnfoundDesc": {
+    "message": "Please select appropriate language and script type",
+    "description": "Notification description when no convertible text is found"
+  },
+  "toastRestoredTitle": {
+    "message": "Page Restored",
+    "description": "Notification title when page restoration is complete"
+  },
+  "toastRestoredDesc": {
+    "message": "Page has been restored to its original state",
+    "description": "Notification description when page restoration is complete"
+  },
+  "toastErrorConvTitle": {
+    "message": "Conversion Failed",
+    "description": "Error notification title when conversion fails"
+  },
+  "toastErrorConvDesc": {
+    "message": "Page conversion failed, please refresh and try again",
+    "description": "Error notification description when conversion fails"
+  },
+  "toastErrorRestoreTitle": {
+    "message": "Restoration Failed",
+    "description": "Error notification title when restoration fails"
+  },
+  "toastErrorRestoreDesc": {
+    "message": "Page restoration failed, please refresh and try again",
+    "description": "Error notification description when restoration fails"
+  },
+  "setUILangTitle": {
+    "message": "UI Language",
+    "description": "UI language setting option title"
+  },
+  "setUILangDesc": {
+    "message": "You can switch the UI language.",
+    "description": "UI language setting option description"
+  },
+  "setUILangReset": {
+    "message": "Reset to Defaults",
+    "description": "Button label to reset all options to default state"
+  }
+}
