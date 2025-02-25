@@ -8,6 +8,9 @@ let uiLang = DEFAULT_SETTINGS[SettingId.UI_LANGUAGE].value as string;
 // 添加全局语言包存储
 let languagePack: Record<string, { message: string }> = {};
 
+// 创建一个内存中的状态缓存
+const tabStatusCache = new Map();
+
 // 启动时加载语言设置
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.sync.get([SettingId.UI_LANGUAGE], (result) => {
@@ -113,6 +116,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "UPDATE_CONVERSION_STATUS") {
     const tabId = sender.tab?.id;
     if (tabId) {
+      // 更新内存缓存
+      tabStatusCache.set(tabId, message.status);
+      
       // 将状态与标签页ID关联存储
       chrome.storage.session.set({ [`conversionStatus_${tabId}`]: message.status })
         .then(() => {
@@ -127,7 +133,32 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           console.error('Failed to update conversion status:', error);
           sendResponse({ success: false, error });
         });
-      return true; // 保持消息通道打开
+      return true;
+    }
+  }
+
+  // 添加新的消息类型处理
+  if (message.type === "GET_TAB_STATUS") {
+    const tabId = message.tabId;
+    if (tabId) {
+      // 首先尝试从内存缓存获取
+      if (tabStatusCache.has(tabId)) {
+        sendResponse({ status: tabStatusCache.get(tabId) });
+        return true;
+      }
+      
+      // 如果内存中没有，从存储中获取
+      chrome.storage.session.get([`conversionStatus_${tabId}`], (result) => {
+        const status = result[`conversionStatus_${tabId}`];
+        if (status) {
+          // 更新内存缓存
+          tabStatusCache.set(tabId, status);
+          sendResponse({ status });
+        } else {
+          sendResponse({ status: null });
+        }
+      });
+      return true;
     }
   }
 })

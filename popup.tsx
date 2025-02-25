@@ -8,9 +8,55 @@ import { InstructionPanel } from "~core/instruction-panel"
 import { SettingsPanel } from "~core/settings-panel"
 import { ConverterPanel } from "~core/converter-panel"
 import { useI18n } from "@/hooks/useI18n"
+import { useEffect } from "react"
 
 export default function RomanizeInterface() {
   const { getUIText } = useI18n();
+
+  useEffect(() => {
+    const broadcastStatus = async () => {
+      try {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (!tab?.id) return;
+        
+        const tabId = tab.id;
+        
+        // 1. 首先尝试从内容脚本获取状态
+        chrome.tabs.sendMessage(tabId, { type: "GET_CONVERSION_STATUS" }, (response) => {
+          if (chrome.runtime.lastError) {
+            console.error("Error querying page status:", chrome.runtime.lastError);
+            
+            // 2. 如果内容脚本获取失败，尝试从background获取
+            chrome.runtime.sendMessage({ type: "GET_TAB_STATUS", tabId }, (bgResponse) => {
+              if (bgResponse?.status) {
+                // 广播状态更新
+                chrome.runtime.sendMessage({
+                  type: "BROADCAST_CONVERSION_STATUS",
+                  status: bgResponse.status
+                });
+              }
+            });
+          } else if (response?.status) {
+            // 广播状态更新
+            chrome.runtime.sendMessage({
+              type: "BROADCAST_CONVERSION_STATUS",
+              status: response.status
+            });
+            
+            // 同时更新background中的缓存
+            chrome.runtime.sendMessage({
+              type: "UPDATE_CONVERSION_STATUS",
+              status: response.status
+            });
+          }
+        });
+      } catch (error) {
+        console.error("Error broadcasting status:", error);
+      }
+    };
+    
+    broadcastStatus();
+  }, []);
 
   return (
     <LanguagePanelProvider>

@@ -37,23 +37,57 @@ export function LanguagePanelProvider({ children }) {
   // 初始化时从session storage读取状态和选择的语言
   useEffect(() => {
     const initStatus = async () => {
-      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-      if (tab?.id) {
-        // 读取转换状态
-        const savedStatus = await storageStatus.get(`conversionStatus_${tab.id}`)
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (!tab?.id) return;
+      
+      const tabId = tab.id;
+      
+      try {
+        // 1. 首先尝试从session storage获取状态
+        const savedStatus = await storageStatus.get(`conversionStatus_${tabId}`);
+        
         if (savedStatus && Object.values(ConversionStatus as Record<string, string>).includes(savedStatus)) {
-          setCurrentStatus(savedStatus as ConversionStatus)
+          console.log(`从session storage获取状态: ${savedStatus}`);
+          setCurrentStatus(savedStatus as ConversionStatus);
+        } else {
+          // 2. 如果session storage没有，尝试从background获取
+          chrome.runtime.sendMessage({ 
+            type: "GET_TAB_STATUS", 
+            tabId 
+          }, (response) => {
+            if (chrome.runtime.lastError) {
+              console.error("Error getting status from background:", chrome.runtime.lastError);
+            } else if (response?.status) {
+              console.log(`从background获取状态: ${response.status}`);
+              setCurrentStatus(response.status);
+              storageStatus.set(`conversionStatus_${tabId}`, response.status);
+            } else {
+              // 3. 如果background也没有，尝试从内容脚本获取
+              chrome.tabs.sendMessage(tabId, { type: "GET_CONVERSION_STATUS" }, (contentResponse) => {
+                if (chrome.runtime.lastError) {
+                  console.error("Error querying page status:", chrome.runtime.lastError);
+                } else if (contentResponse?.status) {
+                  console.log(`从内容脚本获取状态: ${contentResponse.status}`);
+                  setCurrentStatus(contentResponse.status);
+                  storageStatus.set(`conversionStatus_${tabId}`, contentResponse.status);
+                }
+              });
+            }
+          });
         }
-
+        
         // 读取选择的语言
-        const savedScript = await storageStatus.get(`activeScript_${tab.id}`)
+        const savedScript = await storageStatus.get(`activeScript_${tabId}`);
         if (savedScript) {
-          setActiveScript(savedScript)
+          setActiveScript(savedScript);
         }
+      } catch (error) {
+        console.error("Error initializing status:", error);
       }
-    }
-    initStatus()
-  }, [])
+    };
+    
+    initStatus();
+  }, []);
 
   // 监听全局消息，用于更新转换状态
   useEffect(() => {

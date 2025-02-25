@@ -15,6 +15,15 @@ export const config: PlasmoCSConfig = {
 // 当前转换状态
 let currentStatus: ConversionStatus = ConversionStatus.IDLE;
 
+// 保存当前状态到storage.session
+function persistStatus(status: ConversionStatus) {
+  currentStatus = status;
+  chrome.runtime.sendMessage({
+    type: "UPDATE_CONVERSION_STATUS",
+    status: status
+  });
+}
+
 // 主转换逻辑
 async function performConversion(selectedLanguage: Language) {
   if (currentStatus === ConversionStatus.PROCESSING) {
@@ -23,20 +32,13 @@ async function performConversion(selectedLanguage: Language) {
   }
 
   try {
-    // 发送状态更新消息
-    chrome.runtime.sendMessage({
-      type: "UPDATE_CONVERSION_STATUS",
-      status: ConversionStatus.PROCESSING
-    });
+    persistStatus(ConversionStatus.PROCESSING);
     
     // 1. 扫描文本节点
     const filteredTexts = scanTextContent(selectedLanguage.writtenScript);
     if (!filteredTexts.length) {
       console.warn("No matching text found");
-      chrome.runtime.sendMessage({
-        type: "UPDATE_CONVERSION_STATUS",
-        status: ConversionStatus.NO_LANGUAGE_SELECTED
-      });
+      persistStatus(ConversionStatus.NO_LANGUAGE_SELECTED);
 
       // 发送未发现可转换文本的 toast 消息
       chrome.runtime.sendMessage({
@@ -76,11 +78,7 @@ async function performConversion(selectedLanguage: Language) {
     // 5. 处理文本转换
     await processTexts(textsToProcess, selectedLanguage);
 
-    // 发送状态更新消息
-    chrome.runtime.sendMessage({
-      type: "UPDATE_CONVERSION_STATUS",
-      status: ConversionStatus.COMPLETED
-    });
+    persistStatus(ConversionStatus.COMPLETED);
 
     // 发送转换完成的 toast 消息
     chrome.runtime.sendMessage({
@@ -91,10 +89,7 @@ async function performConversion(selectedLanguage: Language) {
     console.log("Text conversion completed successfully");
   } catch (error) {
     console.error("Conversion error:", error);
-    chrome.runtime.sendMessage({
-      type: "UPDATE_CONVERSION_STATUS",
-      status: ConversionStatus.ERROR
-    });
+    persistStatus(ConversionStatus.ERROR);
 
     // 添加转换失败的 toast 消息
     chrome.runtime.sendMessage({
@@ -113,6 +108,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       .catch(error => {
         sendResponse({ status: "error", error: error.message });
       });
+    return true;
+  }
+
+  // 添加状态查询处理
+  if (message.type === "GET_CONVERSION_STATUS") {
+    // 返回当前内容脚本中的状态
+    sendResponse({ status: currentStatus });
     return true;
   }
 });
