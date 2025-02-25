@@ -2,10 +2,34 @@ import { getLanguagePack, getCurrentUILang } from "~background";
 import { useState, useEffect } from "react";
 
 export function useI18n() {
-  const defaultLang = chrome.i18n.getUILanguage();
-  const currentLang = getCurrentUILang();
+  const [defaultLang, setDefaultLang] = useState(chrome.i18n.getUILanguage().replace("-","_").toLowerCase());
+  const [currentLang, setCurrentLang] = useState(defaultLang);
   const [languagePack, setLanguagePack] = useState<Record<string, { message: string }>>({});
 
+  // 监听语言变化
+  useEffect(() => {
+    const initLang = async () => {
+      const lang = await getCurrentUILang();
+      setCurrentLang(lang);
+    };
+    
+    initLang();
+    
+    // 添加语言变化的监听器
+    const handleLanguageChange = (message) => {
+      if (message.type === "LANGUAGE_CHANGED") {
+        setCurrentLang(message.language);
+      }
+    };
+    
+    chrome.runtime.onMessage.addListener(handleLanguageChange);
+    
+    return () => {
+      chrome.runtime.onMessage.removeListener(handleLanguageChange);
+    };
+  }, []);
+  
+  // 当语言变化时重新加载语言包
   useEffect(() => {
     const loadPack = async () => {
       const pack = await getLanguagePack();

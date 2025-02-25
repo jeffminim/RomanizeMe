@@ -160,7 +160,11 @@ export function useLanguagePanel() {
 export function LanguageList() {
   const { activeScript, setActiveScript } = useLanguagePanel()
   const [expandedGroups, setExpandedGroups] = useState<string[]>([])
-  const [currentLang, setCurrentLang] = useState("en") // 默认英文
+  const [currentLang, setCurrentLang] = useState<string>(() => {
+    // 使用浏览器的默认语言作为初始值
+    const browserLang = chrome.i18n.getUILanguage().replace("-","_").toLowerCase();
+    return browserLang;
+  })
 
   // 获取当前界面语言
   useEffect(() => {
@@ -169,6 +173,19 @@ export function LanguageList() {
       setCurrentLang(lang);
     };
     fetchCurrentLang();
+    
+    // 添加语言变化的监听器
+    const handleLanguageChange = (message) => {
+      if (message.type === "LANGUAGE_CHANGED") {
+        setCurrentLang(message.language);
+      }
+    };
+    
+    chrome.runtime.onMessage.addListener(handleLanguageChange);
+    
+    return () => {
+      chrome.runtime.onMessage.removeListener(handleLanguageChange);
+    };
   }, []);
 
   // 初始化时设置默认展开的组

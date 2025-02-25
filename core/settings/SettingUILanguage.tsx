@@ -6,7 +6,11 @@ import { useI18n } from "@/hooks/useI18n";
 
 export function SettingUILanguage() {
   const { getUIText } = useI18n();
-  const [currentLanguage, setCurrentLanguage] = useState("en")
+  const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
+    // 使用浏览器的默认语言作为初始值
+    const browserLang = chrome.i18n.getUILanguage().replace("-","_").toLowerCase();
+    return browserLang;
+  });
 
   useEffect(() => {
     chrome.runtime.sendMessage({
@@ -25,10 +29,16 @@ export function SettingUILanguage() {
       language: newLanguage
     }, (response) => {
       if (response?.success) {
-        // setTimeout(() => {
-        //   window.location.reload()
-        // }, 500)
-        console.log("Success")
+        // 广播语言变化消息
+        chrome.runtime.sendMessage({
+          type: "LANGUAGE_CHANGED",
+          language: newLanguage
+        });
+        
+        // 重新加载页面以应用新语言
+        setTimeout(() => {
+          window.location.reload();
+        }, 300);
       }
     })
   }

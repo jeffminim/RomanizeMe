@@ -19,7 +19,7 @@ export const DEFAULT_SETTINGS: Record<SettingId, SettingItem> = {
   },
   [SettingId.UI_LANGUAGE]: {
     id: SettingId.UI_LANGUAGE,
-    value: "en"
+    value: (chrome.i18n.getUILanguage()).replace("-","_").toLowerCase() || "en"
   },
 //   [SettingId.DARK_MODE]: {
 //     id: SettingId.DARK_MODE,

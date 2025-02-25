@@ -21,8 +21,19 @@ chrome.runtime.onStartup.addListener(() => {
       // 使用默认语言，直接使用chrome.i18n.getMessage
       uiLang = (chrome.i18n.getUILanguage()).replace("-","_").toLowerCase();
       chrome.storage.sync.set({ [SettingId.UI_LANGUAGE]: uiLang });
+      loadLanguagePack(uiLang);
     }
   });
+});
+
+// 添加安装事件监听器，确保首次安装时也能正确设置语言
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    const browserLang = (chrome.i18n.getUILanguage()).replace("-","_").toLowerCase();
+    uiLang = browserLang;
+    chrome.storage.sync.set({ [SettingId.UI_LANGUAGE]: uiLang });
+    loadLanguagePack(uiLang);
+  }
 });
 
 // 加载语言包
@@ -51,17 +62,23 @@ export function getLanguagePack(): Promise<Record<string, { message: string }>> 
 // 监听语言设置变化
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "CHANGE_UI_LANGUAGE") {
-    const newLang = message.language;
-    chrome.storage.sync.set({ [SettingId.UI_LANGUAGE]: newLang }, () => {
-      if (!chrome.runtime.lastError) {
-        uiLang = newLang;
-        loadLanguagePack(newLang);
-        sendResponse({ success: true });
-      } else {
-        sendResponse({ success: false, error: chrome.runtime.lastError });
-      }
+    const newLanguage = message.language;
+    
+    // 保存新语言设置
+    chrome.storage.sync.set({ [SettingId.UI_LANGUAGE]: newLanguage }, () => {
+      // 加载新语言包
+      loadLanguagePack(newLanguage);
+      
+      // 广播语言已变化的消息
+      chrome.runtime.sendMessage({
+        type: "LANGUAGE_CHANGED",
+        language: newLanguage
+      });
+      
+      sendResponse({ success: true });
     });
-    return true; // 保持消息通道打开
+    
+    return true; // 异步响应
   }
 
   // SHOW_TOAST

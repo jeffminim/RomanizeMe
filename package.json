@@ -60,7 +60,6 @@
       {
         "resources": [
           "public/*",
-          "contents/toast-styles.css",
           "contents/toast-ui.css"
         ],
         "matches": [
