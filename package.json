@@ -2,8 +2,8 @@
   "name": "romanize-me",
   "displayName": "RomanizeMe",
   "version": "2.0.0",
-  "description": "A browser extension for romanizing the pronunciation of non-Latin scripts.",
-  "author": "Windminim",
+  "description": "__MSG_extensionDescription__",
+  "author": "Jeff H @ Windminim Studio <windminim@outlook.com>",
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
@@ -49,7 +49,7 @@
     "typescript": "5.3.3"
   },
   "manifest": {
-    "default_locale": "zh_CN",
+    "default_locale": "en",
     "permissions": [
       "activeTab",
       "scripting",
