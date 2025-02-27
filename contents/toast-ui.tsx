@@ -1,6 +1,6 @@
 `use client`
 
-import "~globals.css"
+// import "~globals.css"
 import "./toast-ui.css"
 
 

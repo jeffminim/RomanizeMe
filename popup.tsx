@@ -18,14 +18,14 @@ export default function RomanizeInterface() {
       try {
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
         if (!tab?.id) return;
-        
+
         const tabId = tab.id;
-        
+
         // 1. 首先尝试从内容脚本获取状态
         chrome.tabs.sendMessage(tabId, { type: "GET_CONVERSION_STATUS" }, (response) => {
           if (chrome.runtime.lastError) {
             console.error("Error querying page status:", chrome.runtime.lastError);
-            
+
             // 2. 如果内容脚本获取失败，尝试从background获取
             chrome.runtime.sendMessage({ type: "GET_TAB_STATUS", tabId }, (bgResponse) => {
               if (bgResponse?.status) {
@@ -42,7 +42,7 @@ export default function RomanizeInterface() {
               type: "BROADCAST_CONVERSION_STATUS",
               status: response.status
             });
-            
+
             // 同时更新background中的缓存
             chrome.runtime.sendMessage({
               type: "UPDATE_CONVERSION_STATUS",
@@ -54,7 +54,7 @@ export default function RomanizeInterface() {
         console.error("Error broadcasting status:", error);
       }
     };
-    
+
     broadcastStatus();
   }, []);
 
@@ -63,15 +63,20 @@ export default function RomanizeInterface() {
       <div className="w-[600px] h-[360px] bg-gradient-to-br from-gray-50 to-blue-100 p-2 flex overflow-hidden">
         <div className="flex-grow p-2">
           <Tabs defaultValue="scripts" className="w-full h-full">
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className={`w-full grid ${process.env.PLASMO_BROWSER === "firefox"
+                ? "grid-cols-1"
+                : "grid-cols-2"
+              }`}>
               <TabsTrigger value="scripts" className="flex items-center justify-center gap-2">
                 <Globe className="w-4 h-4" />
                 <span>{getUIText("tabScripts")}</span>
               </TabsTrigger>
-              <TabsTrigger value="settings" className="flex items-center justify-center gap-2">
-                <Settings className="w-4 h-4" />
-                <span>{getUIText("tabSettings")}</span>
-              </TabsTrigger>
+              {process.env.PLASMO_BROWSER !== "firefox" && (
+                <TabsTrigger value="settings" className="flex items-center justify-center gap-2">
+                  <Settings className="w-4 h-4" />
+                  <span>{getUIText("tabSettings")}</span>
+                </TabsTrigger>
+              )}
               {/* <TabsTrigger value="instruction" className="flex items-center justify-center gap-2">
                 <FileText className="w-4 h-4" />
                 <span>{getUIText("tabInstruction")}</span>
@@ -84,9 +89,11 @@ export default function RomanizeInterface() {
               </Card>
             </TabsContent>
 
+
             <TabsContent value="settings" className="h-[calc(100%-40px)] overflow-y-auto">
               <SettingsPanel />
             </TabsContent>
+
 
             <TabsContent value="instruction" className="h-[calc(100%-40px)] overflow-y-auto">
               <InstructionPanel />
