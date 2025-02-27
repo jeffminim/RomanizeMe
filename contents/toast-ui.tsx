@@ -1,6 +1,6 @@
 `use client`
 
-// import "~globals.css"
+import "~globals.css"
 import "./toast-ui.css"
 
 
@@ -17,7 +17,7 @@ import cssText from "data-text:./toast-ui.css"
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
   // css: ["toast-ui.css"],
-  // world: "MAIN",
+  // world: "MAIN"
 };
 
 export const getStyle: PlasmoGetStyle = () => {
@@ -186,6 +186,17 @@ const ToastUI = () => {
       }
     };
   }, [getToastText]);
+
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = chrome.runtime.getURL('contents/toast-ui.css');
+    document.head.appendChild(link);
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
 
   return (
     <div className="rm-toast-container">

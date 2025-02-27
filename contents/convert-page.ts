@@ -9,6 +9,7 @@ import { ToastType } from "~types/toast"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
+  css: ["content.css"],
   // world: "MAIN",
 };
 
