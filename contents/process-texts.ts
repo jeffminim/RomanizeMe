@@ -33,32 +33,34 @@ export async function processTexts(
     return texts;
   }
 
-  // 逐个转换文本
+  // 创建文档片段以批量处理DOM操作
+  const fragment = document.createDocumentFragment();
   const processedTexts: string[] = [];
-  for (const text of texts) {
-    try {
-      const processedText = await converter(text);
-      // 创建包含罗马音的span
+  
+  // 批量处理文本转换
+  const promises = texts.map(text => converter(text));
+  const results = await Promise.all(promises);
+
+  // 创建一个Map来存储转换结果
+  const romanizationMap = new Map<string, string>();
+  texts.forEach((text, index) => {
+    romanizationMap.set(text, results[index]);
+  });
+
+  // 批量处理DOM更新
+  const wordSpans = document.querySelectorAll(`span[rm-marker="word"]`);
+  wordSpans.forEach(wordSpan => {
+    const text = wordSpan.textContent;
+    if (text && romanizationMap.has(text)) {
+      const romanizedText = romanizationMap.get(text);
       const romanizedSpan = document.createElement('span');
       romanizedSpan.setAttribute('rm-marker', 'obj');
       romanizedSpan.classList.add('romanized-mark');
-      romanizedSpan.textContent = processedText;
-
-      // 找到对应的word span
-      const wordSpans = document.querySelectorAll(`span[rm-marker="word"]`);
-      wordSpans.forEach(wordSpan => {
-        if (wordSpan.textContent === text) {
-          // 将罗马音插入到原文前面
-          wordSpan.insertBefore(romanizedSpan, wordSpan.firstChild);
-        }
-      });
-
-      processedTexts.push(processedText);
-    } catch (error) {
-      console.error(`Error processing text: ${text}`, error);
-      processedTexts.push(text); // 转换失败时保留原文本
+      romanizedSpan.textContent = romanizedText;
+      wordSpan.insertBefore(romanizedSpan, wordSpan.firstChild);
+      processedTexts.push(romanizedText);
     }
-  }
+  });
 
   return processedTexts;
 }
