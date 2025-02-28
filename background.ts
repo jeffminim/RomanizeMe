@@ -231,6 +231,8 @@ function resetSettings(): Promise<void> {
           if (chrome.runtime.lastError) {
             reject(chrome.runtime.lastError);
           } else {
+            // 加载默认语言包
+            loadLanguagePack(DEFAULT_SETTINGS[SettingId.UI_LANGUAGE].value as string);
             resolve();
           }
         });
