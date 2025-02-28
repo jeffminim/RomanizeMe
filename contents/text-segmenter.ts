@@ -1,4 +1,6 @@
+import type { Script } from "~types/languages";
 import { TextSegmentation } from "~types/text-segmentation";
+import { isCharInScript } from "./scan-texts";
 
 import { segment as chineseSegmenter, addDict, OutputFormat } from 'pinyin-pro';
 import ModernDict from '@pinyin-pro/data/modern';
@@ -7,8 +9,33 @@ addDict(ModernDict);
 export class TextSegmenter {
   static segmentText(
     text: string,
-    segmentation: TextSegmentation
+    segmentation: TextSegmentation,
+    scripts?: Script[]
   ): string[] {
+    if (scripts) {
+      const targetChars: string[] = [];
+      let currentSegment = '';
+      
+      for (const char of text) {
+        if (isCharInScript(char, scripts)) {
+          currentSegment += char;
+        } else if (currentSegment) {
+          targetChars.push(currentSegment);
+          currentSegment = '';
+        }
+      }
+      
+      if (currentSegment) {
+        targetChars.push(currentSegment);
+      }
+      
+      if (!targetChars.length) {
+        return [];
+      }
+      
+      text = targetChars.join('');
+    }
+
     switch (segmentation) {
       case TextSegmentation.CHAR:
         return this.splitTextByChar(text);

@@ -63,7 +63,11 @@ async function performConversion(selectedLanguage: Language) {
       // console.log('Processing span with text:', text);
       
       // 根据语言设置选择分词方式
-      const segments = TextSegmenter.segmentText(text, selectedLanguage.writtenScript[0].segmentation);
+      const segments = TextSegmenter.segmentText(
+        text, 
+        selectedLanguage.writtenScript[0].segmentation,
+        selectedLanguage.writtenScript
+      );
       // console.log('Segments:', segments);
       
       // 用新的span包装分词结果
