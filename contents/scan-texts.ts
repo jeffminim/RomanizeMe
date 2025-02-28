@@ -63,24 +63,14 @@ function wrapTextNode(node: Node, scripts: Script[]): void {
   
   let currentType: 'num' | 'sym' | 'space' | 'text' | null = null;
   let currentText = '';
+  let isTargetScript = false;
 
   for (const char of text) {
     const charType = getCharType(char);
+    isTargetScript = charType === 'text' && isCharInScript(char, scripts);
     
-    // 如果是空格，直接添加到文档片段
-    if (charType === 'space') {
-      if (currentText) {
-        const span = createSpan(currentText, currentType, scripts);
-        fragment.appendChild(span);
-        currentText = '';
-        currentType = null;
-      }
-      fragment.appendChild(document.createTextNode(char));
-      continue;
-    }
-
-    // 如果字符类型改变，创建新的span
-    if (charType !== currentType) {
+    // 如果字符类型改变或者目标脚本状态改变，创建新的span
+    if (charType !== currentType || (charType === 'text' && isTargetScript !== isCharInScript(currentText[0], scripts))) {
       if (currentText) {
         const span = createSpan(currentText, currentType, scripts);
         fragment.appendChild(span);
