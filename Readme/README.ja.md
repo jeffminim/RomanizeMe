@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="../assets/romanizemelogo256.png" alt="RomanizeMe - ブラウザ拡張機能のロゴ"></a>
- <br>
- <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+  <br>
+  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - 非ラテン文字をローマ字化するブラウザ拡張機能</h3>
@@ -11,9 +11,10 @@
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Store-RomanizeMe-blue)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
+)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.1)
+[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
 
 </div>
 
@@ -88,16 +89,23 @@
   - React+Plasmoでプログラム全体を再構築し、実行ロジックを最適化
   - Toast通知を追加（変換と復元完了時）
   - UIスタイルを最適化
+  - 2.0.1
+    - ブラウザの違いに応じて一部の機能を調整
+  - 2.0.2
+    - ページがフリーズするのを避けるために、変換アルゴリズムを大幅に最適化しました
+    - 設定をリセットするときのUI表示の問題を修正しました
+  - 2.0.3
+    - Chrome Web Storeのレビュー要件を満たし、いくつかのバグを修正しました
 
 ## 📅 開発ロードマップ <a name = "開発ロードマップ"></a>
 
 ### 🌍 対応スクリプト/言語 <a name = "対応スクリプト言語"></a>
 
-- [ ] 漢字
-  - [ ] 普通話（v1.3.0で予定）
+- [x] 漢字
+  - [x] 普通話（v1.3.0で予定）
   - [ ] 広東語
   - [ ] その他の方言...
-- [X] ハングル
+- [x] ハングル
 - [x] 日本語
   - [x] 仮名（ローマ字）
   - [ ] 漢字
@@ -115,8 +123,8 @@
 ### ✅ TODOリスト
 
 - [ ] ショートカットキーのサポート
-- [x] i18nサポート
 - [ ] 機能の追加ガイドとサンプルページ
+- [x] i18nサポート
 - [ ] 設定ページの開発
 - [ ] 注釈スタイルのカスタマイズ
 - [ ] 発音音声のサポート
@@ -148,4 +156,4 @@ RomanizeMeプロジェクトへの貢献を歓迎します！質問、提案、�
 
 ## 📜 ライセンス <a name = "ライセンス"></a>
 
-RomanizeMeは[MITライセンス](/LICENSE)の下で配布されています。
+RomanizeMeは[MITライセンス](../LICENSE)の下で配布されています。

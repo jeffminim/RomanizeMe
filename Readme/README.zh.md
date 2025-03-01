@@ -11,9 +11,10 @@
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/chrome-web--store-coming_soon-blue.svg)]()
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
+)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.0)
+[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
 
 </div>
 
@@ -93,6 +94,14 @@
   - 用React+Plasmo重构了整个程序，优化了运行逻辑
   - 增加了Toast提示（完成转换、还原时）
   - 优化了UI样式
+  - 2.0.1
+    - 根据浏览器的不同，调整了部分功能
+  - 2.0.2
+    - 大幅优化了转换算法，避免页面假死
+    - 修复了重置设置项时，toast的UI显示问题
+  - 2.0.3
+    - 符合Chrome Web Store的审核要求，修复了一些bug
+
 
 
 ## 📅 开发计划 <a name = "开发计划"></a>
@@ -124,7 +133,7 @@
 - [ ] 增加功能引导及示例页面
 - [x] 添加i18n支持
 - [x] 添加Toast提示
-- [ ] 开发设置页面
+- [x] 开发设置页面
 - [ ] 实现标注样式自定义
 - [ ] 添加发音音频支持
 - [ ] 添加更多语言支持
