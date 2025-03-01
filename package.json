@@ -53,8 +53,7 @@
     "permissions": [
       "activeTab",
       "scripting",
-      "storage",
-      "tabs"
+      "storage"
     ],
     "web_accessible_resources": [
       {
