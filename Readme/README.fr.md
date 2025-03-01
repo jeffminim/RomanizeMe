@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="../assets/romanizemelogo256.png" alt="RomanizeMe - Logo de l'extension de navigateur"></a>
- <br>
- <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+  <br>
+  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - Extension de navigateur pour romaniser les écritures non latines</h3>
@@ -11,9 +11,10 @@
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](../LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Store-RomanizeMe-blue)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
+)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.1)
+[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
 
 </div>
 
@@ -88,6 +89,13 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - Refonte complète du programme avec React+Plasmo, optimisation de la logique d'exécution
   - Ajout de notifications Toast (lors de la conversion et de la restauration)
   - Optimisation du style de l'interface utilisateur
+  - 2.0.1
+    - Ajustement de certaines fonctionnalités en fonction des différents navigateurs
+  - 2.0.2
+    - Optimisation considérable de l'algorithme de conversion pour éviter le blocage de la page
+    - Correction du problème d'affichage de l'interface utilisateur lors de la réinitialisation des paramètres
+  - 2.0.3
+    - Conformité aux exigences d'examen du Chrome Web Store, correction de certains bugs
 
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
@@ -115,9 +123,9 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 ### ✅ Liste des tâches
 
 - [ ] Support des raccourcis clavier
-- [x] Support i18n
 - [ ] Augmenter les pages de guide et d'exemple des fonctionnalités
-- [ ] Développement de la page des paramètres
+- [x] Support i18n
+- [x] Développement de la page des paramètres
 - [ ] Personnalisation du style des annotations
 - [ ] Support audio de la prononciation
 - [ ] Support de plus de langues
@@ -148,4 +156,4 @@ Un grand merci au projet [Pinyin-Pro](https://pinyin-pro.cn/), qui est une bibli
 
 ## 📜 Licence <a name = "licence"></a>
 
-RomanizeMe est distribué sous la [licence MIT](/LICENSE).
+RomanizeMe est distribué sous la [licence MIT](../LICENSE).

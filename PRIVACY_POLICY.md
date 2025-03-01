@@ -9,14 +9,12 @@ English: This extension does not collect, store, or transmit any personal data o
 中文：本扩展程序仅使用必要的权限来实现核心功能：
 - 主机权限：用于访问网页文本内容以提供罗马拼音标注
 - activeTab：仅在用户主动使用时访问当前标签页内容
-- tabs：用于获取当前标签页信息以提供罗马拼音标注
 - scripting：用于在网页中注入拼音标注脚本
 - storage：用于存储用户的语言偏好设置
 
 English: This extension only uses necessary permissions to implement core features:
 - Host permissions: Used to access web page text content for providing Romanization annotations
 - activeTab: Only accesses the current tab content when the user actively uses the extension
-- tabs: Used to get current tab information for providing Romanization annotations
 - scripting: Used to inject Romanization annotation scripts into web pages
 - storage: Used to store user's language preference settings
 

@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="../assets/romanizemelogo256.png" alt="RomanizeMe - 브라우저 확장 프로그램 로고"></a>
- <br>
- <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+  <br>
+  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
 </p>
 
 <h3 align="center">RomanizeMe - 비라틴 문자를 로마자로 변환하는 브라우저 확장 프로그램</h3>
@@ -11,9 +11,10 @@
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
-[![Chrome Web Store](https://img.shields.io/badge/Chrome_Store-RomanizeMe-blue)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
+)](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-1.3.1-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v1.3.1)
+[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
 
 </div>
 
@@ -88,16 +89,23 @@
   - React+Plasmo로 전체 프로그램을 재구축하고 실행 로직을 최적화했습니다
   - Toast 알림 추가 (변환 및 복원 완료 시)
   - UI 스타일 최적화
+  - 2.0.1
+    - 브라우저에 따라 일부 기능 조정
+  - 2.0.2
+    - 페이지 고정을 방지하기 위해 변환 알고리즘을 크게 최적화했습니다.
+    - 설정 항목을 재설정할 때 UI 표시 문제 수정
+  - 2.0.3
+    - Chrome 웹 스토어 검토 요구 사항을 충족하고 일부 버그 수정
 
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
 
 ### 🌍 지원 스크립트/언어 <a name = "지원-스크립트언어"></a>
 
-- [ ] 한자
-  - [ ] 보통화(v1.3.0 예정)
+- [x] 한자
+  - [x] 보통화(v1.3.0 예정)
   - [ ] 광둥어
   - [ ] 기타 방언...
-- [X] 한글
+- [x] 한글
 - [x] 일본어
   - [x] 가나(로마자)
   - [ ] 한자
@@ -115,9 +123,9 @@
 ### ✅ TODO 리스트
 
 - [ ] 단축키 지원
-- [x] i18n 지원
 - [ ] 기능 안내 및 예시 페이지 추가합니다
-- [ ] 설정 페이지 개발
+- [x] i18n 지원
+- [x] 개발 페이지 개발
 - [ ] 주석 스타일 커스터마이징
 - [ ] 발음 음성 지원
 - [ ] 더 많은 언어 지원
@@ -148,4 +156,4 @@ RomanizeMe 프로젝트에 기여를 환영합니다! 질문, 제안 또는 코�
 
 ## 📜 라이선스 <a name = "라이선스"></a>
 
-RomanizeMe는 [MIT 라이선스](/LICENSE) 하에 배포됩니다.
+RomanizeMe는 [MIT 라이선스](../LICENSE) 하에 배포됩니다.
