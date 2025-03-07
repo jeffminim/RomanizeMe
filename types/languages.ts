@@ -229,36 +229,25 @@ export const scriptPanelGroups: Group[] = [
     }
   },
   {
-    name: 'japanese',
+    name: 'east_asian',
     order: 2,
     enabled: true,
-    languages: scriptPanelLanguages.filter(s => s.code === 'jpn_romaji'),
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'jpn_romaji' ||
+      s.code === 'kor_hangul'
+    ),
     i18n: {
-      zh_cn: '日语',
-      en: 'Japanese',
-      ja: '日本語',
-      ko: '일본어',
-      fr: 'Japonais',
-      ru: 'Японский'
-    }
-  },
-  {
-    name: 'korean',
-    order: 3,
-    enabled: true,
-    languages: scriptPanelLanguages.filter(s => s.code === 'kor_hangul'),
-    i18n: {
-      zh_cn: '韩语',
-      en: 'Korean',
-      ja: '韓国語',
-      ko: '한국어',
-      fr: 'Coréen',
-      ru: 'Корейский'
+      zh_cn: '东亚语言',
+      en: 'East Asian',
+      ja: '東アジア言語',
+      ko: '동아시아 언어',
+      fr: 'Langues est-asiatiques',
+      ru: 'Восточноазиатские языки'
     }
   },
   {
     name: 'cyrillic',
-    order: 4,
+    order: 3,
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'rus_cyrillic' ||
