@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
+[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
 
 </div>
 
@@ -96,6 +96,8 @@
     - 설정 항목을 재설정할 때 UI 표시 문제 수정
   - 2.0.3
     - Chrome 웹 스토어 검토 요구 사항을 충족하고 일부 버그 수정
+  - 2.0.4
+    - 오버플로 시 표시 효과를 최적화했습니다.
 
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
 

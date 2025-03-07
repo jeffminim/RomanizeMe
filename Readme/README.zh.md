@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
+[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
 
 </div>
 
@@ -101,6 +101,8 @@
     - 修复了重置设置项时，toast的UI显示问题
   - 2.0.3
     - 符合Chrome Web Store的审核要求，修复了一些bug
+  - 2.0.4
+    - 优化了显示样式，现在转换后不会再发生重叠
 
 
 

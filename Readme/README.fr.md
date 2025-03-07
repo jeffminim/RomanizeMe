@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
+[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
 
 </div>
 
@@ -96,6 +96,8 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
     - Correction du problème d'affichage de l'interface utilisateur lors de la réinitialisation des paramètres
   - 2.0.3
     - Conformité aux exigences d'examen du Chrome Web Store, correction de certains bugs
+  - 2.0.4
+    - Optimisation du style d'affichage en cas de débordement
 
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 

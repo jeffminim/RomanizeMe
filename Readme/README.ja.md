@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
+[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
 
 </div>
 
@@ -96,6 +96,8 @@
     - 設定をリセットするときのUI表示の問題を修正しました
   - 2.0.3
     - Chrome Web Storeのレビュー要件を満たし、いくつかのバグを修正しました
+  - 2.0.4
+    - オーバーフロー時に表示が重ならないように、表示スタイルを最適化しました
 
 ## 📅 開発ロードマップ <a name = "開発ロードマップ"></a>
 
