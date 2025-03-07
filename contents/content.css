@@ -17,6 +17,8 @@
   z-index: 1;
   width: var(--rm-width, auto);
   text-align: center;
+  white-space: nowrap; /* 添加这行防止换行 */
+  min-width: max-content; /* 添加这行确保最小宽度 */
 }
 
 .romanized-mark {

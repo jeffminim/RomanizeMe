@@ -89,6 +89,24 @@ export const scriptPanelScripts: Script[] = [
       [0x3130, 0x318F]  // 韩文兼容字母 (Hangul Compatibility Jamo)
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'cyrillic',
+    i18n: {
+      zh_cn: '西里尔字母',
+      en: 'Cyrillic',
+      ja: 'キリル文字',
+      ko: '키릴 문자',
+      fr: 'Cyrillique'
+    },
+    isoCode: 'ru',
+    unicodeRanges: [
+      [0x0400, 0x04FF],    // 基本西里尔字母
+      [0x0500, 0x052F],   // 西里尔字母补充
+      [0x2DE0, 0x2DFF],  // 西里尔字母扩展A
+      [0xA640, 0xA69F]   // 西里尔字母扩展B
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -130,6 +148,54 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'hangul'),
     romanizationComponent: 'KorHangul'
+  },
+  {
+    code: 'rus_cyrillic',
+    i18n: {
+      zh_cn: '俄语',
+      en: 'Russian',
+      ja: 'ロシア語',
+      ko: '러시아어',
+      fr: 'Russe'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
+    romanizationComponent: 'RusCyrillic'
+  },
+  {
+    code: 'ukr_cyrillic',
+    i18n: {
+      zh_cn: '乌克兰语',
+      en: 'Ukrainian',
+      ja: 'ウクライナ語',
+      ko: '우크라이나어',
+      fr: 'Ukrainien'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
+    romanizationComponent: 'UkrCyrillic'
+  },
+  {
+    code: 'mon_cyrillic',
+    i18n: {
+      zh_cn: '蒙古语',
+      en: 'Mongolian',
+      ja: 'モンゴル語',
+      ko: '몽골어',
+      fr: 'Mongol'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
+    romanizationComponent: 'MonCyrillic'
+  },
+  {
+    code: 'srb_cyrillic',
+    i18n: {
+      zh_cn: '塞尔维亚语',
+      en: 'Serbian',
+      ja: 'セルビア語',
+      ko: '세르비아어',
+      fr: 'Serbe'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
+    romanizationComponent: 'SrbCyrillic'
   }
 ]
 
@@ -174,6 +240,24 @@ export const scriptPanelGroups: Group[] = [
       ja: '韓国語',
       ko: '한국어',
       fr: 'Coréen'
+    }
+  },
+  {
+    name: 'cyrillic',
+    order: 4,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'rus_cyrillic' ||
+      s.code === 'ukr_cyrillic' ||
+      s.code === 'mon_cyrillic' ||
+      s.code === 'srb_cyrillic'
+    ),
+    i18n: {
+      zh_cn: '西里尔字母',
+      en: 'Cyrillic',
+      ja: 'キリル文字',
+      ko: '키릴 문자',
+      fr: 'Cyrillique'
     }
   }
 ] 
