@@ -41,7 +41,8 @@ export const scriptPanelScripts: Script[] = [
       en: 'Chinese Characters',
       ja: '漢字',
       ko: '한자',
-      fr: 'Caractères chinois'
+      fr: 'Caractères chinois',
+      ru: 'Китайские иероглифы'
     },
     isoCode: 'zh',
     unicodeRanges: [
@@ -62,7 +63,8 @@ export const scriptPanelScripts: Script[] = [
       en: 'Japanese Kana',
       ja: '仮名',
       ko: '가나',
-      fr: 'Kana japonais'
+      fr: 'Kana japonais',
+      ru: 'Японская кана'
     },
     isoCode: 'ja',
     unicodeRanges: [
@@ -80,7 +82,8 @@ export const scriptPanelScripts: Script[] = [
       en: 'Hangul',
       ja: 'ハングル',
       ko: '한글',
-      fr: 'Hangul'
+      fr: 'Hangul',
+      ru: 'Хангыль'
     },
     isoCode: 'ko',
     unicodeRanges: [
@@ -97,7 +100,8 @@ export const scriptPanelScripts: Script[] = [
       en: 'Cyrillic',
       ja: 'キリル文字',
       ko: '키릴 문자',
-      fr: 'Cyrillique'
+      fr: 'Cyrillique',
+      ru: 'Кириллица'
     },
     isoCode: 'ru',
     unicodeRanges: [
@@ -120,7 +124,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Mandarin Chinese',
       ja: '中国語（普通話）',
       ko: '중국어 (보통화)',
-      fr: 'Chinois mandarin'
+      fr: 'Chinois mandarin',
+      ru: 'Китайский (путунхуа)'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'hanzi'),
     romanizationComponent: 'ChnPinyin'
@@ -132,7 +137,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Japanese Romaji',
       ja: '日本語ローマ字',
       ko: '일본어 로마자',
-      fr: 'Romaji japonais'
+      fr: 'Romaji japonais',
+      ru: 'Японский (ромадзи)'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'kana'),
     romanizationComponent: 'JpnRomaji'
@@ -144,7 +150,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Korean',
       ja: '韓国語',
       ko: '한국어',
-      fr: 'Coréen'
+      fr: 'Coréen',
+      ru: 'Корейский'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'hangul'),
     romanizationComponent: 'KorHangul'
@@ -156,7 +163,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Russian',
       ja: 'ロシア語',
       ko: '러시아어',
-      fr: 'Russe'
+      fr: 'Russe',
+      ru: 'Русский'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
     romanizationComponent: 'RusCyrillic'
@@ -168,7 +176,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Ukrainian',
       ja: 'ウクライナ語',
       ko: '우크라이나어',
-      fr: 'Ukrainien'
+      fr: 'Ukrainien',
+      ru: 'Украинский'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
     romanizationComponent: 'UkrCyrillic'
@@ -180,7 +189,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Mongolian',
       ja: 'モンゴル語',
       ko: '몽골어',
-      fr: 'Mongol'
+      fr: 'Mongol',
+      ru: 'Монгольский'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
     romanizationComponent: 'MonCyrillic'
@@ -192,7 +202,8 @@ export const scriptPanelLanguages: Language[] = [
       en: 'Serbian',
       ja: 'セルビア語',
       ko: '세르비아어',
-      fr: 'Serbe'
+      fr: 'Serbe',
+      ru: 'Сербский'
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
     romanizationComponent: 'SrbCyrillic'
@@ -213,7 +224,8 @@ export const scriptPanelGroups: Group[] = [
       en: 'Chinese',
       ja: '中国語',
       ko: '중국어',
-      fr: 'Chinois'
+      fr: 'Chinois',
+      ru: 'Китайский'
     }
   },
   {
@@ -226,7 +238,8 @@ export const scriptPanelGroups: Group[] = [
       en: 'Japanese',
       ja: '日本語',
       ko: '일본어',
-      fr: 'Japonais'
+      fr: 'Japonais',
+      ru: 'Японский'
     }
   },
   {
@@ -239,7 +252,8 @@ export const scriptPanelGroups: Group[] = [
       en: 'Korean',
       ja: '韓国語',
       ko: '한국어',
-      fr: 'Coréen'
+      fr: 'Coréen',
+      ru: 'Корейский'
     }
   },
   {
@@ -257,7 +271,8 @@ export const scriptPanelGroups: Group[] = [
       en: 'Cyrillic',
       ja: 'キリル文字',
       ko: '키릴 문자',
-      fr: 'Cyrillique'
+      fr: 'Cyrillique',
+      ru: 'Кириллица' 
     }
   }
 ] 
