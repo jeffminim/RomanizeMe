@@ -4,10 +4,19 @@ import { useLanguagePanel } from "@/core/language-panel"
 import { scriptPanelGroups } from "@/types/languages"
 import { ConversionStatus } from "~types/conversion-status"
 import { useI18n } from "@/hooks/useI18n"
+import { useMemo } from "react"
 
 export function RomanizeButton({ className, disabled, ...props }) {
-  const { getUIText } = useI18n()
+  const { getUIText, currentLang } = useI18n()
   const { activeScript, currentStatus } = useLanguagePanel()
+  
+  // 检查文本是否过长需要垂直布局
+  const needsVerticalLayout = useMemo(() => {
+    const text = currentStatus === ConversionStatus.PROCESSING 
+      ? getUIText("btnProcessing") 
+      : getUIText("btnRomanize")
+    return currentLang === "ru" || text.length > 10
+  }, [currentStatus, getUIText, currentLang])
 
   const handleClick = () => {
     if (!activeScript || currentStatus === ConversionStatus.PROCESSING) {
@@ -43,13 +52,13 @@ export function RomanizeButton({ className, disabled, ...props }) {
       disabled={disabled || currentStatus === ConversionStatus.PROCESSING}
       {...props}
     >
-      <div className="flex items-center justify-center gap-2">
+      <div className={`flex items-center justify-center ${needsVerticalLayout ? 'flex-col py-1' : 'flex-row gap-2'}`}>
         {currentStatus === ConversionStatus.PROCESSING ? (
           <Loader2 className="w-5 h-5 animate-spin" />
         ) : (
           <Languages className="w-5 h-5" />
         )}
-        <span className="text-base">
+        <span className={`text-base ${needsVerticalLayout ? 'mt-1 text-sm' : ''}`}>
           {currentStatus === ConversionStatus.PROCESSING ? getUIText("btnProcessing") : getUIText("btnRomanize")}
         </span>
       </div>
