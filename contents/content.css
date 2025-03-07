@@ -7,9 +7,9 @@
   position: relative;
   display: inline-block;
   margin: 0 0.2rem; /* 减小间距 */
-  padding-top: 1.75rem;
-  padding-bottom: 0.25rem;
-  line-height: 1.5;
+  padding-top: 0.5em; /* 使用em单位，根据字体大小自适应 */
+  padding-bottom: 1.5rem;
+  line-height: 1.2;
   border-radius: 0.125rem;
   transition: background-color 0.2s ease, transform 0.2s ease;
   transform-origin: center bottom;
@@ -23,7 +23,7 @@
 
 .romanized-mark {
   position: absolute;
-  top: 0.25rem;
+  bottom: calc(100% - 0.5em); /* 使用相对于word底部的定位 */
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.8em;
@@ -39,8 +39,9 @@
   min-height: 1rem;
   line-height: 1.2;
   transition: all 0.2s ease;
-  transform-origin: center top;
+  transform-origin: center bottom; /* 从底部开始变换 */
   width: max-content;
+  margin-bottom: 0.25em; /* 与word保持固定间距 */
 }
 
 .romanized-word:hover {
@@ -54,19 +55,18 @@
 .romanized-word:hover .romanized-mark {
   z-index: 4;
   background-color: rgba(242, 246, 249, 0.95);
-  font-size: larger;
+  transform: translateX(-50%) scale(1.2); /* 保持水平居中并放大 */
   color: #1557b0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 600;
-  top: -0.25rem;
 }
 
 /* 确保包含 romanized-word 的段落和 div 也不会裁剪内容 */
-/* p:has(.romanized-word),
+p:has(.romanized-word),
 div:has(.romanized-word) {
   margin-bottom: 0.5rem;
   line-height: 1.5;
   overflow: visible;
   position: relative;
   padding: 0.2rem 0;
-} */
+}
