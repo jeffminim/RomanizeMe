@@ -58,6 +58,15 @@ export async function processTexts(
       romanizedSpan.classList.add('romanized-mark');
       romanizedSpan.textContent = romanizedText;
       wordSpan.insertBefore(romanizedSpan, wordSpan.firstChild);
+      
+      // 计算并设置宽度
+      requestAnimationFrame(() => {
+        const wordWidth = wordSpan.offsetWidth;
+        const markWidth = romanizedSpan.offsetWidth;
+        const maxWidth = Math.max(wordWidth, markWidth);
+        wordSpan.style.setProperty('--rm-width', `${maxWidth}px`);
+      });
+      
       processedTexts.push(romanizedText);
     }
   });
