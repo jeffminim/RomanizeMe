@@ -9,7 +9,7 @@ export default function LaoLao(text: string): string {
     'ນ': 'n', 'ບ': 'b', 'ປ': 'p', 'ຜ': 'ph',
     'ຝ': 'f', 'ພ': 'ph', 'ຟ': 'f', 'ມ': 'm',
     'ຢ': 'y', 'ຣ': 'r', 'ລ': 'l', 'ວ': 'v',
-    'ຫ': 'h', 'ອ': '', 'ຮ': 'h',
+    'ຫ': 'h', 'ອ': 'o', 'ຮ': 'h',
     // 辅音集合
     'ຫງ': 'ng', 'ຫຍ': 'ny', 'ຫນ': 'n', 'ຫມ': 'm',
     'ຫຼ': 'l', 'ຫຣ': 'r'
@@ -21,10 +21,13 @@ export default function LaoLao(text: string): string {
     'ິ': 'i', 'ີ': 'i', 'ຶ': 'u', 'ື': 'u',
     'ຸ': 'u', 'ູ': 'u', 'ເ': 'e', 'ແ': 'è',
     'ໂ': 'o', 'ໃ': 'ai', 'ໄ': 'ai', 'ົ': 'o',
-    'ຽ': 'ia'
+    'ຽ': 'ia', 'ໍ': 'o'
   };
 
-  // 声调符号映射表（老挝语有6个声调，但在罗马化中通常不标记）
+  // 前置元音列表
+  const leadingVowels = ['ເ', 'ແ', 'ໂ', 'ໃ', 'ໄ'];
+
+  // 声调符号映射表
   const toneMap: Record<string, string> = {
     '່': '', '້': '', '໊': '', '໋': ''
   };
@@ -42,14 +45,21 @@ export default function LaoLao(text: string): string {
     'ເົາ': 'ao', 'ົວະ': 'ua', 'ົວ': 'ua',
     'ິວ': 'iu', 'ເຍ': 'ia', 'ແອ': 'è',
     'ເຶອ': 'ua', 'ເືອ': 'ua', 'ໄອ': 'ai',
-    'ເົ້າ': 'ao', 'ເິ': 'i', 'ໂອ': 'o'
+    'ເົ້າ': 'ao', 'ເິ': 'i', 'ໂອ': 'o',
+    'ໍ່': 'o', 'ໍ້': 'o'
   };
 
   // 特殊词汇映射
   const specialWords: Record<string, string> = {
-    'ລາວ': 'lao',
-    'ວຽງຈັນ': 'vientiane',
-    'ນະຄອນຫຼວງວຽງຈັນ': 'vientiane'
+    // 'ລາວ': 'lao',
+    // 'ວຽງຈັນ': 'vientiane',
+    // 'ນະຄອນຫຼວງວຽງຈັນ': 'vientiane',
+    // 'ບໍລິຫານ': 'bolihan',
+    // 'ຕໍ່': 'to',
+    // 'ໃຫຍ່': 'nyai',
+    // 'ຕົນເອງ': 'tongeng',
+    // 'ເລຂາທິການ': 'lekhathikan',
+    // 'ປົກຄອງ': 'pokkhong'
   };
 
   // 检查是否是特殊词汇
@@ -57,117 +67,239 @@ export default function LaoLao(text: string): string {
     return specialWords[text];
   }
 
-  let result = '';
-  let i = 0;
+  // 将文本分割为单词
+  const words = text.split(/\s+/);
+  let result = [];
 
-  // 分割文本为音节
-  const syllables: string[] = [];
-  let currentSyllable = '';
-
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    
-    // 如果是辅音，开始新的音节
-    if (consonantMap[char] !== undefined || char === 'ອ') {
-      if (currentSyllable) {
-        syllables.push(currentSyllable);
-      }
-      currentSyllable = char;
-    } else {
-      currentSyllable += char;
-    }
-  }
-  
-  // 添加最后一个音节
-  if (currentSyllable) {
-    syllables.push(currentSyllable);
-  }
-
-  // 处理每个音节
-  for (const syllable of syllables) {
-    // 处理数字
-    if (/^[໐-໙]+$/.test(syllable)) {
-      if (result && !/\s$/.test(result)) {
-        result += ' ';
-      }
-      
-      for (const char of syllable) {
-        result += numberMap[char] || char;
-      }
-      
-      if (i < text.length && !/\s/.test(text[i])) {
-        result += ' ';
-      }
+  for (const word of words) {
+    // 检查特殊词汇
+    if (specialWords[word]) {
+      result.push(specialWords[word]);
       continue;
     }
 
-    let syllableResult = '';
-    let hasVowel = false;
+    // 分割单词为音节
+    const syllables = [];
+    let i = 0;
 
-    // 处理辅音
-    if (syllable.length > 0) {
-      // 检查特殊辅音组合
-      let foundSpecialConsonant = false;
-      for (const [combo, romanized] of Object.entries(consonantMap)) {
-        if (combo.length > 1 && syllable.startsWith(combo)) {
-          syllableResult += romanized;
-          foundSpecialConsonant = true;
-          break;
-        }
-      }
-
-      if (!foundSpecialConsonant) {
-        const firstChar = syllable[0];
-        syllableResult += consonantMap[firstChar] || firstChar;
-      }
-    }
-
-    // 处理元音和声调
-    let foundCombinedVowel = false;
-    for (const [combo, romanized] of Object.entries(combinedVowelMap)) {
-      if (syllable.includes(combo)) {
-        syllableResult += romanized;
-        hasVowel = true;
-        foundCombinedVowel = true;
-        break;
-      }
-    }
-
-    if (!foundCombinedVowel) {
-      for (let j = 1; j < syllable.length; j++) {
-        const char = syllable[j];
+    while (i < word.length) {
+      // 检查前置元音
+      if (i < word.length && leadingVowels.includes(word[i])) {
+        const leadingVowel = word[i];
+        i++;
         
-        if (vowelMap[char]) {
-          syllableResult += vowelMap[char];
-          hasVowel = true;
-        } else if (toneMap[char] !== undefined) {
-          // 声调标记通常不在罗马化中表示
-          continue;
-        } else if (consonantMap[char]) {
-          // 如果是辅音，可能是音节尾
-          syllableResult += consonantMap[char];
+        // 寻找后续辅音
+        if (i < word.length && consonantMap[word[i]]) {
+          const consonant = word[i];
+          i++;
+          
+          // 收集剩余元音和声调
+          let vowelPart = '';
+          while (i < word.length && 
+                 (vowelMap[word[i]] || 
+                  toneMap[word[i]] || 
+                  word[i] === 'ຽ' || 
+                  word[i] === 'ໍ')) {
+            vowelPart += word[i];
+            i++;
+          }
+          
+          // 如果下一个字符是辅音但不是新音节的开始，则它是音节尾
+          let finalConsonant = '';
+          if (i < word.length && consonantMap[word[i]]) {
+            // 检查是否是音节尾辅音
+            if (i + 1 >= word.length || 
+                !vowelMap[word[i+1]] && 
+                !leadingVowels.includes(word[i+1])) {
+              finalConsonant = word[i];
+              i++;
+            }
+          }
+          
+          syllables.push({
+            type: 'leading',
+            leadingVowel,
+            consonant,
+            vowelPart,
+            finalConsonant
+          });
         } else {
-          // 未知字符，保留原样
-          syllableResult += char;
+          // 孤立的前置元音
+          syllables.push({
+            type: 'single',
+            char: leadingVowel
+          });
         }
+      } else if (i < word.length && consonantMap[word[i]]) {
+        // 普通辅音开头的音节
+        const consonant = word[i];
+        i++;
+        
+        // 收集元音和声调
+        let vowelPart = '';
+        while (i < word.length && 
+               (vowelMap[word[i]] || 
+                toneMap[word[i]] || 
+                word[i] === 'ຽ' || 
+                word[i] === 'ໍ')) {
+          vowelPart += word[i];
+          i++;
+        }
+        
+        // 检查音节尾辅音
+        let finalConsonant = '';
+        if (i < word.length && consonantMap[word[i]]) {
+          // 检查是否是音节尾辅音
+          if (i + 1 >= word.length || 
+              !vowelMap[word[i+1]] && 
+              !leadingVowels.includes(word[i+1])) {
+            finalConsonant = word[i];
+            i++;
+          }
+        }
+        
+        syllables.push({
+          type: 'normal',
+          consonant,
+          vowelPart,
+          finalConsonant
+        });
+      } else {
+        // 其他字符
+        syllables.push({
+          type: 'single',
+          char: word[i]
+        });
+        i++;
       }
     }
 
-    // 如果没有元音，添加默认元音'a'
-    if (!hasVowel && syllableResult.length > 0) {
-      syllableResult += 'a';
+    // 转换每个音节
+    const romanizedSyllables = [];
+
+    for (const syllable of syllables) {
+      if (syllable.type === 'single') {
+        const char = syllable.char;
+        if (numberMap[char]) {
+          romanizedSyllables.push(numberMap[char]);
+        } else if (vowelMap[char]) {
+          romanizedSyllables.push(vowelMap[char]);
+        } else if (consonantMap[char]) {
+          romanizedSyllables.push(consonantMap[char] + 'a');
+        } else {
+          romanizedSyllables.push(char);
+        }
+        continue;
+      }
+
+      let syllableResult = '';
+
+      if (syllable.type === 'leading') {
+        // 处理前置元音的音节
+        const consonantRoman = consonantMap[syllable.consonant] || '';
+        
+        // 检查是否有组合元音
+        let vowelRoman = '';
+        let foundCombined = false;
+        
+        for (const [combo, roman] of Object.entries(combinedVowelMap)) {
+          if (syllable.leadingVowel + syllable.vowelPart === combo || 
+              syllable.vowelPart.includes(combo)) {
+            vowelRoman = roman;
+            foundCombined = true;
+            break;
+          }
+        }
+        
+        if (!foundCombined) {
+          // 处理前置元音
+          vowelRoman = vowelMap[syllable.leadingVowel] || '';
+          
+          // 处理其他元音和声调
+          for (const char of syllable.vowelPart) {
+            if (vowelMap[char]) {
+              vowelRoman += vowelMap[char];
+            }
+            // 忽略声调
+          }
+        }
+        
+        // 简化元音组合
+        vowelRoman = vowelRoman.replace(/([aeiou])\1+/g, '$1');
+        
+        // 添加辅音和元音
+        syllableResult = consonantRoman + vowelRoman;
+        
+        // 添加音节尾辅音
+        if (syllable.finalConsonant) {
+          syllableResult += consonantMap[syllable.finalConsonant] || '';
+        }
+      } else if (syllable.type === 'normal') {
+        // 处理普通音节
+        const consonantRoman = consonantMap[syllable.consonant] || '';
+        
+        // 检查是否有组合元音
+        let vowelRoman = '';
+        let foundCombined = false;
+        
+        for (const [combo, roman] of Object.entries(combinedVowelMap)) {
+          if (syllable.vowelPart.includes(combo)) {
+            vowelRoman = roman;
+            foundCombined = true;
+            break;
+          }
+        }
+        
+        if (!foundCombined) {
+          // 处理元音和声调
+          for (const char of syllable.vowelPart) {
+            if (vowelMap[char]) {
+              vowelRoman += vowelMap[char];
+            }
+            // 忽略声调
+          }
+        }
+        
+        // 如果没有元音，添加默认元音
+        if (!vowelRoman && consonantRoman) {
+          vowelRoman = 'a';
+        }
+        
+        // 简化元音组合
+        vowelRoman = vowelRoman.replace(/([aeiou])\1+/g, '$1');
+        
+        // 添加辅音和元音
+        syllableResult = consonantRoman + vowelRoman;
+        
+        // 添加音节尾辅音
+        if (syllable.finalConsonant) {
+          syllableResult += consonantMap[syllable.finalConsonant] || '';
+        }
+      }
+      
+      romanizedSyllables.push(syllableResult);
     }
 
-    result += syllableResult;
+    // 合并音节
+    result.push(romanizedSyllables.join(''));
   }
 
-  // 后处理
-  result = result
-    // 处理重复的元音
-    .replace(/([aeiou])\1+/g, '$1')
-    // 标准化空格
-    .replace(/\s+/g, ' ')
-    .trim();
+  // 合并单词
+  let finalResult = result.join(' ');
+  
+  // 最终检查，确保没有老挝文字符
+  if (/[\u0E80-\u0EFF]/.test(finalResult)) {
+    // 如果还有老挝文字符，尝试逐字符转换
+    let cleanResult = '';
+    for (const char of finalResult) {
+      if (/[\u0E80-\u0EFF]/.test(char)) {
+        cleanResult += vowelMap[char] || consonantMap[char] || '';
+      } else {
+        cleanResult += char;
+      }
+    }
+    return cleanResult || text;
+  }
 
-  return result || text;
+  return finalResult || text;
 }
