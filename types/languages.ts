@@ -127,6 +127,24 @@ export const scriptPanelScripts: Script[] = [
       [0x0E00, 0x0E7F] // 泰文字母范围
     ],
     segmentation: TextSegmentation.THA
+  },
+  {
+    code: 'vietnamese',
+    i18n: {
+      zh_cn: '越南语字母',
+      en: 'Vietnamese Script',
+      ja: 'ベトナム語文字',
+      ko: '베트남어 문자',
+      fr: 'Alphabet vietnamien',
+      ru: 'Вьетнамский алфавит'
+    },
+    isoCode: 'vi',
+    unicodeRanges: [
+      [0x0020, 0x007E], // 基本拉丁字母
+      [0x00C0, 0x1EF9], // 带声调的越南语字母
+      [0x1EA0, 0x1EFF]  // 扩展的越南语字母
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -236,6 +254,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'thai'),
     romanizationComponent: 'ThaThai'
+  },
+  {
+    code: 'vie_vietnamese',
+    i18n: {
+      zh_cn: '越南语',
+      en: 'Vietnamese',
+      ja: 'ベトナム語',
+      ko: '베트남어',
+      fr: 'Vietnamien',
+      ru: 'Вьетнамский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'vietnamese'),
+    romanizationComponent: 'VieVietnamese'
   }
 ]
 
@@ -298,7 +329,8 @@ export const scriptPanelGroups: Group[] = [
     order: 4,
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
-      s.code === 'tha_thai'
+      s.code === 'tha_thai' ||
+      s.code === 'vie_vietnamese'
     ),
     i18n: {
       zh_cn: '东南亚语言',
