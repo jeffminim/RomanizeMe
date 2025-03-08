@@ -55,12 +55,13 @@ export function SettingUILanguage() {
           <SelectTrigger id="language" className="w-full">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="max-h-[var(--radix-select-content-available-height)] overflow-y-auto">
             <SelectItem value="zh_cn">中文</SelectItem>
             <SelectItem value="en">English</SelectItem>
             <SelectItem value="fr">Français</SelectItem>
             <SelectItem value="ja">日本語</SelectItem>
             <SelectItem value="ko">한국어</SelectItem>
+            <SelectItem value="ru">Русский</SelectItem>
           </SelectContent>
         </Select>
       )}

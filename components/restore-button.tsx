@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { Undo2 } from "lucide-react"
 import { useI18n } from "@/hooks/useI18n"
+import { useMemo } from "react"
 
 export function RestoreButton({ className, disabled, ...props }: React.ComponentPropsWithRef<typeof Button>) {
-  const { getUIText } = useI18n()
+  const { getUIText, currentLang } = useI18n()
+  
+  // 检查文本是否过长需要垂直布局
+  const needsVerticalLayout = useMemo(() => {
+    const text = getUIText("btnRestore")
+    return currentLang === "ru" || text.length > 10
+  }, [getUIText, currentLang])
 
   const handleClick = () => {
     console.log('Restore button clicked')
@@ -41,9 +48,11 @@ export function RestoreButton({ className, disabled, ...props }: React.Component
       disabled={disabled}
       {...props}
     >
-      <div className="flex items-center justify-center gap-2">
+      <div className={`flex items-center justify-center ${needsVerticalLayout ? 'flex-col py-1' : 'flex-row gap-2'}`}>
         <Undo2 className="w-5 h-5" />
-        <span className="text-base">{getUIText("btnRestore")}</span>
+        <span className={`text-base ${needsVerticalLayout ? 'mt-1 text-sm' : ''}`}>
+          {getUIText("btnRestore")}
+        </span>
       </div>
     </Button>
   )

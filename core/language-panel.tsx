@@ -191,7 +191,7 @@ export function LanguageList() {
   // 初始化时设置默认展开的组
   useEffect(() => {
     const group = scriptPanelGroups.find(group => 
-      group.languages.some(language => language.code === activeScript)
+      group.enabled && group.languages.some(language => language.code === activeScript)
     )?.name || scriptPanelGroups[0].name
     
     // 每次打开面板时，只展开默认组，其他组全部折叠
@@ -211,26 +211,28 @@ export function LanguageList() {
       value={expandedGroups}
       onValueChange={setExpandedGroups}
     >
-      {scriptPanelGroups.map(group => (
-        <AccordionItem key={group.name} value={group.name}>
-          <AccordionTrigger className="text-base font-semibold">
-            {group.i18n[currentLang] || group.i18n.en}
-          </AccordionTrigger>
-          <AccordionContent>
-            <div className="pl-4 flex flex-wrap gap-2 items-center">
-              {group.languages.map(language => (
-                <ScriptButton
-                  key={language.code}
-                  script={language.code}
-                  label={language.i18n[currentLang] || language.i18n.en}
-                  activeScript={activeScript}
-                  handleScriptToggle={handleScriptToggle}
-                />
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      ))}
+      {scriptPanelGroups
+        .filter(group => group.enabled) // 只显示enabled为true的组
+        .map(group => (
+          <AccordionItem key={group.name} value={group.name}>
+            <AccordionTrigger className="text-base font-semibold">
+              {group.i18n[currentLang] || group.i18n.en}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="pl-4 flex flex-wrap gap-2 items-center">
+                {group.languages.map(language => (
+                  <ScriptButton
+                    key={language.code}
+                    script={language.code}
+                    label={language.i18n[currentLang] || language.i18n.en}
+                    activeScript={activeScript}
+                    handleScriptToggle={handleScriptToggle}
+                  />
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
     </Accordion>
   )
 } 

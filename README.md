@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.3-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.3)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
 
 </div>
 
@@ -96,13 +96,19 @@ This is a browser extension designed for language learners with the following ma
     - Fixed UI display issue when resetting settings
   - 2.0.3
     - Met Chrome Web Store review requirements, fixed some bugs
+  - 2.0.4
+    - Optimized display style in case of overflowing
+
+- 2.1.0 (2025-3-8)
+  - Added support for Cyrillic scripts (Russian, Ukrainian, Mongolian, Serbian)
+  - Added Russian language support for UI interface
 
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
 ### 🌍 Supported Scripts/Languages <a name = "supported-languages"></a>
 
 - [x] Chinese Characters
-  - [x] Mandarin Chinese (Supported in v1.3.0)
+  - [x] Mandarin Chinese
   - [ ] Cantonese
   - [ ] Other dialects...
 - [x] Hangul (Korean)
@@ -110,15 +116,27 @@ This is a browser extension designed for language learners with the following ma
   - [x] Kana (Romaji)
   - [ ] Kanji
   - [ ] Katakana (Original language, e.g., English)
-- [ ] Cyrillic
-  - [ ] Russian
-  - [ ] Ukrainian
+- [x] Cyrillic
+  - [x] Russian
+  - [x] Ukrainian
+  - [x] Mongolian
+  - [x] Serbian
   - [ ] Other languages...
 - [ ] Arabic
   - [ ] Arabic
   - [ ] Other languages...
-- [ ] Tibetan
-- [ ] Other scripts/languages...
+- [ ] Southeast Asian Languages
+  - [ ] Thai
+  - [ ] Vietnamese
+  - [ ] Khmer
+  - [ ] Burmese
+  - [ ] Lao
+  - [ ] Other languages...
+- [ ] Other Chinese Languages
+  - [ ] Tibetan
+  - [ ] Mongolian (Inner Mongolia)
+  - [ ] More languages...
+- [ ] Other scripts/languages... 
 
 ### ✅ TODO List
 

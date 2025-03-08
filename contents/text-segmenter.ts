@@ -44,7 +44,15 @@ export class TextSegmenter {
       case TextSegmentation.CHN:
         return this.tokenizeChinese(text);
       case TextSegmentation.JPN:
-        return this.tokenizeJapanese(text);
+        return this.tokenizeWithIntlAPI(text, 'ja');
+      case TextSegmentation.THA:
+        return this.tokenizeWithIntlAPI(text, 'th');
+      case TextSegmentation.KHM:
+        return this.tokenizeWithIntlAPI(text, 'km');
+      case TextSegmentation.MYA:
+        return this.tokenizeWithIntlAPI(text, 'my');
+      case TextSegmentation.LAO:
+        return this.tokenizeWithIntlAPI(text, 'lo');
       default:
         return [text];
     }
@@ -84,18 +92,6 @@ export class TextSegmenter {
     return words;
   }
 
-  // 日文分词
-  private static tokenizeJapanese(text: string): string[] {
-    try {
-      const segmenter = new Intl.Segmenter("ja", { granularity: "word" });
-      return Array.from(segmenter.segment(text))
-        .map(segment => segment.segment);
-    } catch (error) {
-      console.error("Error in tokenizeJapanese:", error);
-      return [text];
-    }
-  }
-
   // 中文分词
   private static tokenizeChinese(text: string): string[] {
     try {
@@ -106,16 +102,18 @@ export class TextSegmenter {
     }
   }
 
-  // private static tokenizeChinese(text: string): string[] {
-  //   try {
-  //     const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
-  //     return Array.from(segmenter.segment(text))
-  //       .map(segment => segment.segment);
-  //   } catch (error) {
-  //     console.error("Error in tokenizeChinese:", error);
-  //     return [text];
-  //   }
-  // }
+  // 通用的 Intl.Segmenter 分词方法
+  private static tokenizeWithIntlAPI(text: string, locale: string): string[] {
+    try {
+      const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
+      const segments = Array.from(segmenter.segment(text));
+      return segments.map(segment => segment.segment);
+    } catch (error) {
+      console.error('Error using Intl.Segmenter:', error);
+      // 如果 Intl.Segmenter 不可用，回退到简单分词
+      return text.split(/\s+/);
+    }
+  }
 
   // 新的wrap方法，用于包装分词后的结果
   static wrapSegmentedText(container: HTMLElement, segments: string[]): void {
