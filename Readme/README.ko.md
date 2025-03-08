@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
 
 </div>
 
@@ -99,12 +99,16 @@
   - 2.0.4
     - 오버플로 시 표시 효과를 최적화했습니다.
 
+- 2.1.0 (2025-3-8)
+  - 키릴 문자 지원 추가 (러시아어, 우크라이나어, 몽골어, 세르비아어)
+  - UI 인터페이스에 러시아어 지원 추가
+
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
 
 ### 🌍 지원 스크립트/언어 <a name = "지원-스크립트언어"></a>
 
 - [x] 한자
-  - [x] 보통화(v1.3.0 예정)
+  - [x] 보통화
   - [ ] 광둥어
   - [ ] 기타 방언...
 - [x] 한글
@@ -112,14 +116,26 @@
   - [x] 가나(로마자)
   - [ ] 한자
   - [ ] 가타카나(원래 언어, 예: 영어)
-- [ ] 키릴 문자
-  - [ ] 러시아어
-  - [ ] 우크라이나어
+- [x] 키릴 문자
+  - [x] 러시아어
+  - [x] 우크라이나어
+  - [x] 몽골어
+  - [x] 세르비아어
   - [ ] 기타 언어...
 - [ ] 아랍 문자
   - [ ] 아랍어
   - [ ] 기타 언어...
-- [ ] 티베트 문자
+- [ ] 동남아시아 언어
+  - [ ] 태국어
+  - [ ] 베트남어
+  - [ ] 크메르어
+  - [ ] 미얀마어
+  - [ ] 라오스어
+  - [ ] 기타 언어...
+- [ ] 중국의 기타 언어
+  - [ ] 티베트어
+  - [ ] 몽골어(내몽골)
+  - [ ] 기타 언어...
 - [ ] 기타 스크립트/언어...
 
 ### ✅ TODO 리스트

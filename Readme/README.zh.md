@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
 
 </div>
 
@@ -104,6 +104,10 @@
   - 2.0.4
     - 优化了显示样式，现在转换后不会再发生重叠
 
+- 2.1.0 (2025-3-8)
+  - 支持西里尔文字的相关语言（俄语、乌克兰语、蒙古语、塞尔维亚语）
+  - UI界面国际化（i18n）支持（新增俄语）
+
 
 
 ## 📅 开发计划 <a name = "开发计划"></a>
@@ -111,22 +115,34 @@
 ### 🌍 支持文字/语言 <a name = "支持语言"></a>
 
 - [x] 汉字
-  - [x] 普通话（已于v1.3.0支持）
+  - [x] 普通话
   - [ ] 粤语
   - [ ] 更多方言...
 - [x] 谚文（韩语）
 - [x] 日文
   - [x] 假名（罗马音）
   - [ ] 日语汉字
-  - [ ] 片假名（原语言，如英语）
-- [ ] 西里尔字母
-  - [ ] 俄语
-  - [ ] 乌克兰语
+  - [ ] 片假名（转换至源语言，如英文）
+- [x] 西里尔字母
+  - [x] 俄语
+  - [x] 乌克兰语
+  - [x] 蒙古语
+  - [x] 塞尔维亚语
   - [ ] 更多语言...
 - [ ] 阿拉伯文
   - [ ] 阿拉伯语
   - [ ] 更多语言...
-- [ ] 藏文（藏语）
+- [ ] 东南亚语言
+  - [ ] 泰语
+  - [ ] 越南语
+  - [ ] 柬埔寨语（高棉语）
+  - [ ] 缅甸语
+  - [ ] 老挝语
+  - [ ] 更多语言...
+- [ ] 中国其他语言
+  - [ ] 藏文（藏语）
+  - [ ] 蒙古文（内蒙古）
+  - [ ] 更多语言...
 - [ ] 更多文字/语言...
 
 ### ✅ TODO List

@@ -14,7 +14,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/nmakcdfenoniomkbnnmpommgnaondfhk
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
-[![Version](https://img.shields.io/badge/version-2.0.4-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.0.4)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
 
 </div>
 
@@ -99,12 +99,16 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - 2.0.4
     - Optimisation du style d'affichage en cas de débordement
 
+- 2.1.0 (2025-3-8)
+  - Ajout du support des écritures cyrilliques (russe, ukrainien, mongol, serbe)
+  - Ajout du support de la langue russe pour l'interface utilisateur
+
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
 ### 🌍 Écritures/langues prises en charge <a name = "écritureslangues-prises-en-charge"></a>
 
 - [x] Hanzi
-  - [x] Mandarin (prévu pour v1.3.0)
+  - [x] Mandarin
   - [ ] Cantonais
   - [ ] Autres dialectes...
 - [x] Hangul
@@ -112,14 +116,26 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - [x] Kana (romaji)
   - [ ] Kanji
   - [ ] Katakana (langue d'origine, par exemple anglais)
-- [ ] Cyrillique
-  - [ ] Russe
-  - [ ] Ukrainien
+- [x] Cyrillique
+  - [x] Russe
+  - [x] Ukrainien
+  - [x] Mongol
+  - [x] Serbe
   - [ ] Autres langues...
 - [ ] Arabe
   - [ ] Arabe
   - [ ] Autres langues...
-- [ ] Tibétain
+- [ ] Langues d'Asie du Sud-Est
+  - [ ] Thaï
+  - [ ] Vietnamien
+  - [ ] Khmer
+  - [ ] Birman
+  - [ ] Lao
+  - [ ] Autres langues...
+- [ ] Autres langues chinoises
+  - [ ] Tibétain
+  - [ ] Mongol (Mongolie intérieure)
+  - [ ] Plus de langues...
 - [ ] Autres écritures/langues...
 
 ### ✅ Liste des tâches
