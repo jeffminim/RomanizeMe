@@ -20,12 +20,14 @@ export default function MyaMyanmar(text: string): string {
   const combinedVowelMap: Record<string, string> = {
     'ော': 'aw', 'ို': 'o', 'ော်': 'aw', 'ေါ': 'aw', 'ေါ်': 'aw',
     'ို့': 'o', 'ိုး': 'o', 'ိုက်': 'aik', 'ောက်': 'auk', 'ိုင်': 'aing',
-    'ောင်': 'aung', 'ိုင်း': 'aing:', 'ောင်း': 'aung:'
+    'ောင်': 'aung', 'ိုင်း': 'aing', 'ောင်း': 'aung'
   };
 
-  // 修饰符映射
+  // 修饰符映射 - 确保所有修饰符都有映射
   const modifierMap: Record<string, string> = {
-    'ျ': 'y', 'ြ': 'r', 'ွ': 'w', 'ှ': 'h', '်': '', '့': ''
+    'ျ': 'y', 'ြ': 'r', 'ွ': 'w', 'ှ': 'h', 
+    '်': '', '့': '', '္': '', 'ဲ့': 'ai', 'ံ့': 'an',
+    'း': '' // 确保这个修饰符被正确处理
   };
 
   // 数字映射
@@ -34,58 +36,102 @@ export default function MyaMyanmar(text: string): string {
     '၅': '5', '၆': '6', '၇': '7', '၈': '8', '၉': '9'
   };
 
-  // 特殊组合映射
-  const specialCombinations: Record<string, string> = {
+  // 特殊词汇映射
+  const specialWords: Record<string, string> = {
+    // 'အမည်': 'amei', // 特殊词汇直接映射
+    // 'ခင်ပွန်း': 'khinpwun',
+    // 'ကျေးဇူး': 'kyeizu'
+  };
+
+  // 特殊终止组合映射
+  const specialEndingMap: Record<string, string> = {
     'က်': 'ak', 'င်': 'in', 'စ်': 'it', 'ည်': 'i', 'ဉ်': 'in',
     'တ်': 'at', 'န်': 'an', 'ပ်': 'ap', 'မ်': 'am', 'ယ်': 'e',
-    'ဝ်': 'ut', 'သ်': 'at', 'ဏ်': 'an', 'ိုင်': 'aing', 'ောင်': 'aung',
+    'ဝ်': 'ut', 'သ်': 'at', 'ဏ်': 'an', 
+    'င်း': 'in', 'န်း': 'an', 'မ်း': 'am', 'ပ်း': 'ap', 'တ်း': 'at',
+    'ိုင်': 'aing', 'ောင်': 'aung', 'ိုင်း': 'aing', 'ောင်း': 'aung',
     'ွက်': 'wak', 'ွင်': 'win', 'ွတ်': 'wat', 'ွန်': 'wan', 'ွပ်': 'wap',
     'ွမ်': 'wam', 'ျက်': 'yak', 'ျင်': 'yin', 'ျတ်': 'yat', 'ျန်': 'yan',
     'ျပ်': 'yap', 'ျမ်': 'yam', 'ြက်': 'rak', 'ြင်': 'rin', 'ြတ်': 'rat',
-    'ြန်': 'ran', 'ြပ်': 'rap', 'ြမ်': 'ram', 'ြဲ': 'rai'
+    'ြန်': 'ran', 'ြပ်': 'rap', 'ြမ်': 'ram', 'ြဲ': 'rai',
+    'န့်': 'an', 'င့်': 'in', 'မ့်': 'am', 'ပ့်': 'ap', 'တ့်': 'at',
+    'ခန့်': 'khan', 'ရင်း': 'yin',
+    'မည်': 'mei', 'အမည်': 'amei' // 添加特殊词汇的终止组合
+  };
+
+  // 清理文本，移除所有不可见字符和未知字符
+  const cleanText = (text: string): string => {
+    // 移除不可见字符
+    let cleaned = text.replace(/[\u200B-\u200F\u2028-\u202F\u2060-\u206F]/g, '');
+    
+    // 替换所有未知的缅甸字符为空字符串
+    const knownChars = new Set([
+      ...Object.keys(consonantMap),
+      ...Object.keys(vowelMap),
+      ...Object.keys(modifierMap),
+      ...Object.keys(numberMap),
+      ' ', '\t', '\n', '\r'
+    ]);
+    
+    return cleaned.split('').map(char => knownChars.has(char) ? char : '').join('');
   };
 
   // 处理单个音节
   const processSyllable = (syllable: string): string => {
     if (!syllable || syllable.trim() === '') return '';
     
+    // 清理文本
+    syllable = cleanText(syllable);
+    
     // 检查是否是数字
     if (/^[၀-၉]+$/.test(syllable)) {
       return syllable.split('').map(char => numberMap[char] || char).join('');
     }
     
-    // 检查特殊组合
-    for (const [combo, romanized] of Object.entries(specialCombinations)) {
-      if (syllable.endsWith(combo)) {
-        const base = syllable.slice(0, syllable.length - combo.length);
+    // 检查特殊词汇
+    if (specialWords[syllable]) {
+      return specialWords[syllable];
+    }
+    
+    // 检查特殊终止组合
+    for (const [ending, romanized] of Object.entries(specialEndingMap)) {
+      if (syllable.endsWith(ending)) {
+        const base = syllable.slice(0, syllable.length - ending.length);
+        
+        // 如果基础部分为空，直接返回罗马化结果
+        if (!base) return romanized;
+        
+        // 处理基础部分
         const baseRomanized = processSyllable(base);
+        
         // 如果基础部分已经有元音，则直接添加特殊组合
         if (/[aeiou]/.test(baseRomanized)) {
-          return baseRomanized + romanized;
+          return baseRomanized.replace(/a$/, '') + romanized;
         }
-        // 否则，去掉默认的'a'再添加特殊组合
+        
+        // 否则，直接添加特殊组合
         return baseRomanized.replace(/a$/, '') + romanized;
       }
     }
     
+    // 处理基本辅音和修饰符
     let result = '';
     let hasVowel = false;
     
-    // 处理基本辅音
+    // 处理第一个字符（通常是辅音）
     if (consonantMap[syllable[0]]) {
       result += consonantMap[syllable[0]];
     } else {
       result += syllable[0];
     }
     
-    // 处理修饰符和元音
+    // 处理剩余字符
     for (let i = 1; i < syllable.length; i++) {
-      const char = syllable[i];
-      
       // 检查组合元音
       let foundCombined = false;
       for (const [combo, romanized] of Object.entries(combinedVowelMap)) {
-        if (syllable.substring(i).startsWith(combo)) {
+        if (i + combo.length <= syllable.length && 
+            syllable.substring(i, i + combo.length) === combo) {
           result += romanized;
           i += combo.length - 1;
           hasVowel = true;
@@ -95,20 +141,23 @@ export default function MyaMyanmar(text: string): string {
       }
       if (foundCombined) continue;
       
+      const char = syllable[i];
+      
       // 处理单个元音
       if (vowelMap[char]) {
         result += vowelMap[char];
         hasVowel = true;
       } 
       // 处理修饰符
-      else if (modifierMap[char]) {
+      else if (modifierMap[char] !== undefined) {
         result += modifierMap[char];
       }
       // 处理其他字符
       else if (consonantMap[char]) {
+        // 如果是新的辅音，可能是新的音节
         result += consonantMap[char];
       } else {
-        result += char;
+        // 未知字符，忽略
       }
     }
     
@@ -120,7 +169,12 @@ export default function MyaMyanmar(text: string): string {
     return result;
   };
 
-  // 分割文本为音节并处理
+  // 检查是否是特殊词汇
+  if (specialWords[text]) {
+    return specialWords[text];
+  }
+
+  // 分割文本为单词
   const words = text.split(/\s+/);
   const processedWords = words.map(word => {
     // 处理数字
@@ -128,30 +182,13 @@ export default function MyaMyanmar(text: string): string {
       return word.split('').map(char => numberMap[char] || char).join('');
     }
     
-    // 分割为音节
-    const syllables = [];
-    let currentSyllable = '';
-    
-    for (let i = 0; i < word.length; i++) {
-      const char = word[i];
-      
-      // 如果是辅音且当前音节不为空，则开始新音节
-      if (consonantMap[char] && currentSyllable && 
-          (consonantMap[currentSyllable[0]] || currentSyllable[0] === 'အ')) {
-        syllables.push(currentSyllable);
-        currentSyllable = char;
-      } else {
-        currentSyllable += char;
-      }
+    // 检查特殊词汇
+    if (specialWords[word]) {
+      return specialWords[word];
     }
     
-    // 添加最后一个音节
-    if (currentSyllable) {
-      syllables.push(currentSyllable);
-    }
-    
-    // 处理每个音节
-    return syllables.map(processSyllable).join('');
+    // 处理整个单词
+    return processSyllable(word);
   });
   
   return processedWords.join(' ');
