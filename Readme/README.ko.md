@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="../assets/romanizemelogo256.png" alt="RomanizeMe - 브라우저 확장 프로그램 로고"></a>
   <br>
-  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a>
+  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a> | <a href="./README.ru.md">Русский</a>
 </p>
 
 <h3 align="center">RomanizeMe - 비라틴 문자를 로마자로 변환하는 브라우저 확장 프로그램</h3>

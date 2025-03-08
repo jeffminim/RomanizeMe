@@ -2,7 +2,7 @@
   <a href="https://github.com/jeffminim/RomanizeMe" rel="noopener">
  <img width=200px height=200px src="assets/romanizemelogo256.png" alt="RomanizeMe - Browser Extension Logo"></a>
   <br>
-  <a href="Readme/README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="Readme/README.ja.md">日本語</a> | <a href="Readme/README.ko.md">한국어</a> | <a href="Readme/README.fr.md">Français</a>
+  <a href="Readme/README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="Readme/README.ja.md">日本語</a> | <a href="Readme/README.ko.md">한국어</a> | <a href="Readme/README.fr.md">Français</a> | <a href="Readme/README.ru.md">Русский</a>
 </p>
 
 <h3 align="center">RomanizeMe - Browser Extension for Romanizing Non-Latin Scripts</h3>
