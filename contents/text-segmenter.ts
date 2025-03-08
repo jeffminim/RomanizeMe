@@ -45,6 +45,8 @@ export class TextSegmenter {
         return this.tokenizeChinese(text);
       case TextSegmentation.JPN:
         return this.tokenizeJapanese(text);
+      case TextSegmentation.THA:
+        return this.tokenizeThai(text);
       default:
         return [text];
     }
@@ -116,6 +118,29 @@ export class TextSegmenter {
   //     return [text];
   //   }
   // }
+
+  // 泰语分词
+  private static tokenizeThai(text: string): string[] {
+    try {
+      // 使用 Intl.Segmenter 进行泰语分词
+      const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+      const segments = Array.from(segmenter.segment(text));
+      
+      // 处理分词结果
+      const result: string[] = [];
+      for (const segment of segments) {
+        // 如果是单词或标点符号，则添加到结果中
+        if (segment.isWordLike || /[^\p{L}\p{M}]/u.test(segment.segment)) {
+          result.push(segment.segment);
+        }
+      }
+      
+      return result;
+    } catch (error) {
+      console.error("Error in tokenizeThai:", error);
+      return [text];
+    }
+  }
 
   // 新的wrap方法，用于包装分词后的结果
   static wrapSegmentedText(container: HTMLElement, segments: string[]): void {

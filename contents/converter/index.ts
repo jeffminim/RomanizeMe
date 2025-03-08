@@ -8,4 +8,5 @@ export { default as RusCyrillic } from "./ru-cyrillic";
 export { default as UkrCyrillic } from "./uk-cyrillic";
 export { default as MonCyrillic } from "./mn-cyrillic";
 export { default as SrbCyrillic } from "./sr-cyrillic";
+export { default as ThaThai } from "./th-thai";
 

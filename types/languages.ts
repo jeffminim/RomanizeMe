@@ -111,6 +111,22 @@ export const scriptPanelScripts: Script[] = [
       [0xA640, 0xA69F]   // 西里尔字母扩展B
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'thai',
+    i18n: {
+      zh_cn: '泰文字母',
+      en: 'Thai Script',
+      ja: 'タイ文字',
+      ko: '태국 문자',
+      fr: 'Alphabet thaï',
+      ru: 'Тайский алфавит'
+    },
+    isoCode: 'th',
+    unicodeRanges: [
+      [0x0E00, 0x0E7F] // 泰文字母范围
+    ],
+    segmentation: TextSegmentation.THA
   }
 ]
 
@@ -207,6 +223,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'cyrillic'),
     romanizationComponent: 'SrbCyrillic'
+  },
+  {
+    code: 'tha_thai',
+    i18n: {
+      zh_cn: '泰语',
+      en: 'Thai',
+      ja: 'タイ語',
+      ko: '태국어',
+      fr: 'Thaï',
+      ru: 'Тайский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'thai'),
+    romanizationComponent: 'ThaThai'
   }
 ]
 
@@ -262,6 +291,22 @@ export const scriptPanelGroups: Group[] = [
       ko: '키릴 문자',
       fr: 'Cyrillique',
       ru: 'Кириллица' 
+    }
+  },
+  {
+    name: 'southeast_asian',
+    order: 4,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'tha_thai'
+    ),
+    i18n: {
+      zh_cn: '东南亚语言',
+      en: 'Southeast Asian',
+      ja: '東南アジア言語',
+      ko: '동남아시아 언어',
+      fr: 'Langues d\'Asie du Sud-Est',
+      ru: 'Юго-Восточная Азия'
     }
   }
 ] 
