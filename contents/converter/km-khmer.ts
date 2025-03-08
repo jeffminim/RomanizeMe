@@ -79,6 +79,24 @@ export default function KhmKhmer(text: string): string {
     }
     
     if (!found) {
+      // 处理数字组
+      if (/[០១២៣៤៥៦៧៨៩]/.test(text[i])) {
+        // 在数字组前添加空格（如果前面不是空格）
+        if (result.length > 0 && !/\s$/.test(result)) {
+          result += ' ';
+        }
+        // 处理连续数字
+        while (i < text.length && /[០១២៣៤៥៦៧៨៩]/.test(text[i])) {
+          result += khmerToRoman[text[i]] || text[i];
+          i++;
+        }
+        // 在数字组后添加空格（如果后面不是空格）
+        if (i < text.length && !/\s/.test(text[i])) {
+          result += ' ';
+        }
+        continue;
+      }
+      
       // 处理单个字符
       const char = text[i];
       if (khmerToRoman[char] !== undefined) {
