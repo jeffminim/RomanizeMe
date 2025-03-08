@@ -179,6 +179,22 @@ export const scriptPanelScripts: Script[] = [
       [0xAA60, 0xAA7F]  // 缅文扩展
     ],
     segmentation: TextSegmentation.MYA
+  },
+  {
+    code: 'lao',
+    i18n: {
+      zh_cn: '老挝文',
+      en: 'Lao Script',
+      ja: 'ラオス文字',
+      ko: '라오스 문자',
+      fr: 'Alphabet lao',
+      ru: 'Лаосский алфавит'
+    },
+    isoCode: 'lo',
+    unicodeRanges: [
+      [0x0E80, 0x0EFF] // 老挝文范围
+    ],
+    segmentation: TextSegmentation.LAO
   }
 ]
 
@@ -327,6 +343,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'myanmar'),
     romanizationComponent: 'MyaMyanmar'
+  },
+  {
+    code: 'lao_lao',
+    i18n: {
+      zh_cn: '老挝语',
+      en: 'Lao',
+      ja: 'ラオス語',
+      ko: '라오스어',
+      fr: 'Lao',
+      ru: 'Лаосский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'lao'),
+    romanizationComponent: 'LaoLao'
   }
 ]
 
@@ -392,7 +421,8 @@ export const scriptPanelGroups: Group[] = [
       s.code === 'tha_thai' ||
       s.code === 'khm_khmer' ||
       s.code === 'vie_vietnamese' ||
-      s.code === 'mya_myanmar'
+      s.code === 'mya_myanmar' ||
+      s.code === 'lao_lao'
     ),
     i18n: {
       zh_cn: '东南亚语言',

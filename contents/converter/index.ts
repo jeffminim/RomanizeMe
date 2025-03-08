@@ -12,3 +12,4 @@ export { default as ThaThai } from "./th-thai";
 export { default as VieVietnamese } from "./vi-vietnamese";
 export { default as KhmKhmer } from "./km-khmer";
 export { default as MyaMyanmar } from "./my-myanmar";
+export { default as LaoLao } from "./lo-lao";

@@ -51,6 +51,8 @@ export class TextSegmenter {
         return this.tokenizeWithIntlAPI(text, 'km');
       case TextSegmentation.MYA:
         return this.tokenizeWithIntlAPI(text, 'my');
+      case TextSegmentation.LAO:
+        return this.tokenizeWithIntlAPI(text, 'lo');
       default:
         return [text];
     }
