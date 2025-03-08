@@ -49,6 +49,8 @@ export class TextSegmenter {
         return this.tokenizeWithIntlAPI(text, 'th');
       case TextSegmentation.KHM:
         return this.tokenizeWithIntlAPI(text, 'km');
+      case TextSegmentation.MYA:
+        return this.tokenizeWithIntlAPI(text, 'my');
       default:
         return [text];
     }
@@ -98,25 +100,16 @@ export class TextSegmenter {
     }
   }
 
-  // 通用 Intl.Segmenter 分词方法
+  // 通用的 Intl.Segmenter 分词方法
   private static tokenizeWithIntlAPI(text: string, locale: string): string[] {
     try {
       const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
       const segments = Array.from(segmenter.segment(text));
-      
-      // 处理分词结果
-      const result: string[] = [];
-      for (const segment of segments) {
-        // 如果是单词或标点符号，则添加到结果中
-        if (segment.isWordLike || /[^\p{L}\p{M}]/u.test(segment.segment)) {
-          result.push(segment.segment);
-        }
-      }
-      
-      return result;
+      return segments.map(segment => segment.segment);
     } catch (error) {
-      console.error(`Error in tokenizeWithIntlAPI (${locale}):`, error);
-      return [text];
+      console.error('Error using Intl.Segmenter:', error);
+      // 如果 Intl.Segmenter 不可用，回退到简单分词
+      return text.split(/\s+/);
     }
   }
 

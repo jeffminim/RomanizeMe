@@ -5,5 +5,6 @@ export enum TextSegmentation {
   CHN = 'chn', // 按中文分词
   JPN = 'jpn', // 日文分词
   THA = 'tha', // 泰文分词
-  KHM = 'khm'  // 新增高棉语分词类型
+  KHM = 'khm', // 高棉语分词
+  MYA = 'mya'  // 新增缅甸语分词类型
 } 

@@ -162,6 +162,23 @@ export const scriptPanelScripts: Script[] = [
       [0x19E0, 0x19FF]  // 高棉符号范围
     ],
     segmentation: TextSegmentation.KHM
+  },
+  {
+    code: 'myanmar',
+    i18n: {
+      zh_cn: '缅文',
+      en: 'Myanmar Script',
+      ja: 'ミャンマー文字',
+      ko: '미얀마 문자',
+      fr: 'Alphabet birman',
+      ru: 'Мьянманский алфавит'
+    },
+    isoCode: 'my',
+    unicodeRanges: [
+      [0x1000, 0x109F], // 缅文范围
+      [0xAA60, 0xAA7F]  // 缅文扩展
+    ],
+    segmentation: TextSegmentation.MYA
   }
 ]
 
@@ -297,6 +314,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'khmer'),
     romanizationComponent: 'KhmKhmer'
+  },
+  {
+    code: 'mya_myanmar',
+    i18n: {
+      zh_cn: '缅甸语',
+      en: 'Myanmar',
+      ja: 'ミャンマー語',
+      ko: '미얀마어',
+      fr: 'Birman',
+      ru: 'Мьянманский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'myanmar'),
+    romanizationComponent: 'MyaMyanmar'
   }
 ]
 
@@ -361,7 +391,8 @@ export const scriptPanelGroups: Group[] = [
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'tha_thai' ||
       s.code === 'khm_khmer' ||
-      s.code === 'vie_vietnamese' 
+      s.code === 'vie_vietnamese' ||
+      s.code === 'mya_myanmar'
     ),
     i18n: {
       zh_cn: '东南亚语言',
