@@ -9,4 +9,5 @@ export { default as UkrCyrillic } from "./uk-cyrillic";
 export { default as MonCyrillic } from "./mn-cyrillic";
 export { default as SrbCyrillic } from "./sr-cyrillic";
 export { default as ThaThai } from "./th-thai";
-export { default as VieVietnamese } from "./vi_vietnamese";
+export { default as VieVietnamese } from "./vi-vietnamese";
+export { default as KhmKhmer } from "./km-khmer";

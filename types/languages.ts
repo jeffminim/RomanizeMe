@@ -145,6 +145,23 @@ export const scriptPanelScripts: Script[] = [
       [0x1EA0, 0x1EFF]  // 扩展的越南语字母
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'khmer',
+    i18n: {
+      zh_cn: '高棉字母',
+      en: 'Khmer Script',
+      ja: 'クメール文字',
+      ko: '크메르 문자',
+      fr: 'Alphabet khmer',
+      ru: 'Кхмерский алфавит'
+    },
+    isoCode: 'km',
+    unicodeRanges: [
+      [0x1780, 0x17FF], // 高棉字母范围
+      [0x19E0, 0x19FF]  // 高棉符号范围
+    ],
+    segmentation: TextSegmentation.KHM
   }
 ]
 
@@ -267,6 +284,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'vietnamese'),
     romanizationComponent: 'VieVietnamese'
+  },
+  {
+    code: 'khm_khmer',
+    i18n: {
+      zh_cn: '柬埔寨语',
+      en: 'Khmer',
+      ja: 'クメール語',
+      ko: '크메르어',
+      fr: 'Khmer',
+      ru: 'Кхмерский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'khmer'),
+    romanizationComponent: 'KhmKhmer'
   }
 ]
 
@@ -330,7 +360,8 @@ export const scriptPanelGroups: Group[] = [
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'tha_thai' ||
-      s.code === 'vie_vietnamese'
+      s.code === 'khm_khmer' ||
+      s.code === 'vie_vietnamese' 
     ),
     i18n: {
       zh_cn: '东南亚语言',

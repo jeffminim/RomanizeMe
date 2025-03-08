@@ -44,9 +44,11 @@ export class TextSegmenter {
       case TextSegmentation.CHN:
         return this.tokenizeChinese(text);
       case TextSegmentation.JPN:
-        return this.tokenizeJapanese(text);
+        return this.tokenizeWithIntlAPI(text, 'ja');
       case TextSegmentation.THA:
-        return this.tokenizeThai(text);
+        return this.tokenizeWithIntlAPI(text, 'th');
+      case TextSegmentation.KHM:
+        return this.tokenizeWithIntlAPI(text, 'km');
       default:
         return [text];
     }
@@ -86,18 +88,6 @@ export class TextSegmenter {
     return words;
   }
 
-  // 日文分词
-  private static tokenizeJapanese(text: string): string[] {
-    try {
-      const segmenter = new Intl.Segmenter("ja", { granularity: "word" });
-      return Array.from(segmenter.segment(text))
-        .map(segment => segment.segment);
-    } catch (error) {
-      console.error("Error in tokenizeJapanese:", error);
-      return [text];
-    }
-  }
-
   // 中文分词
   private static tokenizeChinese(text: string): string[] {
     try {
@@ -108,22 +98,10 @@ export class TextSegmenter {
     }
   }
 
-  // private static tokenizeChinese(text: string): string[] {
-  //   try {
-  //     const segmenter = new Intl.Segmenter("zh", { granularity: "word" });
-  //     return Array.from(segmenter.segment(text))
-  //       .map(segment => segment.segment);
-  //   } catch (error) {
-  //     console.error("Error in tokenizeChinese:", error);
-  //     return [text];
-  //   }
-  // }
-
-  // 泰语分词
-  private static tokenizeThai(text: string): string[] {
+  // 通用 Intl.Segmenter 分词方法
+  private static tokenizeWithIntlAPI(text: string, locale: string): string[] {
     try {
-      // 使用 Intl.Segmenter 进行泰语分词
-      const segmenter = new Intl.Segmenter('th', { granularity: 'word' });
+      const segmenter = new Intl.Segmenter(locale, { granularity: 'word' });
       const segments = Array.from(segmenter.segment(text));
       
       // 处理分词结果
@@ -137,7 +115,7 @@ export class TextSegmenter {
       
       return result;
     } catch (error) {
-      console.error("Error in tokenizeThai:", error);
+      console.error(`Error in tokenizeWithIntlAPI (${locale}):`, error);
       return [text];
     }
   }
