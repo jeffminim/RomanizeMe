@@ -416,7 +416,7 @@ export const scriptPanelGroups: Group[] = [
   {
     name: 'southeast_asian',
     order: 4,
-    enabled: false,
+    enabled: true,
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'tha_thai' ||
       s.code === 'khm_khmer' ||
