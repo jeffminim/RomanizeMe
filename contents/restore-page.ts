@@ -9,39 +9,34 @@ export const config: PlasmoCSConfig = {
 
 // 方法：移除所有带有 rm-marker 的 <span>，只保留原文
 function restoreOriginalText() {
-  // 第一步：删除所有 rm-marker="obj" 的 <span>
-  const romanizedSpans = document.querySelectorAll<HTMLElement>(`[rm-marker="obj"]`)
-  console.log(`Found ${romanizedSpans.length} romanized spans`)
+  // 第一步：处理所有带有 rm-marker="obj" 的 <ruby> 标签
+  const rubyElements = document.querySelectorAll('ruby[rm-marker="obj"]');
+  console.log(`Found ${rubyElements.length} ruby elements`);
 
-  if (romanizedSpans.length > 0) {
-    romanizedSpans.forEach((span, index) => {
-      // console.log(`Romanized span ${index + 1} before removal:`, span)
-
-      // 直接移除 <span>
-      span.remove()
-      // console.log(`Romanized span ${index + 1} removed`)
-    })
+  if (rubyElements.length > 0) {
+    rubyElements.forEach((ruby) => {
+      // 获取ruby标签中的原始文本节点
+      const originalText = ruby.querySelector('span[rm-marker="word"]');
+      if (originalText) {
+        // 用原始文本节点替换整个ruby结构
+        ruby.replaceWith(originalText.cloneNode(true));
+      }
+    });
   } else {
-    console.log('No romanized spans found to process')
+    console.log('No ruby elements found to process');
   }
 
   // 第二步：移除其他带有 rm-marker 的 <span>，只保留文本内容
-  const markedSpans = document.querySelectorAll<HTMLElement>(`[rm-marker]`)
-  // console.log(`Found ${markedSpans.length} marked spans`)
-
+  const markedSpans = document.querySelectorAll<HTMLElement>(`[rm-marker]`);
   if (markedSpans.length > 0) {
-    markedSpans.forEach((span, index) => {
-      // console.log(`Span ${index + 1} before removal:`, span)
-
+    markedSpans.forEach((span) => {
       // 创建文本节点，保留原文
-      const textNode = document.createTextNode(span.textContent || '')
-
+      const textNode = document.createTextNode(span.textContent || '');
       // 用文本节点替换 <span>
-      span.replaceWith(textNode)
-      // console.log(`Span ${index + 1} replaced with text node`)
-    })
+      span.replaceWith(textNode);
+    });
   } else {
-    console.log('No marked spans found to process')
+    console.log('No marked spans found to process');
   }
 }
 

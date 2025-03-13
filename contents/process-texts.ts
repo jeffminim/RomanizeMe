@@ -53,19 +53,27 @@ export async function processTexts(
     const text = wordSpan.textContent;
     if (text && romanizationMap.has(text)) {
       const romanizedText = romanizationMap.get(text);
-      const romanizedSpan = document.createElement('span');
-      romanizedSpan.setAttribute('rm-marker', 'obj');
-      romanizedSpan.classList.add('romanized-mark');
-      romanizedSpan.textContent = romanizedText;
-      wordSpan.insertBefore(romanizedSpan, wordSpan.firstChild);
       
-      // 计算并设置宽度
-      requestAnimationFrame(() => {
-        const wordWidth = wordSpan.offsetWidth;
-        const markWidth = romanizedSpan.offsetWidth;
-        const maxWidth = Math.max(wordWidth, markWidth);
-        wordSpan.style.setProperty('--rm-width', `${maxWidth}px`);
-      });
+      // 创建ruby标签结构
+      const ruby = document.createElement('ruby');
+      ruby.setAttribute('rm-marker', 'obj');
+      const rpStart = document.createElement('rp');
+      const rt = document.createElement('rt');
+      const rpEnd = document.createElement('rp');
+      
+      // 设置内容
+      rpStart.textContent = '(';
+      rt.textContent = romanizedText;
+      rpEnd.textContent = ')';
+      
+      // 构建结构
+      ruby.appendChild(wordSpan.cloneNode(true)); // 保留原文本
+      ruby.appendChild(rpStart);
+      ruby.appendChild(rt);
+      ruby.appendChild(rpEnd);
+      
+      // 替换原来的span
+      wordSpan.replaceWith(ruby);
       
       processedTexts.push(romanizedText);
     }

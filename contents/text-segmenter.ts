@@ -127,7 +127,7 @@ export class TextSegmenter {
       // 添加rm-marker属性
       span.setAttribute('rm-marker', 'word');
       // 添加romanize-word class
-      span.classList.add('romanized-word');
+      // span.classList.add('romanized-word');
       container.appendChild(span);
     });
   }
