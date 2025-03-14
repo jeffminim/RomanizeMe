@@ -6,6 +6,7 @@ import { scriptPanelGroups } from "@/types/languages"
 import { ConversionStatus } from "~types/conversion-status"
 import { Storage } from "@plasmohq/storage"
 import { getCurrentUILang } from "~background"
+import { languageCodeMapping } from "@/types/languages"
 
 // 定义语言面板的上下文类型
 interface LanguagePanelContextType {
@@ -165,6 +166,7 @@ export function LanguageList() {
     const browserLang = chrome.i18n.getUILanguage().replace("-","_").toLowerCase();
     return browserLang;
   })
+  const [pageMainLanguage, setPageMainLanguage] = useState<string | null>(null)
 
   // 获取当前界面语言
   useEffect(() => {
@@ -188,15 +190,81 @@ export function LanguageList() {
     };
   }, []);
 
+  // 获取页面主语言
+  useEffect(() => {
+    const getPageLanguage = async () => {
+      try {
+        // console.log('Attempting to get page language...');
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (!tab?.id) {
+          // console.log('No active tab found');
+          return;
+        }
+        
+        // console.log('Sending GET_PAGE_LANGUAGE message to tab:', tab.id);
+        chrome.tabs.sendMessage(tab.id, { type: "GET_PAGE_LANGUAGE" }, (response) => {
+          if (chrome.runtime.lastError) {
+            console.error("获取页面语言失败:", chrome.runtime.lastError);
+          } else if (response?.language) {
+            // console.log('Received page language from content script:', response.language);
+            
+            // 将页面语言代码映射为对应的语言选项代码
+            const mappedLanguage = languageCodeMapping[response.language];
+            // console.log('Mapped language code:', mappedLanguage);
+            
+            if (mappedLanguage) {
+              setPageMainLanguage(mappedLanguage);
+            } else {
+              // console.log('No matching language found for code:', response.language);
+            }
+          } else {
+            // console.log('No language detected in content script response');
+          }
+        });
+      } catch ( error) {
+        console.error("获取页面语言时出错:", error);
+      }
+    };
+    
+    getPageLanguage();
+  }, []);
+
   // 初始化时设置默认展开的组
   useEffect(() => {
-    const group = scriptPanelGroups.find(group => 
-      group.enabled && group.languages.some(language => language.code === activeScript)
-    )?.name || scriptPanelGroups[0].name
+    // 如果有激活的脚本，优先展开包含该脚本的组
+    if (activeScript) {
+      const activeScriptGroup = scriptPanelGroups.find(group => 
+        group.enabled && group.languages.some(language => language.code === activeScript)
+      )?.name;
+      
+      if (activeScriptGroup) {
+        setExpandedGroups([activeScriptGroup]);
+        return;
+      }
+    }
     
-    // 每次打开面板时，只展开默认组，其他组全部折叠
-    setExpandedGroups([group])
-  }, [activeScript])
+    // 如果有页面主语言，查找包含该语言的组
+    if (pageMainLanguage) {
+      const pageLanguageGroup = scriptPanelGroups.find(group => 
+        group.enabled && group.languages.some(language => language.code === pageMainLanguage)
+      )?.name;
+      
+      if (pageLanguageGroup) {
+        // console.log('Expanding group for page language:', pageMainLanguage);
+        setExpandedGroups([pageLanguageGroup]);
+        return;
+      } else {
+        // console.log('No group found for page language:', pageMainLanguage);
+      }
+    }
+    
+    // 如果都没有找到，展开第一个启用的组
+    const firstEnabledGroup = scriptPanelGroups.find(group => group.enabled)?.name;
+    if (firstEnabledGroup) {
+      // console.log('Expanding first enabled group');
+      setExpandedGroups([firstEnabledGroup]);
+    }
+  }, [activeScript, pageMainLanguage]);
 
   // 处理脚本切换的函数
   const handleScriptToggle = (script: string) => {

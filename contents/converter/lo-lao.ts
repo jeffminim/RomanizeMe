@@ -65,7 +65,6 @@ export default function LaoLao(text: string): string {
     'ຫາລື': 'halu',
     'ເພື່ອ': 'phua',
     'ຮັດ': 'hat',
-    'ການ': 'kan',
     'ຮ່ວມມື': 'houammu',
     'ສອງ': 'song'
   };
