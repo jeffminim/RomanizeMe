@@ -295,6 +295,7 @@ export function LanguageList() {
                     label={language.i18n[currentLang] || language.i18n.en}
                     activeScript={activeScript}
                     handleScriptToggle={handleScriptToggle}
+                    isCurrentPageLanguage={language.code === pageMainLanguage}
                   />
                 ))}
               </div>

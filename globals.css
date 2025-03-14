@@ -115,3 +115,15 @@ body {
 [data-radix-toast] {
   @apply bg-background text-foreground border-border;
 }
+
+/* 小黄点样式 */
+.language-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: #fbbf24;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
