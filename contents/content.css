@@ -1,72 +1,35 @@
-/* 添加新的规则来处理所有可能包含 romanized-word 的容器 */
-*:has(.romanized-word) {
-  overflow: visible !important;
+/* 增大 rt 标签的字号 */
+ruby rt {
+  font-size: 0.8em; /* 默认的 rt 字号通常较小，这里稍微增大 */
 }
 
-.romanized-word {
-  position: relative;
-  display: inline-block;
-  margin: 0 0.2rem; /* 减小间距 */
-  padding-top: 0.5em; /* 使用em单位，根据字体大小自适应 */
-  padding-bottom: 1.5rem;
-  line-height: 1.2;
-  border-radius: 0.125rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  transform-origin: center bottom;
-  vertical-align: baseline;
-  z-index: 1;
-  width: var(--rm-width, auto);
-  text-align: center;
-  white-space: nowrap; /* 添加这行防止换行 */
-  min-width: max-content; /* 添加这行确保最小宽度 */
+/* 增加 ruby 元素之间的间距 */
+ruby[rm-marker="obj"] {
+  margin: 0 0.4rem; /* 增加水平间距 */
+
 }
 
-.romanized-mark {
-  position: absolute;
-  bottom: calc(100% - 0.5em); /* 使用相对于word底部的定位 */
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.8em;
-  color: #666;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  font-family: Arial, sans-serif;
-  background-color: rgba(255, 255, 255, 0.80);
-  padding: 0.0625rem 0.25rem;
-  border-radius: 0.125rem;
-  z-index: 1;
-  min-height: 1rem;
-  line-height: 1.2;
-  transition: all 0.2s ease;
-  transform-origin: center bottom; /* 从底部开始变换 */
-  width: max-content;
-  margin-bottom: 0.25em; /* 与word保持固定间距 */
+/* 添加鼠标悬停效果 */
+ruby[rm-marker="obj"]:hover {
+  color: #333; /* 深色文字 */
+  background-color: rgba(240, 240, 240, 0.90); /* 白色背景，95%不透明度 */
+  border-radius: 0.125rem; /* 圆角效果 */
+  transition: background-color 0.2s ease; /* 平滑过渡 */
 }
 
-.romanized-word:hover {
-  background-color: rgba(242, 246, 249, 0.95);
-  border-color: rgb(29, 77, 140);
-  color:rgb(29, 77, 140);
-  z-index: 3;
-  transform: scale(1.05);
+/* 悬停时改变 rt 的样式 */
+ruby[rm-marker="obj"]:hover rt {
+  color: #333; /* 深色文字 */
+  font-size: 1em;
+  background-color:rgba(240, 240, 240, 0.90); /* 白色背景 */
+  border-radius: 0.125rem; /* 圆角效果 */
+  transition: color 0.2s ease, background-color 0.2s ease; /* 平滑过渡 */
+  padding: 0.1em 0.2em; /* 增加内边距，扩大白色方块 */
 }
 
-.romanized-word:hover .romanized-mark {
-  z-index: 4;
-  background-color: rgba(242, 246, 249, 0.95);
-  transform: translateX(-50%) scale(1.2); /* 保持水平居中并放大 */
-  color: #1557b0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-weight: 600;
-}
-
-/* 确保包含 romanized-word 的段落和 div 也不会裁剪内容 */
-p:has(.romanized-word),
-div:has(.romanized-word) {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  overflow: visible;
-  position: relative;
-  padding: 0.2rem 0;
+/* 当 hover 到 ruby 上时，修改其父级 span[rm-marker="par"] 或 a 的 overflow */
+span[rm-marker="par"]:has(ruby[rm-marker="obj"]:hover),
+a:has(ruby[rm-marker="obj"]:hover) {
+  overflow: visible !important; /* 强制父级 span 或 a 的 overflow 为 visible */
+  z-index: 9999; /* 确保父级 span 或 a 显示在最上层 */
 }

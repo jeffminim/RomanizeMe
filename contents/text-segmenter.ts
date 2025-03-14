@@ -2,9 +2,12 @@ import type { Script } from "~types/languages";
 import { TextSegmentation } from "~types/text-segmentation";
 import { isCharInScript } from "./scan-texts";
 
-import { segment as chineseSegmenter, addDict, OutputFormat } from 'pinyin-pro';
+import { segment as chineseSegmenter, addDict, OutputFormat, customPinyin } from 'pinyin-pro';
 import ModernDict from '@pinyin-pro/data/modern';
 addDict(ModernDict);
+customPinyin({
+  华为: 'huá wéi',
+});
 
 export class TextSegmenter {
   static segmentText(
@@ -127,7 +130,7 @@ export class TextSegmenter {
       // 添加rm-marker属性
       span.setAttribute('rm-marker', 'word');
       // 添加romanize-word class
-      span.classList.add('romanized-word');
+      // span.classList.add('romanized-word');
       container.appendChild(span);
     });
   }

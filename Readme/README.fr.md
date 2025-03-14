@@ -15,7 +15,7 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
 
 </div>
 
@@ -104,6 +104,11 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - Ajout du support des écritures cyrilliques (russe, ukrainien, mongol, serbe)
   - Ajout du support de la langue russe pour l'interface utilisateur
 
+- 2.2.0 (2025-3-14)
+  - Ajout du support des principales langues d'Asie du Sud-Est en écriture non latine (thaï, birman, khmer, lao) et de certaines langues en écriture latine (vietnamien)
+  - Utilisation de la balise <ruby> pour optimiser les annotations en romanisation
+  - Le panneau des options linguistiques se développe automatiquement en fonction de la langue de la page
+
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
 ### 🌍 Écritures/langues prises en charge <a name = "écritureslangues-prises-en-charge"></a>
@@ -126,13 +131,13 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 - [ ] Arabe
   - [ ] Arabe
   - [ ] Autres langues...
-- [ ] Langues d'Asie du Sud-Est
-  - [ ] Thaï
-  - [ ] Vietnamien
-  - [ ] Khmer
-  - [ ] Birman
-  - [ ] Lao
-  - [ ] Autres langues...
+- [x] Langues d'Asie du Sud-Est
+  - [x] Thaï
+  - [x] Vietnamien
+  - [x] Khmer
+  - [x] Birman
+  - [x] Lao
+  - [ ] Plus de langues...
 - [ ] Autres langues chinoises
   - [ ] Tibétain
   - [ ] Mongol (Mongolie intérieure)

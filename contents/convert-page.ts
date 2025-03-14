@@ -103,6 +103,37 @@ async function performConversion(selectedLanguage: Language) {
   }
 }
 
+// 添加获取页面主语言的函数
+function getPageMainLanguage(): string | null {
+  // 1. 首先尝试从html标签获取语言
+  const htmlLang = document.documentElement.lang;
+  // console.log('HTML lang attribute:', htmlLang);
+  if (htmlLang) {
+    const normalizedLang = htmlLang.replace("-", "_").toLowerCase();
+    // console.log('Normalized HTML lang:', normalizedLang);
+    return normalizedLang;
+  }
+
+  // 2. 如果html标签没有，尝试从meta标签获取
+  const contentLanguageMeta = document.querySelector('meta[http-equiv="content-language"]');
+  const ogLocaleMeta = document.querySelector('meta[property="og:locale"]');
+  // console.log('Content-Language meta:', contentLanguageMeta);
+  // console.log('og:locale meta:', ogLocaleMeta);
+
+  const metaLang = contentLanguageMeta?.getAttribute("content") ||
+                  ogLocaleMeta?.getAttribute("content");
+  // console.log('Meta lang value:', metaLang);
+  if (metaLang) {
+    const normalizedMetaLang = metaLang.replace("-", "_").toLowerCase();
+    // console.log('Normalized meta lang:', normalizedMetaLang);
+    return normalizedMetaLang;
+  }
+
+  // 3. 如果都没有，返回null
+  // console.log('No language detected in HTML or meta tags');
+  return null;
+}
+
 // 监听 Romanize 按钮点击事件
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "START_CONVERSION" && message.language) {
@@ -121,6 +152,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // 返回当前内容脚本中的状态
     sendResponse({ status: currentStatus });
     return true;
+  }
+
+  // 添加GET_PAGE_LANGUAGE消息处理
+  if (message.type === "GET_PAGE_LANGUAGE") {
+    // console.log('Received GET_PAGE_LANGUAGE message');
+    const language = getPageMainLanguage();
+    // console.log('Detected page language:', language);
+    sendResponse({ language });
+    return true; // 保持消息通道打开
   }
 });
 

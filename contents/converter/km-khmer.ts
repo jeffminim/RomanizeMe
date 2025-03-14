@@ -59,7 +59,8 @@ export default function KhmKhmer(text: string): string {
     'ឧត្ត': 'ut', 'ម': 'm',
     'រប': 'rob', 'ស់': 's',
     'អា': 'a', 'ស៊ី': 'si',
-    'ឆ្នាំ': 'chnam'
+    'ឆ្នាំ': 'chnam',
+    'ឱ្យ': 'oy'
   };
 
   // 处理文本

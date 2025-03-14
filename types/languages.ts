@@ -416,7 +416,7 @@ export const scriptPanelGroups: Group[] = [
   {
     name: 'southeast_asian',
     order: 4,
-    enabled: false,
+    enabled: true,
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'tha_thai' ||
       s.code === 'khm_khmer' ||
@@ -433,4 +433,51 @@ export const scriptPanelGroups: Group[] = [
       ru: 'Юго-Восточная Азия'
     }
   }
-] 
+]
+
+// 添加语言代码映射表
+export const languageCodeMapping: Record<string, string> = {
+  // 中文
+  zh: 'chn_mandarin',
+  zh_cn: 'chn_mandarin',
+  zh_hans: 'chn_mandarin',
+  zh_hant: 'chn_mandarin',
+  
+  // 日语
+  ja: 'jpn_romaji',
+  jp: 'jpn_romaji',
+  
+  // 韩语
+  ko: 'kor_hangul',
+  kr: 'kor_hangul',
+  
+  // 俄语
+  ru: 'rus_cyrillic',
+  
+  // 乌克兰语
+  uk: 'ukr_cyrillic',
+  
+  // 蒙古语
+  mn: 'mon_cyrillic',
+  
+  // 塞尔维亚语
+  sr: 'srb_cyrillic',
+  
+  // 泰语
+  th: 'tha_thai',
+  
+  // 越南语
+  vi: 'vie_vietnamese',
+  
+  // 柬埔寨语
+  km: 'khm_khmer',
+  
+  // 缅甸语
+  my: 'mya_myanmar',
+  
+  // 老挝语
+  lo: 'lao_lao'
+};
+
+/////////////////////////////////////
+
