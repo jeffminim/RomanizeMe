@@ -15,7 +15,7 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
 
 </div>
 
@@ -104,6 +104,11 @@ This is a browser extension designed for language learners with the following ma
   - Added support for Cyrillic scripts (Russian, Ukrainian, Mongolian, Serbian)
   - Added Russian language support for UI interface
 
+- 2.2.0 (2025-3-14)
+  - Added support for major Southeast Asian non-Latin scripts (Thai, Burmese, Khmer, Lao) and some Latin script languages (Vietnamese)
+  - Optimized romanization annotations using <ruby> tags
+  - Language options panel now automatically expands relevant groups based on page language
+
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
 ### 🌍 Supported Scripts/Languages <a name = "supported-languages"></a>
@@ -126,13 +131,13 @@ This is a browser extension designed for language learners with the following ma
 - [ ] Arabic
   - [ ] Arabic
   - [ ] Other languages...
-- [ ] Southeast Asian Languages
-  - [ ] Thai
-  - [ ] Vietnamese
-  - [ ] Khmer
-  - [ ] Burmese
-  - [ ] Lao
-  - [ ] Other languages...
+- [x] Southeast Asian Languages
+  - [x] Thai
+  - [x] Vietnamese
+  - [x] Khmer
+  - [x] Burmese
+  - [x] Lao
+  - [ ] More languages...
 - [ ] Other Chinese Languages
   - [ ] Tibetan
   - [ ] Mongolian (Inner Mongolia)

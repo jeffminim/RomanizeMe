@@ -15,7 +15,7 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
 
 </div>
 
@@ -104,6 +104,11 @@
   - 키릴 문자 지원 추가 (러시아어, 우크라이나어, 몽골어, 세르비아어)
   - UI 인터페이스에 러시아어 지원 추가
 
+- 2.2.0 (2025-3-14)
+  - 동남아시아 주요 비라틴 문자 언어(태국어, 미얀마어, 캄보디아어, 라오스어) 및 일부 라틴 문자 언어(베트남어) 지원 추가
+  - <ruby> 태그를 사용하여 로마자 주석의 태그와 스타일을 최적화했습니다.
+  - 이제 언어 옵션 패널은 페이지의 언어에 따라 자동으로 해당 그룹을 확장합니다.
+
 ## 📅 개발 로드맵 <a name = "개발-로드맵"></a>
 
 ### 🌍 지원 스크립트/언어 <a name = "지원-스크립트언어"></a>
@@ -126,12 +131,12 @@
 - [ ] 아랍 문자
   - [ ] 아랍어
   - [ ] 기타 언어...
-- [ ] 동남아시아 언어
-  - [ ] 태국어
-  - [ ] 베트남어
-  - [ ] 크메르어
-  - [ ] 미얀마어
-  - [ ] 라오스어
+- [x] 동남아시아 언어
+  - [x] 태국어
+  - [x] 베트남어
+  - [x] 크메르어
+  - [x] 미얀마어
+  - [x] 라오스어
   - [ ] 기타 언어...
 - [ ] 중국의 기타 언어
   - [ ] 티베트어

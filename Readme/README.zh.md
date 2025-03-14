@@ -15,7 +15,7 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.1.0)
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
 
 </div>
 
@@ -109,7 +109,10 @@
   - 支持西里尔文字的相关语言（俄语、乌克兰语、蒙古语、塞尔维亚语）
   - UI界面国际化（i18n）支持（新增俄语）
 
-
+- 2.2.0 (2025-3-14)
+  - 支持东南亚主要非拉丁文字语言（泰语、缅甸语、柬埔寨语、老挝语）及部分拉丁文字语言（越南语）
+  - 采用<ruby>标签，优化注音的标签及样式
+  - 现在语言选项面板会根据当前页面的语言种类，自动展开相应组
 
 ## 📅 开发计划 <a name = "开发计划"></a>
 
@@ -133,12 +136,12 @@
 - [ ] 阿拉伯文
   - [ ] 阿拉伯语
   - [ ] 更多语言...
-- [ ] 东南亚语言
-  - [ ] 泰语
-  - [ ] 越南语
-  - [ ] 柬埔寨语（高棉语）
-  - [ ] 缅甸语
-  - [ ] 老挝语
+- [x] 东南亚语言
+  - [x] 泰语
+  - [x] 越南语
+  - [x] 柬埔寨语（高棉语）
+  - [x] 缅甸语
+  - [x] 老挝语
   - [ ] 更多语言...
 - [ ] 中国其他语言
   - [ ] 藏文（藏语）
