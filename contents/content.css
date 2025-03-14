@@ -12,7 +12,7 @@ ruby[rm-marker="obj"] {
 /* 添加鼠标悬停效果 */
 ruby[rm-marker="obj"]:hover {
   color: #333; /* 深色文字 */
-  background-color: rgba(255, 255, 255, 0.95); /* 白色背景，95%不透明度 */
+  background-color: rgba(240, 240, 240, 0.90); /* 白色背景，95%不透明度 */
   border-radius: 0.125rem; /* 圆角效果 */
   transition: background-color 0.2s ease; /* 平滑过渡 */
 }
@@ -21,7 +21,7 @@ ruby[rm-marker="obj"]:hover {
 ruby[rm-marker="obj"]:hover rt {
   color: #333; /* 深色文字 */
   font-size: 1em;
-  background-color: rgba(255, 255, 255, 0.95); /* 白色背景 */
+  background-color:rgba(240, 240, 240, 0.90); /* 白色背景 */
   border-radius: 0.125rem; /* 圆角效果 */
   transition: color 0.2s ease, background-color 0.2s ease; /* 平滑过渡 */
   padding: 0.1em 0.2em; /* 增加内边距，扩大白色方块 */
@@ -31,6 +31,5 @@ ruby[rm-marker="obj"]:hover rt {
 span[rm-marker="par"]:has(ruby[rm-marker="obj"]:hover),
 a:has(ruby[rm-marker="obj"]:hover) {
   overflow: visible !important; /* 强制父级 span 或 a 的 overflow 为 visible */
-  /* position: relative; 为 z-index 提供上下文 */
   z-index: 9999; /* 确保父级 span 或 a 显示在最上层 */
 }
