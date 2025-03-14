@@ -17,7 +17,7 @@ export default function ThaThai(text: string): string {
     '๕': '5', '๖': '6', '๗': '7', '๘': '8', '๙': '9',
     
     // 特殊符号
-    'ๆ': '', 'ฯ': '', '์': ''
+    'ๆ': '', 'ฯ': '', '์': '', '็': ''
   };
 
   // 元音映射
@@ -123,8 +123,13 @@ export default function ThaThai(text: string): string {
         result += consonant + vowel;
         i += 2;
         
+        // 检查是否有 ็ 符号
+        if (i < text.length && text[i] === '็') {
+          // 跳过 ็ 符号，不添加任何字符
+          i++;
+        }
         // 检查后续元音标记
-        if (i < text.length && vowelMap[text[i]] && !toneMarks.has(text[i])) {
+        else if (i < text.length && vowelMap[text[i]] && !toneMarks.has(text[i])) {
           result += vowelMap[text[i]];
           i++;
         }
@@ -132,6 +137,11 @@ export default function ThaThai(text: string): string {
         // 跳过音调符号
         while (i < text.length && toneMarks.has(text[i])) {
           i++;
+        }
+        
+        // 处理 ์ 符号
+        if (i < text.length && text[i] === '์') {
+          i++;  // 直接跳过，不输出任何字符
         }
         
         continue;
@@ -145,6 +155,13 @@ export default function ThaThai(text: string): string {
       
       // 检查后续元音
       let hasVowel = false;
+      
+      // 处理 ็ 符号
+      if (i < text.length && text[i] === '็') {
+        // 跳过 ็ 符号，不添加任何字符
+        i++;
+        hasVowel = true;
+      }
       
       // 检查是否后面跟着 อ 作为元音
       if (i < text.length && text[i] === 'อ') {
@@ -164,6 +181,11 @@ export default function ThaThai(text: string): string {
         i++;
       }
       
+      // 处理 ์ 符号
+      if (i < text.length && text[i] === '์') {
+        i++;  // 直接跳过，不输出任何字符
+      }
+      
       // 处理隐含元音 (如果没有显式元音且不是词尾)
       if (!hasVowel && result.length > 0 && i < text.length && thaiToLatinMap[text[i]]) {
         // 辅音后面跟着另一个辅音，添加隐含元音 "o"
@@ -176,8 +198,8 @@ export default function ThaThai(text: string): string {
     // 处理其他字符
     if (vowelMap[char]) {
       result += vowelMap[char];
-    } else if (!toneMarks.has(char)) {
-      // 保留非音调符号的其他字符
+    } else if (!toneMarks.has(char) && !thaiToLatinMap[char]) {
+      // 保留非音调符号和其他未映射字符
       result += char;
     }
     
