@@ -588,6 +588,7 @@ export const languageCodeMapping: Record<string, string> = {
   
   // 乌尔都语
   urd: 'urd_arabic',
+  ur: 'urd_arabic'
   
   // 库尔德语
   // kur: 'kur_arabic'
