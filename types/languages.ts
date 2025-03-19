@@ -584,6 +584,7 @@ export const languageCodeMapping: Record<string, string> = {
   
   // 波斯语
   per: 'per_arabic',
+  fa: 'per_arabic',
   
   // 乌尔都语
   urd: 'urd_arabic',
