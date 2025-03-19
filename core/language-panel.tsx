@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react"
+import { createContext, useContext, useState, useEffect, useRef } from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ScriptButton } from "@/components/script-button"
 import { Card } from "@/components/ui/card"
@@ -167,6 +167,10 @@ export function LanguageList() {
     return browserLang;
   })
   const [pageMainLanguage, setPageMainLanguage] = useState<string | null>(null)
+  // 添加对自动展开组的引用
+  const autoExpandedGroupRef = useRef<string | null>(null)
+  // 添加对Accordion容器的引用
+  const accordionContainerRef = useRef<HTMLDivElement>(null)
 
   // 获取当前界面语言
   useEffect(() => {
@@ -231,6 +235,8 @@ export function LanguageList() {
 
   // 初始化时设置默认展开的组
   useEffect(() => {
+    let groupToExpand: string | undefined;
+    
     // 如果有激活的脚本，优先展开包含该脚本的组
     if (activeScript) {
       const activeScriptGroup = scriptPanelGroups.find(group => 
@@ -238,70 +244,125 @@ export function LanguageList() {
       )?.name;
       
       if (activeScriptGroup) {
-        setExpandedGroups([activeScriptGroup]);
-        return;
+        groupToExpand = activeScriptGroup;
       }
     }
     
-    // 如果有页面主语言，查找包含该语言的组
-    if (pageMainLanguage) {
+    // 如果没有激活脚本但有页面主语言，查找包含该语言的组
+    if (!groupToExpand && pageMainLanguage) {
       const pageLanguageGroup = scriptPanelGroups.find(group => 
         group.enabled && group.languages.some(language => language.code === pageMainLanguage)
       )?.name;
       
       if (pageLanguageGroup) {
-        // console.log('Expanding group for page language:', pageMainLanguage);
-        setExpandedGroups([pageLanguageGroup]);
-        return;
-      } else {
-        // console.log('No group found for page language:', pageMainLanguage);
+        groupToExpand = pageLanguageGroup;
       }
     }
     
-    // 如果都没有找到，展开第一个启用的组
-    const firstEnabledGroup = scriptPanelGroups.find(group => group.enabled)?.name;
-    if (firstEnabledGroup) {
-      // console.log('Expanding first enabled group');
-      setExpandedGroups([firstEnabledGroup]);
+    // 如果都没有找到，选择第一个启用的组
+    if (!groupToExpand) {
+      groupToExpand = scriptPanelGroups.find(group => group.enabled)?.name;
+    }
+    
+    // 如果找到了要展开的组，设置状态并记录到ref
+    if (groupToExpand) {
+      setExpandedGroups([groupToExpand]);
+      autoExpandedGroupRef.current = groupToExpand;
     }
   }, [activeScript, pageMainLanguage]);
+  
+  // 添加处理自动滚动的效果
+  useEffect(() => {
+    // 仅在初始自动展开的组存在时执行滚动
+    const groupToScrollTo = autoExpandedGroupRef.current;
+    if (!groupToScrollTo || !accordionContainerRef.current) return;
+    
+    // 使用setTimeout确保DOM已经更新
+    const scrollTimeout = setTimeout(() => {
+      if (!accordionContainerRef.current) return;
+      
+      // 查找已展开的组元素
+      const expandedGroupElement = document.querySelector(
+        `[data-accordion-item="${groupToScrollTo}"]`
+      ) as HTMLElement;
+      
+      if (!expandedGroupElement) return;
+      
+      // 找到展开的内容元素
+      const accordionContent = expandedGroupElement.querySelector(
+        '[data-state="open"]'
+      ) as HTMLElement;
+      
+      if (!accordionContent) return;
+      
+      // 计算需要滚动的位置 - 目标是让展开的组完全可见
+      const containerRect = accordionContainerRef.current.getBoundingClientRect();
+      const contentBottomPosition = 
+        expandedGroupElement.offsetTop + 
+        expandedGroupElement.offsetHeight;
+      
+      // 如果元素已经在视野中，不需要滚动
+      if (contentBottomPosition <= containerRect.height) return;
+      
+      // 滚动到位置，使展开组的底部可见
+      accordionContainerRef.current.scrollTo({
+        top: contentBottomPosition - containerRect.height + 16, // 底部添加一些边距
+        behavior: 'smooth'
+      });
+      
+      // 执行后清除自动展开的引用（避免用户后续手动展开时触发滚动）
+      autoExpandedGroupRef.current = null;
+    }, 300); // 给予足够时间让accordion完成展开动画
+    
+    return () => clearTimeout(scrollTimeout);
+  }, [expandedGroups]); // 在展开组变化时触发
 
   // 处理脚本切换的函数
   const handleScriptToggle = (script: string) => {
-    const newScript = activeScript === script ? null : script
-    setActiveScript(newScript)
+    const newScript = activeScript === script ? null : script;
+    setActiveScript(newScript);
   }
 
   return (
-    <Accordion 
-      type="multiple" 
-      className="w-full" 
-      value={expandedGroups}
-      onValueChange={setExpandedGroups}
+    <div 
+      ref={accordionContainerRef}
+      className="w-full max-h-[70vh] overflow-auto"
+      style={{ scrollBehavior: 'smooth' }}
     >
-      {scriptPanelGroups
-        .filter(group => group.enabled) // 只显示enabled为true的组
-        .map(group => (
-          <AccordionItem key={group.name} value={group.name}>
-            <AccordionTrigger className="text-base font-semibold">
-              {group.i18n[currentLang] || group.i18n.en}
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="pl-4 flex flex-wrap gap-2 items-center">
-                {group.languages.map(language => (
-                  <ScriptButton
-                    key={language.code}
-                    script={language.code}
-                    label={language.i18n[currentLang] || language.i18n.en}
-                    activeScript={activeScript}
-                    handleScriptToggle={handleScriptToggle}
-                    isCurrentPageLanguage={language.code === pageMainLanguage}
-                  />
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-    </Accordion>
+      <Accordion 
+        type="multiple" 
+        className="w-full" 
+        value={expandedGroups}
+        onValueChange={setExpandedGroups}
+      >
+        {scriptPanelGroups
+          .filter(group => group.enabled)
+          .map(group => (
+            <AccordionItem 
+              key={group.name} 
+              value={group.name}
+              data-accordion-item={group.name}
+            >
+              <AccordionTrigger className="text-base font-semibold">
+                {group.i18n[currentLang] || group.i18n.en}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="pl-4 flex flex-wrap gap-2 items-center">
+                  {group.languages.map(language => (
+                    <ScriptButton
+                      key={language.code}
+                      script={language.code}
+                      label={language.i18n[currentLang] || language.i18n.en}
+                      activeScript={activeScript}
+                      handleScriptToggle={handleScriptToggle}
+                      isCurrentPageLanguage={language.code === pageMainLanguage}
+                    />
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+      </Accordion>
+    </div>
   )
 } 
