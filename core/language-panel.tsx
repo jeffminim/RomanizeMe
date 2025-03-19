@@ -169,8 +169,10 @@ export function LanguageList() {
   const [pageMainLanguage, setPageMainLanguage] = useState<string | null>(null)
   // 添加对自动展开组的引用
   const autoExpandedGroupRef = useRef<string | null>(null)
-  // 添加对Accordion容器的引用
-  const accordionContainerRef = useRef<HTMLDivElement>(null)
+  // 添加对popup窗口高度的引用
+  const popupHeightRef = useRef<number>(0)
+  // 添加对滚动容器的引用
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   // 获取当前界面语言
   useEffect(() => {
@@ -275,14 +277,15 @@ export function LanguageList() {
   useEffect(() => {
     // 仅在初始自动展开的组存在时执行滚动
     const groupToScrollTo = autoExpandedGroupRef.current;
-    if (!groupToScrollTo || !accordionContainerRef.current) return;
+    if (!groupToScrollTo || !scrollContainerRef.current) return;
     
     // 使用setTimeout确保DOM已经更新
     const scrollTimeout = setTimeout(() => {
-      if (!accordionContainerRef.current) return;
+      const container = scrollContainerRef.current;
+      if (!container) return;
       
       // 查找已展开的组元素
-      const expandedGroupElement = document.querySelector(
+      const expandedGroupElement = container.querySelector(
         `[data-accordion-item="${groupToScrollTo}"]`
       ) as HTMLElement;
       
@@ -295,24 +298,28 @@ export function LanguageList() {
       
       if (!accordionContent) return;
       
-      // 计算需要滚动的位置 - 目标是让展开的组完全可见
-      const containerRect = accordionContainerRef.current.getBoundingClientRect();
-      const contentBottomPosition = 
-        expandedGroupElement.offsetTop + 
-        expandedGroupElement.offsetHeight;
+      // 计算元素的位置
+      const elementRect = expandedGroupElement.getBoundingClientRect();
+      const contentBottom = elementRect.bottom;
       
-      // 如果元素已经在视野中，不需要滚动
-      if (contentBottomPosition <= containerRect.height) return;
+      // 获取容器高度
+      const containerHeight = container.clientHeight;
       
-      // 滚动到位置，使展开组的底部可见
-      accordionContainerRef.current.scrollTo({
-        top: contentBottomPosition - containerRect.height + 16, // 底部添加一些边距
+      // 如果元素底部已经可见，不需要滚动
+      if (contentBottom <= containerHeight) return;
+      
+      // 计算需要滚动的距离
+      const scrollDistance = contentBottom - containerHeight + 16; // 添加16px的底部边距
+      
+      // 执行滚动
+      container.scrollTo({
+        top: scrollDistance,
         behavior: 'smooth'
       });
       
       // 执行后清除自动展开的引用（避免用户后续手动展开时触发滚动）
       autoExpandedGroupRef.current = null;
-    }, 300); // 给予足够时间让accordion完成展开动画
+    }, 500); // 增加延迟时间到500ms，确保accordion完全展开
     
     return () => clearTimeout(scrollTimeout);
   }, [expandedGroups]); // 在展开组变化时触发
@@ -325,44 +332,52 @@ export function LanguageList() {
 
   return (
     <div 
-      ref={accordionContainerRef}
-      className="w-full max-h-[70vh] overflow-auto"
-      style={{ scrollBehavior: 'smooth' }}
+      ref={scrollContainerRef}
+      className="w-[calc(100%+32px)] -ml-4 h-full overflow-y-auto"
+      style={{ 
+        scrollBehavior: 'smooth',
+        // 确保垂直滚动条紧贴右侧
+        marginRight: '-17px', // 抵消默认滚动条宽度
+        paddingRight: '17px', // 保持内容宽度不变
+        overflowX: 'hidden' // 防止水平滚动
+      }}
     >
-      <Accordion 
-        type="multiple" 
-        className="w-full" 
-        value={expandedGroups}
-        onValueChange={setExpandedGroups}
-      >
-        {scriptPanelGroups
-          .filter(group => group.enabled)
-          .map(group => (
-            <AccordionItem 
-              key={group.name} 
-              value={group.name}
-              data-accordion-item={group.name}
-            >
-              <AccordionTrigger className="text-base font-semibold">
-                {group.i18n[currentLang] || group.i18n.en}
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="pl-4 flex flex-wrap gap-2 items-center">
-                  {group.languages.map(language => (
-                    <ScriptButton
-                      key={language.code}
-                      script={language.code}
-                      label={language.i18n[currentLang] || language.i18n.en}
-                      activeScript={activeScript}
-                      handleScriptToggle={handleScriptToggle}
-                      isCurrentPageLanguage={language.code === pageMainLanguage}
-                    />
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-      </Accordion>
+      <div className="w-full pl-4">
+        <Accordion 
+          type="multiple" 
+          className="w-full" 
+          value={expandedGroups}
+          onValueChange={setExpandedGroups}
+        >
+          {scriptPanelGroups
+            .filter(group => group.enabled)
+            .map(group => (
+              <AccordionItem 
+                key={group.name} 
+                value={group.name}
+                data-accordion-item={group.name}
+              >
+                <AccordionTrigger className="text-base font-semibold">
+                  {group.i18n[currentLang] || group.i18n.en}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="pl-4 flex flex-wrap gap-2 items-center">
+                    {group.languages.map(language => (
+                      <ScriptButton
+                        key={language.code}
+                        script={language.code}
+                        label={language.i18n[currentLang] || language.i18n.en}
+                        activeScript={activeScript}
+                        handleScriptToggle={handleScriptToggle}
+                        isCurrentPageLanguage={language.code === pageMainLanguage}
+                      />
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+        </Accordion>
+      </div>
     </div>
   )
 } 

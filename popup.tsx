@@ -67,7 +67,7 @@ export default function RomanizeInterface() {
                 ? "grid-cols-1"
                 : "grid-cols-2"
               }`}>
-              <TabsTrigger value="scripts" className="flex items-center justify-center gap-2">
+              <TabsTrigger value="scripts" className="flex items-center justify-center gap-2 overflow-x-hidden">
                 <Globe className="w-4 h-4" />
                 <span>{getUIText("tabScripts")}</span>
               </TabsTrigger>
