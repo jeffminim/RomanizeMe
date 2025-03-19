@@ -174,6 +174,11 @@ export function LanguageList() {
   // 添加对滚动容器的引用
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
+  // 判断当前分组是否包含页面语言
+  const groupContainsPageLanguage = (group) => {
+    return group.languages.some(language => language.code === pageMainLanguage);
+  }
+
   // 获取当前界面语言
   useEffect(() => {
     const fetchCurrentLang = async () => {
@@ -336,7 +341,6 @@ export function LanguageList() {
       className="w-[calc(100%+32px)] -ml-4 h-full overflow-y-auto"
       style={{ 
         scrollBehavior: 'smooth',
-        // 确保垂直滚动条紧贴右侧
         marginRight: '-17px', // 抵消默认滚动条宽度
         paddingRight: '17px', // 保持内容宽度不变
         overflowX: 'hidden' // 防止水平滚动
@@ -358,7 +362,13 @@ export function LanguageList() {
                 data-accordion-item={group.name}
               >
                 <AccordionTrigger className="text-base font-semibold">
-                  {group.i18n[currentLang] || group.i18n.en}
+                  <div className="flex items-center">
+                    {group.i18n[currentLang] || group.i18n.en}
+                    {/* 如果分组包含页面语言，显示小黄点 */}
+                    {groupContainsPageLanguage(group) && (
+                      <span className="w-2 h-2 bg-yellow-400 rounded-full ml-2"></span>
+                    )}
+                  </div>
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="pl-4 flex flex-wrap gap-2 items-center">
