@@ -526,7 +526,7 @@ export const scriptPanelGroups: Group[] = [
       s.code === 'kur_arabic'
     ),
     i18n: {
-      zh_cn: '阿拉伯文字',
+      zh_cn: '阿拉伯字母',
       en: 'Arabic Script',
       ja: 'アラビア文字',
       ko: '아랍 문자',
