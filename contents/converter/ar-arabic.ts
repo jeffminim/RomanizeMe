@@ -75,6 +75,22 @@ export default function AraArabic(text: string): string {
     'محمد': 'Muḥammad', // 穆罕默德
   };
   
+  // 阿拉伯语数字映射表
+  const arabicNumeralsMap: { [key: string]: string } = {
+    '٠': '0',  // 阿拉伯数字0
+    '١': '1',  // 阿拉伯数字1
+    '٢': '2',  // 阿拉伯数字2
+    '٣': '3',  // 阿拉伯数字3
+    '٤': '4',  // 阿拉伯数字4
+    '٥': '5',  // 阿拉伯数字5
+    '٦': '6',  // 阿拉伯数字6
+    '٧': '7',  // 阿拉伯数字7
+    '٨': '8',  // 阿拉伯数字8
+    '٩': '9',  // 阿拉伯数字9
+    '٫': '.',  // 阿拉伯小数分隔符
+    '٬': ',',  // 阿拉伯千位分隔符
+  };
+  
   // 规范化文本（统一字符表示）
   text = text.normalize('NFKC');
   
@@ -95,15 +111,35 @@ export default function AraArabic(text: string): string {
            !isDiacritic(char);
   };
   
+  // 辅助函数：检查字符是否是阿拉伯数字
+  const isArabicNumeral = (char: string): boolean => {
+    return /[\u0660-\u0669\u066B\u066C]/.test(char);
+  };
+  
   // 主处理函数
   let result = '';
-  const words = text.split(/([^\u0600-\u06FF]+)/);
+  const words = text.split(/([^\u0600-\u06FF\u0660-\u0669\u066B\u066C]+)/);
   
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
     
     // 跳过空单词
     if (!word) continue;
+    
+    // 处理阿拉伯数字
+    if (isArabicNumeral(word[0])) {
+      let numberResult = '';
+      for (let j = 0; j < word.length; j++) {
+        const char = word[j];
+        if (arabicNumeralsMap[char]) {
+          numberResult += arabicNumeralsMap[char];
+        } else {
+          numberResult += char;
+        }
+      }
+      result += numberResult;
+      continue;
+    }
     
     // 处理非阿拉伯文字
     if (!isArabicChar(word[0])) {
