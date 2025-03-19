@@ -13,3 +13,7 @@ export { default as VieVietnamese } from "./vi-vietnamese";
 export { default as KhmKhmer } from "./km-khmer";
 export { default as MyaMyanmar } from "./my-myanmar";
 export { default as LaoLao } from "./lo-lao";
+export { default as AraArabic } from "./ar-arabic";
+export { default as PerArabic } from "./fa-arabic";
+export { default as UrdArabic } from "./ur-arabic";
+// export { default as KurArabic } from "./ku-arabic";

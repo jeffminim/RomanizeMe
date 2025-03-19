@@ -195,6 +195,36 @@ export const scriptPanelScripts: Script[] = [
       [0x0E80, 0x0EFF] // 老挝文范围
     ],
     segmentation: TextSegmentation.LAO
+  },
+  {
+    code: 'arabic',
+    i18n: {
+      zh_cn: '阿拉伯文',
+      en: 'Arabic Script',
+      ja: 'アラビア文字',
+      ko: '아랍 문자',
+      fr: 'Écriture arabe',
+      ru: 'Арабское письмо'
+    },
+    isoCode: 'ar',
+    unicodeRanges: [
+      [0x0600, 0x06FF],    // 基本阿拉伯文
+      [0x0750, 0x077F],   // 阿拉伯文扩展A
+      [0x08A0, 0x08FF],   // 阿拉伯文扩展B
+      [0xFB50, 0xFDFF],   // 阿拉伯文表现形式A
+      [0xFE70, 0xFEFF],   // 阿拉伯文表现形式B
+      [0x0670, 0x067F],   // 阿拉伯文字母扩展（包含波斯语、乌尔都语特有字母）
+      [0x0698, 0x0698],   // 波斯语字母 "ژ"
+      [0x06A9, 0x06A9],   // 波斯语字母 "ک"
+      [0x06AF, 0x06AF],   // 波斯语字母 "گ"
+      [0x06CC, 0x06CC],   // 波斯语字母 "ی"
+      [0x06D2, 0x06D2],   // 乌尔都语字母 "ے"
+      [0x06BE, 0x06BE],   // 乌尔都语字母 "ھ"
+      [0x06C1, 0x06C1],   // 乌尔都语字母 "ہ"
+      [0x06C3, 0x06C3],   // 乌尔都语字母 "ۃ"
+      [0x06D0, 0x06D0]    // 库尔德语字母 "ۋ"
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -356,7 +386,59 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'lao'),
     romanizationComponent: 'LaoLao'
-  }
+  },
+  {
+    code: 'ara_arabic',
+    i18n: {
+      zh_cn: '阿拉伯语',
+      en: 'Arabic',
+      ja: 'アラビア語',
+      ko: '아랍어',
+      fr: 'Arabe',
+      ru: 'Арабский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'AraArabic'
+  },
+  {
+    code: 'per_arabic',
+    i18n: {
+      zh_cn: '波斯语',
+      en: 'Persian',
+      ja: 'ペルシア語',
+      ko: '페르시아어',
+      fr: 'Persan',
+      ru: 'Персидский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'PerArabic'
+  },
+  {
+    code: 'urd_arabic',
+    i18n: {
+      zh_cn: '乌尔都语',
+      en: 'Urdu',
+      ja: 'ウルドゥー語',
+      ko: '우르두어',
+      fr: 'Ourdou',
+      ru: 'Урду'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'UrdArabic'
+  },
+  // {
+  //   code: 'kur_arabic',
+  //   i18n: {
+  //     zh_cn: '库尔德语',
+  //     en: 'Kurdish',
+  //     ja: 'クルド語',
+  //     ko: '쿠르드어',
+  //     fr: 'Kurde',
+  //     ru: 'Курдский'
+  //   },
+  //   writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+  //   romanizationComponent: 'KurArabic'
+  // }
 ]
 
 //////
@@ -432,6 +514,25 @@ export const scriptPanelGroups: Group[] = [
       fr: 'Langues d\'Asie du Sud-Est',
       ru: 'Юго-Восточная Азия'
     }
+  },
+  {
+    name: 'arabic',
+    order: 5,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'ara_arabic' ||
+      s.code === 'per_arabic' ||
+      s.code === 'urd_arabic' ||
+      s.code === 'kur_arabic'
+    ),
+    i18n: {
+      zh_cn: '阿拉伯文字',
+      en: 'Arabic Script',
+      ja: 'アラビア文字',
+      ko: '아랍 문자',
+      fr: 'Écriture arabe',
+      ru: 'Арабское письмо'
+    }
   }
 ]
 
@@ -476,7 +577,19 @@ export const languageCodeMapping: Record<string, string> = {
   my: 'mya_myanmar',
   
   // 老挝语
-  lo: 'lao_lao'
+  lo: 'lao_lao',
+  
+  // 阿拉伯语
+  ar: 'ara_arabic',
+  
+  // 波斯语
+  per: 'per_arabic',
+  
+  // 乌尔都语
+  urd: 'urd_arabic',
+  
+  // 库尔德语
+  // kur: 'kur_arabic'
 };
 
 /////////////////////////////////////
