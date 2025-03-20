@@ -173,6 +173,8 @@ export function LanguageList() {
   const popupHeightRef = useRef<number>(0)
   // 添加对滚动容器的引用
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  // 添加初始加载标记
+  const isInitialLoad = useRef(true)
 
   // 判断当前分组是否包含页面语言
   const groupContainsPageLanguage = (group) => {
@@ -280,7 +282,9 @@ export function LanguageList() {
   
   // 添加处理自动滚动的效果
   useEffect(() => {
-    // 仅在初始自动展开的组存在时执行滚动
+    // 仅在初始加载且自动展开的组存在时执行滚动
+    if (!isInitialLoad.current) return;
+    
     const groupToScrollTo = autoExpandedGroupRef.current;
     if (!groupToScrollTo || !scrollContainerRef.current) return;
     
@@ -324,10 +328,12 @@ export function LanguageList() {
       
       // 执行后清除自动展开的引用（避免用户后续手动展开时触发滚动）
       autoExpandedGroupRef.current = null;
+      // 标记初始加载已完成
+      isInitialLoad.current = false;
     }, 500); // 增加延迟时间到500ms，确保accordion完全展开
     
     return () => clearTimeout(scrollTimeout);
-  }, [expandedGroups]); // 在展开组变化时触发
+  }, [expandedGroups]); // 保留expandedGroups依赖，但通过isInitialLoad控制
 
   // 处理脚本切换的函数
   const handleScriptToggle = (script: string) => {
