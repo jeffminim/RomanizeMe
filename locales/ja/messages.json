@@ -8,7 +8,7 @@
     "description": "拡張機能の説明"
   },
   "btnRomanize": {
-    "message": "ローマ字変換",
+    "message": "ローマ字化",
     "description": "ページのテキストをローマ字に変換するボタンのラベル"
   },
   "btnRestore": {
@@ -40,7 +40,7 @@
     "description": "変換が完了したときの通知説明"
   },
   "toastCompleteWarn": {
-    "message": "ローマ字変換結果は参考用です。",
+    "message": "ローマ字化の結果は参考用です。",
     "description": "変換完了時の警告メッセージ"
   },
   "toastUnfoundTitle": {

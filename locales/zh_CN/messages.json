@@ -8,8 +8,8 @@
     "description": "扩展描述"
   },
   "btnRomanize": {
-    "message": "罗马音转换",
-    "description": "将页面文本转换为罗马音的按钮标签"
+    "message": "罗马化注音",
+    "description": "将页面文本转换为罗马化发音的按钮标签"
   },
   "btnRestore": {
     "message": "还原页面",
@@ -40,7 +40,7 @@
     "description": "转换完成时的通知描述"
   },
   "toastCompleteWarn": {
-    "message": "罗马音转换结果仅供参考。",
+    "message": "罗马化注音转写结果仅供参考。",
     "description": "转换完成时的警告提示"
   },
   "toastUnfoundTitle": {

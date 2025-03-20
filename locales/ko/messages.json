@@ -40,7 +40,7 @@
     "description": "변환이 완료되었을 때의 알림 설명"
   },
   "toastCompleteWarn": {
-    "message": "로마자 변환 결과는 참고용입니다.",
+    "message": "로마자화 결과는 참고용입니다.",
     "description": "변환 완료 시 경고 메시지"
   },
   "toastUnfoundTitle": {
