@@ -225,6 +225,23 @@ export const scriptPanelScripts: Script[] = [
       [0x06D0, 0x06D0]    // 库尔德语字母 "ۋ"
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'greek',
+    i18n: {
+      zh_cn: '希腊字母',
+      en: 'Greek Alphabet',
+      ja: 'ギリシャ文字',
+      ko: '그리스 문자',
+      fr: 'Alphabet grec',
+      ru: 'Греческий алфавит'
+    },
+    isoCode: 'el',
+    unicodeRanges: [
+      [0x0370, 0x03FF], // 基本希腊字母
+      [0x1F00, 0x1FFF]  // 扩展希腊字母
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -426,6 +443,19 @@ export const scriptPanelLanguages: Language[] = [
     writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
     romanizationComponent: 'UrdArabic'
   },
+  {
+    code: 'ell_greek',
+    i18n: {
+      zh_cn: '希腊语',
+      en: 'Greek',
+      ja: 'ギリシャ語',
+      ko: '그리스어',
+      fr: 'Grec',
+      ru: 'Греческий'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'greek'),
+    romanizationComponent: 'EllGreek'
+  },
   // {
   //   code: 'kur_arabic',
   //   i18n: {
@@ -533,6 +563,37 @@ export const scriptPanelGroups: Group[] = [
       fr: 'Écriture arabe',
       ru: 'Арабское письмо'
     }
+  },
+  {
+    name: 'mediterranean',
+    order: 6,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'ell_greek' // 希腊语
+      // 未来可以添加其他地中海地区语言
+    ),
+    i18n: {
+      zh_cn: '地中海地区',
+      en: 'Mediterranean',
+      ja: '地中海地域',
+      ko: '지중해 지역',
+      fr: 'Méditerranée',
+      ru: 'Средиземноморье'
+    }
+  },
+  {
+    name: 'caucasus',
+    order: 7,
+    enabled: true,
+    languages: [], // 目前没有高加索语言，未来可以添加
+    i18n: {
+      zh_cn: '高加索地区',
+      en: 'Caucasus',
+      ja: 'コーカサス地域',
+      ko: '코카서스 지역',
+      fr: 'Caucase',
+      ru: 'Кавказ'
+    }
   }
 ]
 
@@ -588,10 +649,11 @@ export const languageCodeMapping: Record<string, string> = {
   
   // 乌尔都语
   urd: 'urd_arabic',
-  ur: 'urd_arabic'
+  ur: 'urd_arabic',
   
-  // 库尔德语
-  // kur: 'kur_arabic'
+  // 希腊语
+  el: 'ell_greek',
+  gr: 'ell_greek'
 };
 
 /////////////////////////////////////

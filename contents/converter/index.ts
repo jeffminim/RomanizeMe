@@ -17,3 +17,4 @@ export { default as AraArabic } from "./ar-arabic";
 export { default as PerArabic } from "./fa-arabic";
 export { default as UrdArabic } from "./ur-arabic";
 // export { default as KurArabic } from "./ku-arabic";
+export { default as EllGreek } from "./el-greek";
