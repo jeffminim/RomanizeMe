@@ -294,6 +294,22 @@ export const scriptPanelScripts: Script[] = [
       [0x10A0, 0x10FF] // 格鲁吉亚字母范围
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'armenian',
+    i18n: {
+      zh_cn: '亚美尼亚文',
+      en: 'Armenian Script',
+      ja: 'アルメニア文字',
+      ko: '아르메니아 문자',
+      fr: 'Alphabet arménien',
+      ru: 'Армянский алфавит'
+    },
+    isoCode: 'hy',
+    unicodeRanges: [
+      [0x0530, 0x058F] // 亚美尼亚字母范围
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -546,6 +562,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'georgian'),
     romanizationComponent: 'GeoGeorgian'
+  },
+  {
+    code: 'arm_armenian',
+    i18n: {
+      zh_cn: '亚美尼亚语',
+      en: 'Armenian',
+      ja: 'アルメニア語',
+      ko: '아르메니아어',
+      fr: 'Arménien',
+      ru: 'Армянский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'armenian'),
+    romanizationComponent: 'ArmArmenian'
   }
 ]
 
@@ -665,7 +694,8 @@ export const scriptPanelGroups: Group[] = [
     order: 7,
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
-      s.code === 'geo_georgian'
+      s.code === 'geo_georgian' ||
+      s.code === 'arm_armenian'  // 新增亚美尼亚语
     ),
     i18n: {
       zh_cn: '高加索地区',
@@ -750,4 +780,8 @@ export const languageCodeMapping: Record<string, string> = {
   ka: 'geo_georgian',
   ge: 'geo_georgian',
   ka_ge: 'geo_georgian',
+  // 亚美尼亚语
+  hy: 'arm_armenian',
+  am: 'arm_armenian',
+  hy_am: 'arm_armenian'
 };
