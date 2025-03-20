@@ -18,3 +18,4 @@ export { default as PerArabic } from "./fa-arabic";
 export { default as UrdArabic } from "./ur-arabic";
 // export { default as KurArabic } from "./ku-arabic";
 export { default as EllGreek } from "./el-greek";
+export { default as IsrHebrew } from "./isr-hebrew";

@@ -242,6 +242,23 @@ export const scriptPanelScripts: Script[] = [
       [0x1F00, 0x1FFF]  // 扩展希腊字母
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'hebrew',
+    i18n: {
+      zh_cn: '希伯来文',
+      en: 'Hebrew Script',
+      ja: 'ヘブライ文字',
+      ko: '히브리 문자',
+      fr: 'Écriture hébraïque',
+      ru: 'Иврит'
+    },
+    isoCode: 'he',
+    unicodeRanges: [
+      [0x0590, 0x05FF], // 基本希伯来字母
+      [0xFB1D, 0xFB4F]  // 希伯来字母表现形式
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -456,19 +473,19 @@ export const scriptPanelLanguages: Language[] = [
     writtenScript: scriptPanelScripts.filter(s => s.code === 'greek'),
     romanizationComponent: 'EllGreek'
   },
-  // {
-  //   code: 'kur_arabic',
-  //   i18n: {
-  //     zh_cn: '库尔德语',
-  //     en: 'Kurdish',
-  //     ja: 'クルド語',
-  //     ko: '쿠르드어',
-  //     fr: 'Kurde',
-  //     ru: 'Курдский'
-  //   },
-  //   writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
-  //   romanizationComponent: 'KurArabic'
-  // }
+  {
+    code: 'isr_hebrew',
+    i18n: {
+      zh_cn: '以色列语',
+      en: 'Hebrew',
+      ja: 'ヘブライ語',
+      ko: '히브리어',
+      fr: 'Hébreu',
+      ru: 'Иврит'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'hebrew'),
+    romanizationComponent: 'IsrHebrew'
+  }
 ]
 
 //////
@@ -569,8 +586,8 @@ export const scriptPanelGroups: Group[] = [
     order: 6,
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
-      s.code === 'ell_greek' // 希腊语
-      // 未来可以添加其他地中海地区语言
+      s.code === 'ell_greek' || // 希腊语
+      s.code === 'isr_hebrew'   // 新增的以色列语
     ),
     i18n: {
       zh_cn: '地中海地区',
@@ -653,7 +670,12 @@ export const languageCodeMapping: Record<string, string> = {
   
   // 希腊语
   el: 'ell_greek',
-  gr: 'ell_greek'
+  gr: 'ell_greek',
+  
+  // 希伯来语和以色列
+  he: 'isr_hebrew',
+  il: 'isr_hebrew',
+  'he-IL': 'isr_hebrew'
 };
 
 /////////////////////////////////////
