@@ -1,7 +1,7 @@
 {
   "name": "romanize-me",
-  "displayName": "RomanizeMe",
-  "version": "2.2.0",
+  "displayName": "__MSG_extensionName__",
+  "version": "2.3.0",
   "description": "__MSG_extensionDescription__",
   "author": "Jeff H @ Windminim Studio <windminim@outlook.com>",
   "scripts": {
@@ -24,13 +24,13 @@
     "clsx": "2.1.1",
     "embla-carousel-react": "^8.5.2",
     "lucide-react": "0.474.0",
-    "next": "^15.1.7",
-    "next-themes": "^0.4.4",
+    "next": "^15.2.2",
+    "next-themes": "^0.4.6",
     "pinyin-pro": "^3.26.0",
     "plasmo": "0.90.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sonner": "^1.7.4",
+    "sonner": "^2.0.1",
     "tailwind-merge": "3.0.1",
     "tailwindcss-animate": "1.0.7"
   },
@@ -69,9 +69,9 @@
     "host_permissions": [
       "https://*/*"
     ],
-    "browser_specific_settings":{
-      "gecko":{
-        "id":"eb54163f4d70456c8e98cbea1f22cecd@windminim.com"
+    "browser_specific_settings": {
+      "gecko": {
+        "id": "eb54163f4d70456c8e98cbea1f22cecd@windminim.com"
       }
     }
   },

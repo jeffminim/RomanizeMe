@@ -5,7 +5,7 @@
   <a href="Readme/README.zh.md">中文</a> | <a href="./README.md">English</a> | <a href="Readme/README.ja.md">日本語</a> | <a href="Readme/README.ko.md">한국어</a> | <a href="Readme/README.fr.md">Français</a> | <a href="Readme/README.ru.md">Русский</a>
 </p>
 
-<h3 align="center">RomanizeMe - Browser Extension for Romanizing Non-Latin Scripts</h3>
+<h3 align="center">RomanizeMe - Browser Extension for Romanizing Non-Latin Scripts on Web Pages</h3>
 
 <div align="center">
 
@@ -15,13 +15,13 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
+[![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.3.0)
 
 </div>
 
 ---
 
-<p align="center"> A browser extension designed for language enthusiasts, providing romanization for non-Latin scripts.
+<p align="center"> A browser extension designed for language enthusiasts, providing romanization for non-Latin scripts on web pages.
     <br> 
 </p>
 
@@ -109,6 +109,12 @@ This is a browser extension designed for language learners with the following ma
   - Optimized romanization annotations using <ruby> tags
   - Language options panel now automatically expands relevant groups based on page language
 
+- 2.3.0 (2025-3-21)
+  - Added support for Arabic scripts (Arabic, Persian, Urdu)
+  - Added support for Mediterranean languages (Greek, Hebrew, Berber)
+  - Added support for Caucasian languages (Georgian, Armenian)
+  - Fixed inaccurate display of some language annotations
+
 ## 📅 Development Roadmap <a name = "development-roadmap"></a>
 
 ### 🌍 Supported Scripts/Languages <a name = "supported-languages"></a>
@@ -128,9 +134,11 @@ This is a browser extension designed for language learners with the following ma
   - [x] Mongolian
   - [x] Serbian
   - [ ] Other languages...
-- [ ] Arabic
-  - [ ] Arabic
-  - [ ] Other languages...
+- [x] Arabic Scripts
+  - [x] Arabic
+  - [x] Persian
+  - [x] Urdu
+  - [ ] More languages...
 - [x] Southeast Asian Languages
   - [x] Thai
   - [x] Vietnamese
@@ -138,9 +146,18 @@ This is a browser extension designed for language learners with the following ma
   - [x] Burmese
   - [x] Lao
   - [ ] More languages...
+- [x] Mediterranean Languages
+  - [x] Greek
+  - [x] Hebrew
+  - [x] Berber
+  - [ ] More languages...
+- [x] Caucasian Languages
+  - [x] Georgian
+  - [x] Armenian
 - [ ] Other Chinese Languages
   - [ ] Tibetan
   - [ ] Mongolian (Inner Mongolia)
+  - [ ] Arabic (Uyghur)
   - [ ] More languages...
 - [ ] Other scripts/languages... 
 

@@ -195,6 +195,121 @@ export const scriptPanelScripts: Script[] = [
       [0x0E80, 0x0EFF] // 老挝文范围
     ],
     segmentation: TextSegmentation.LAO
+  },
+  {
+    code: 'arabic',
+    i18n: {
+      zh_cn: '阿拉伯文',
+      en: 'Arabic Script',
+      ja: 'アラビア文字',
+      ko: '아랍 문자',
+      fr: 'Écriture arabe',
+      ru: 'Арабское письмо'
+    },
+    isoCode: 'ar',
+    unicodeRanges: [
+      [0x0600, 0x06FF],    // 基本阿拉伯文
+      [0x0750, 0x077F],   // 阿拉伯文扩展A
+      [0x08A0, 0x08FF],   // 阿拉伯文扩展B
+      [0xFB50, 0xFDFF],   // 阿拉伯文表现形式A
+      [0xFE70, 0xFEFF],   // 阿拉伯文表现形式B
+      [0x0670, 0x067F],   // 阿拉伯文字母扩展（包含波斯语、乌尔都语特有字母）
+      [0x0698, 0x0698],   // 波斯语字母 "ژ"
+      [0x06A9, 0x06A9],   // 波斯语字母 "ک"
+      [0x06AF, 0x06AF],   // 波斯语字母 "گ"
+      [0x06CC, 0x06CC],   // 波斯语字母 "ی"
+      [0x06D2, 0x06D2],   // 乌尔都语字母 "ے"
+      [0x06BE, 0x06BE],   // 乌尔都语字母 "ھ"
+      [0x06C1, 0x06C1],   // 乌尔都语字母 "ہ"
+      [0x06C3, 0x06C3],   // 乌尔都语字母 "ۃ"
+      [0x06D0, 0x06D0]    // 库尔德语字母 "ۋ"
+    ],
+    segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'greek',
+    i18n: {
+      zh_cn: '希腊字母',
+      en: 'Greek Alphabet',
+      ja: 'ギリシャ文字',
+      ko: '그리스 문자',
+      fr: 'Alphabet grec',
+      ru: 'Греческий алфавит'
+    },
+    isoCode: 'el',
+    unicodeRanges: [
+      [0x0370, 0x03FF], // 基本希腊字母
+      [0x1F00, 0x1FFF]  // 扩展希腊字母
+    ],
+    segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'hebrew',
+    i18n: {
+      zh_cn: '希伯来文',
+      en: 'Hebrew Script',
+      ja: 'ヘブライ文字',
+      ko: '히브리 문자',
+      fr: 'Écriture hébraïque',
+      ru: 'Иврит'
+    },
+    isoCode: 'he',
+    unicodeRanges: [
+      [0x0590, 0x05FF], // 基本希伯来字母
+      [0xFB1D, 0xFB4F]  // 希伯来字母表现形式
+    ],
+    segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'tifinagh',
+    i18n: {
+      zh_cn: '柏柏尔语',
+      en: 'Berber',
+      ja: 'ベルベル語',
+      ko: '베르베르어',
+      fr: 'Berbère',
+      ru: 'Берберский'
+    },
+    isoCode: 'ber',
+    unicodeRanges: [
+      [0x2D30, 0x2D7F], // 柏柏尔字母范围
+      [0x2D80, 0x2DDF], // 柏柏尔符号范围
+      [0x2DE0, 0x2DFF], // 柏柏尔字母扩展A
+      [0x2E00, 0x2E7F]  // 柏柏尔字母扩展B
+    ],
+    segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'georgian',
+    i18n: {
+      zh_cn: '格鲁吉亚文',
+      en: 'Georgian Script',
+      ja: 'グルジア文字',
+      ko: '조지아 문자',
+      fr: 'Alphabet géorgien',
+      ru: 'Грузинский алфавит'
+    },
+    isoCode: 'ka',
+    unicodeRanges: [
+      [0x10A0, 0x10FF] // 格鲁吉亚字母范围
+    ],
+    segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'armenian',
+    i18n: {
+      zh_cn: '亚美尼亚文',
+      en: 'Armenian Script',
+      ja: 'アルメニア文字',
+      ko: '아르메니아 문자',
+      fr: 'Alphabet arménien',
+      ru: 'Армянский алфавит'
+    },
+    isoCode: 'hy',
+    unicodeRanges: [
+      [0x0530, 0x058F] // 亚美尼亚字母范围
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -356,6 +471,110 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'lao'),
     romanizationComponent: 'LaoLao'
+  },
+  {
+    code: 'ara_arabic',
+    i18n: {
+      zh_cn: '阿拉伯语',
+      en: 'Arabic',
+      ja: 'アラビア語',
+      ko: '아랍어',
+      fr: 'Arabe',
+      ru: 'Арабский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'AraArabic'
+  },
+  {
+    code: 'per_arabic',
+    i18n: {
+      zh_cn: '波斯语',
+      en: 'Persian',
+      ja: 'ペルシア語',
+      ko: '페르시아어',
+      fr: 'Persan',
+      ru: 'Персидский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'PerArabic'
+  },
+  {
+    code: 'urd_arabic',
+    i18n: {
+      zh_cn: '乌尔都语',
+      en: 'Urdu',
+      ja: 'ウルドゥー語',
+      ko: '우르두어',
+      fr: 'Ourdou',
+      ru: 'Урду'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'arabic'),
+    romanizationComponent: 'UrdArabic'
+  },
+  {
+    code: 'ell_greek',
+    i18n: {
+      zh_cn: '希腊语',
+      en: 'Greek',
+      ja: 'ギリシャ語',
+      ko: '그리스어',
+      fr: 'Grec',
+      ru: 'Греческий'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'greek'),
+    romanizationComponent: 'EllGreek'
+  },
+  {
+    code: 'isr_hebrew',
+    i18n: {
+      zh_cn: '以色列语',
+      en: 'Hebrew',
+      ja: 'ヘブライ語',
+      ko: '히브리어',
+      fr: 'Hébreu',
+      ru: 'Иврит'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'hebrew'),
+    romanizationComponent: 'IsrHebrew'
+  },
+  {
+    code: 'ber_tifinagh',
+    i18n: {
+      zh_cn: '柏柏尔语',
+      en: 'Berber',
+      ja: 'ベルベル語',
+      ko: '베르베르어',
+      fr: 'Berbère',
+      ru: 'Берберский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'tifinagh'),
+    romanizationComponent: 'BerTifinagh'
+  },
+  {
+    code: 'geo_georgian',
+    i18n: {
+      zh_cn: '格鲁吉亚语',
+      en: 'Georgian',
+      ja: 'グルジア語',
+      ko: '조지아어',
+      fr: 'Géorgien',
+      ru: 'Грузинский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'georgian'),
+    romanizationComponent: 'GeoGeorgian'
+  },
+  {
+    code: 'arm_armenian',
+    i18n: {
+      zh_cn: '亚美尼亚语',
+      en: 'Armenian',
+      ja: 'アルメニア語',
+      ko: '아르메니아어',
+      fr: 'Arménien',
+      ru: 'Армянский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'armenian'),
+    romanizationComponent: 'ArmArmenian'
   }
 ]
 
@@ -432,10 +651,64 @@ export const scriptPanelGroups: Group[] = [
       fr: 'Langues d\'Asie du Sud-Est',
       ru: 'Юго-Восточная Азия'
     }
+  },
+  {
+    name: 'arabic',
+    order: 5,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'ara_arabic' ||
+      s.code === 'per_arabic' ||
+      s.code === 'urd_arabic' ||
+      s.code === 'kur_arabic'
+    ),
+    i18n: {
+      zh_cn: '阿拉伯字母',
+      en: 'Arabic Script',
+      ja: 'アラビア文字',
+      ko: '아랍 문자',
+      fr: 'Écriture arabe',
+      ru: 'Арабское письмо'
+    }
+  },
+  {
+    name: 'mediterranean',
+    order: 6,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'ell_greek' || // 希腊语
+      s.code === 'isr_hebrew' ||   // 新增的以色列语
+      s.code === 'ber_tifinagh'
+    ),
+    i18n: {
+      zh_cn: '地中海地区',
+      en: 'Mediterranean',
+      ja: '地中海地域',
+      ko: '지중해 지역',
+      fr: 'Méditerranée',
+      ru: 'Средиземноморье'
+    }
+  },
+  {
+    name: 'caucasus',
+    order: 7,
+    enabled: true,
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'geo_georgian' ||
+      s.code === 'arm_armenian'  // 新增亚美尼亚语
+    ),
+    i18n: {
+      zh_cn: '高加索地区',
+      en: 'Caucasus',
+      ja: 'コーカサス地域',
+      ko: '코카서스 지역',
+      fr: 'Caucase',
+      ru: 'Кавказ'
+    }
   }
 ]
 
-// 添加语言代码映射表
+// 修改语言代码映射表，添加更灵活的正则匹配
 export const languageCodeMapping: Record<string, string> = {
   // 中文
   zh: 'chn_mandarin',
@@ -476,8 +749,39 @@ export const languageCodeMapping: Record<string, string> = {
   my: 'mya_myanmar',
   
   // 老挝语
-  lo: 'lao_lao'
+  lo: 'lao_lao',
+  
+  // 阿拉伯语
+  ar: 'ara_arabic',
+  
+  // 波斯语
+  per: 'per_arabic',
+  fa: 'per_arabic',
+  
+  // 乌尔都语
+  urd: 'urd_arabic',
+  ur: 'urd_arabic',
+  
+  // 希腊语
+  el: 'ell_greek',
+  gr: 'ell_greek',
+  
+  // 希伯来语和以色列
+  he: 'isr_hebrew',
+  il: 'isr_hebrew',
+  he_il: 'isr_hebrew',
+  
+  // 柏柏尔语
+  ber: 'ber_tifinagh',
+  tmh: 'ber_tifinagh',
+  zgh: 'ber_tifinagh',
+  
+  // 格鲁吉亚语
+  ka: 'geo_georgian',
+  ge: 'geo_georgian',
+  ka_ge: 'geo_georgian',
+  // 亚美尼亚语
+  hy: 'arm_armenian',
+  am: 'arm_armenian',
+  hy_am: 'arm_armenian'
 };
-
-/////////////////////////////////////
-

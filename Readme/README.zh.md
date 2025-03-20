@@ -5,7 +5,7 @@
  <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a> | <a href="./README.ru.md">Русский</a>
 </p>
 
-<h3 align="center">RomanizeMe - 一个为非拉丁文字注音的浏览器扩展程序</h3>
+<h3 align="center">RomanizeMe - 一个将非拉丁文字网页音译为罗马化注音的浏览器扩展程序</h3>
 
 <div align="center">
 
@@ -15,13 +15,13 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
+[![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.3.0)
 
 </div>
 
 ---
 
-<p align="center"> 专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。
+<p align="center"> 专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马化发音。
     <br> 
 </p>
 
@@ -57,7 +57,7 @@
 
 - [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
-- [Firefox](https://addons.mozilla.org/zh-CN/firefox/addon/romanizeme/) （终于学会兼容Firefox了）
+- [Firefox](https://addons.mozilla.org/zh-CN/firefox/addon/romanizeme/) 
 
 ### 🖱️ 使用方法
 
@@ -114,6 +114,12 @@
   - 采用<ruby>标签，优化注音的标签及样式
   - 现在语言选项面板会根据当前页面的语言种类，自动展开相应组
 
+- 2.3.0 (2025-3-21)
+  - 新增阿拉伯文字支持（阿拉伯语、波斯语、乌尔都语）
+  - 新增地中海地区语言支持（希腊语、希伯来语、柏柏尔语）
+  - 新增高加索地区语言支持（格鲁吉亚语、亚美尼亚语）
+  - 修复了部分语言注音显示不准确的问题
+
 ## 📅 开发计划 <a name = "开发计划"></a>
 
 ### 🌍 支持文字/语言 <a name = "支持语言"></a>
@@ -133,8 +139,10 @@
   - [x] 蒙古语
   - [x] 塞尔维亚语
   - [ ] 更多语言...
-- [ ] 阿拉伯文
-  - [ ] 阿拉伯语
+- [x] 阿拉伯文字
+  - [x] 阿拉伯语
+  - [x] 波斯语
+  - [x] 乌尔都语
   - [ ] 更多语言...
 - [x] 东南亚语言
   - [x] 泰语
@@ -143,9 +151,18 @@
   - [x] 缅甸语
   - [x] 老挝语
   - [ ] 更多语言...
+- [x] 地中海地区
+  - [x] 希腊语
+  - [x] 希伯来语
+  - [x] 柏柏尔语
+  - [ ] 更多语言...
+- [x] 高加索地区
+  - [x] 格鲁吉亚语
+  - [x] 亚美尼亚语
 - [ ] 中国其他语言
   - [ ] 藏文（藏语）
   - [ ] 蒙古文（内蒙古）
+  - [ ] 阿拉伯文（维吾尔族语）
   - [ ] 更多语言...
 - [ ] 更多文字/语言...
 

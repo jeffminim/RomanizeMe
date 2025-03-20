@@ -1,15 +1,15 @@
 {
   "extensionName": {
-    "message": "RomanizeMe",
+    "message": "RomanizeMe - 全球语言罗马化音译助手",
     "description": "扩展名称"
   },
   "extensionDescription": {
-    "message": "专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。",
+    "message": "专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马化发音。",
     "description": "扩展描述"
   },
   "btnRomanize": {
-    "message": "罗马音转换",
-    "description": "将页面文本转换为罗马音的按钮标签"
+    "message": "罗马化注音",
+    "description": "将页面文本转换为罗马化发音的按钮标签"
   },
   "btnRestore": {
     "message": "还原页面",
@@ -40,7 +40,7 @@
     "description": "转换完成时的通知描述"
   },
   "toastCompleteWarn": {
-    "message": "罗马音转换结果仅供参考。",
+    "message": "罗马化注音转写结果仅供参考。",
     "description": "转换完成时的警告提示"
   },
   "toastUnfoundTitle": {
