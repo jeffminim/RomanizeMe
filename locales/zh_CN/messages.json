@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "RomanizeMe",
+    "message": "RomanizeMe - 全球语言罗马化音译助手",
     "description": "扩展名称"
   },
   "extensionDescription": {
-    "message": "专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马音发音。",
+    "message": "专为语言爱好者设计的浏览器扩展，为非拉丁字母标注其罗马化发音。",
     "description": "扩展描述"
   },
   "btnRomanize": {

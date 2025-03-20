@@ -1,6 +1,6 @@
 {
   "name": "romanize-me",
-  "displayName": "RomanizeMe",
+  "displayName": "__MSG_extensionName__",
   "version": "2.3.0",
   "description": "__MSG_extensionDescription__",
   "author": "Jeff H @ Windminim Studio <windminim@outlook.com>",
