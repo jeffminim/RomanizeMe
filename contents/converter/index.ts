@@ -20,3 +20,4 @@ export { default as UrdArabic } from "./ur-arabic";
 export { default as EllGreek } from "./el-greek";
 export { default as IsrHebrew } from "./isr-hebrew";
 export { default as BerTifinagh } from "./ber-tifinagh";
+export { default as GeoGeorgian } from "./geo-georgian";

@@ -278,6 +278,22 @@ export const scriptPanelScripts: Script[] = [
       [0x2E00, 0x2E7F]  // 柏柏尔字母扩展B
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'georgian',
+    i18n: {
+      zh_cn: '格鲁吉亚文',
+      en: 'Georgian Script',
+      ja: 'グルジア文字',
+      ko: '조지아 문자',
+      fr: 'Alphabet géorgien',
+      ru: 'Грузинский алфавит'
+    },
+    isoCode: 'ka',
+    unicodeRanges: [
+      [0x10A0, 0x10FF] // 格鲁吉亚字母范围
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -517,6 +533,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'tifinagh'),
     romanizationComponent: 'BerTifinagh'
+  },
+  {
+    code: 'geo_georgian',
+    i18n: {
+      zh_cn: '格鲁吉亚语',
+      en: 'Georgian',
+      ja: 'グルジア語',
+      ko: '조지아어',
+      fr: 'Géorgien',
+      ru: 'Грузинский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'georgian'),
+    romanizationComponent: 'GeoGeorgian'
   }
 ]
 
@@ -635,7 +664,9 @@ export const scriptPanelGroups: Group[] = [
     name: 'caucasus',
     order: 7,
     enabled: true,
-    languages: [], // 目前没有高加索语言，未来可以添加
+    languages: scriptPanelLanguages.filter(s => 
+      s.code === 'geo_georgian'
+    ),
     i18n: {
       zh_cn: '高加索地区',
       en: 'Caucasus',
@@ -647,7 +678,7 @@ export const scriptPanelGroups: Group[] = [
   }
 ]
 
-// 添加语言代码映射表
+// 修改语言代码映射表，添加更灵活的正则匹配
 export const languageCodeMapping: Record<string, string> = {
   // 中文
   zh: 'chn_mandarin',
@@ -708,13 +739,15 @@ export const languageCodeMapping: Record<string, string> = {
   // 希伯来语和以色列
   he: 'isr_hebrew',
   il: 'isr_hebrew',
-  'he-IL': 'isr_hebrew',
+  he_il: 'isr_hebrew',
   
   // 柏柏尔语
   ber: 'ber_tifinagh',
   tmh: 'ber_tifinagh',
-  zgh: 'ber_tifinagh'
+  zgh: 'ber_tifinagh',
+  
+  // 格鲁吉亚语
+  ka: 'geo_georgian',
+  ge: 'geo_georgian',
+  ka_ge: 'geo_georgian',
 };
-
-/////////////////////////////////////
-
