@@ -259,6 +259,25 @@ export const scriptPanelScripts: Script[] = [
       [0xFB1D, 0xFB4F]  // 希伯来字母表现形式
     ],
     segmentation: TextSegmentation.WORD
+  },
+  {
+    code: 'tifinagh',
+    i18n: {
+      zh_cn: '柏柏尔语',
+      en: 'Berber',
+      ja: 'ベルベル語',
+      ko: '베르베르어',
+      fr: 'Berbère',
+      ru: 'Берберский'
+    },
+    isoCode: 'ber',
+    unicodeRanges: [
+      [0x2D30, 0x2D7F], // 柏柏尔字母范围
+      [0x2D80, 0x2DDF], // 柏柏尔符号范围
+      [0x2DE0, 0x2DFF], // 柏柏尔字母扩展A
+      [0x2E00, 0x2E7F]  // 柏柏尔字母扩展B
+    ],
+    segmentation: TextSegmentation.WORD
   }
 ]
 
@@ -485,6 +504,19 @@ export const scriptPanelLanguages: Language[] = [
     },
     writtenScript: scriptPanelScripts.filter(s => s.code === 'hebrew'),
     romanizationComponent: 'IsrHebrew'
+  },
+  {
+    code: 'ber_tifinagh',
+    i18n: {
+      zh_cn: '柏柏尔语',
+      en: 'Berber',
+      ja: 'ベルベル語',
+      ko: '베르베르어',
+      fr: 'Berbère',
+      ru: 'Берберский'
+    },
+    writtenScript: scriptPanelScripts.filter(s => s.code === 'tifinagh'),
+    romanizationComponent: 'BerTifinagh'
   }
 ]
 
@@ -587,7 +619,8 @@ export const scriptPanelGroups: Group[] = [
     enabled: true,
     languages: scriptPanelLanguages.filter(s => 
       s.code === 'ell_greek' || // 希腊语
-      s.code === 'isr_hebrew'   // 新增的以色列语
+      s.code === 'isr_hebrew' ||   // 新增的以色列语
+      s.code === 'ber_tifinagh'
     ),
     i18n: {
       zh_cn: '地中海地区',
@@ -675,7 +708,12 @@ export const languageCodeMapping: Record<string, string> = {
   // 希伯来语和以色列
   he: 'isr_hebrew',
   il: 'isr_hebrew',
-  'he-IL': 'isr_hebrew'
+  'he-IL': 'isr_hebrew',
+  
+  // 柏柏尔语
+  ber: 'ber_tifinagh',
+  tmh: 'ber_tifinagh',
+  zgh: 'ber_tifinagh'
 };
 
 /////////////////////////////////////
