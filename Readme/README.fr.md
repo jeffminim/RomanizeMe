@@ -5,7 +5,7 @@
   <a href="./README.zh.md">中文</a> | <a href="../README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.ko.md">한국어</a> | <a href="./README.fr.md">Français</a> | <a href="./README.ru.md">Русский</a>
 </p>
 
-<h3 align="center">RomanizeMe - Extension de navigateur pour romaniser les écritures non latines</h3>
+<h3 align="center">RomanizeMe - Extension de navigateur pour romaniser les écritures non latines sur les pages web</h3>
 
 <div align="center">
 
@@ -15,13 +15,13 @@
 )](https://chromewebstore.google.com/detail/romanizeme/nmakcdfenoniomkbnnmpommgnaondfhk)
 [![Edge Add-ons](https://img.shields.io/badge/Edge_Store-RomanizeMe-blue)](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 [![Mozilla Add-on](https://img.shields.io/amo/v/eb54163f4d70456c8e98cbea1f22cecd%40windminim.com)](https://addons.mozilla.org/firefox/addon/romanizeme/)
-[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.2.0)
+[![Version](https://img.shields.io/badge/version-2.3.0-blue.svg)](https://github.com/jeffminim/RomanizeMe/releases/tag/v2.3.0)
 
 </div>
 
 ---
 
-<p align="center"> Une extension de navigateur pour romaniser la prononciation des écritures non latines.
+<p align="center"> Une extension de navigateur pour romaniser la prononciation des écritures non latines sur les pages web.
     <br> 
 </p>
 
@@ -57,7 +57,7 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
 
 - [Edge](https://microsoftedge.microsoft.com/addons/detail/fdeofmabkieoopbbehanpfjglmidjjai)
 
-- ~[Firefox](https://addons.mozilla.org/fr/firefox/addon/romanizeme/)
+- [Firefox](https://addons.mozilla.org/fr/firefox/addon/romanizeme/)
 
 ### 🖱️ Utilisation
 
@@ -109,6 +109,12 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - Utilisation de la balise <ruby> pour optimiser les annotations en romanisation
   - Le panneau des options linguistiques se développe automatiquement en fonction de la langue de la page
 
+- 2.3.0 (2025-3-21)
+  - Ajout du support des écritures arabes (arabe, persan, ourdou)
+  - Ajout du support des langues méditerranéennes (grec, hébreu, berbère)
+  - Ajout du support des langues caucasiennes (géorgien, arménien)
+  - Correction de l'affichage inexact de certaines annotations linguistiques
+
 ## 📅 Feuille de route de développement <a name = "feuille-de-route-de-développement"></a>
 
 ### 🌍 Écritures/langues prises en charge <a name = "écritureslangues-prises-en-charge"></a>
@@ -128,9 +134,11 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - [x] Mongol
   - [x] Serbe
   - [ ] Autres langues...
-- [ ] Arabe
-  - [ ] Arabe
-  - [ ] Autres langues...
+- [x] Écritures arabes
+  - [x] Arabe
+  - [x] Persan
+  - [x] Ourdou
+  - [ ] Plus de langues...
 - [x] Langues d'Asie du Sud-Est
   - [x] Thaï
   - [x] Vietnamien
@@ -138,9 +146,18 @@ Il s'agit d'une extension de navigateur pour les apprenants de langues avec les 
   - [x] Birman
   - [x] Lao
   - [ ] Plus de langues...
+- [x] Langues méditerranéennes
+  - [x] Grec
+  - [x] Hébreu
+  - [x] Berbère
+  - [ ] Plus de langues...
+- [x] Langues caucasiennes
+  - [x] Géorgien
+  - [x] Arménien
 - [ ] Autres langues chinoises
   - [ ] Tibétain
   - [ ] Mongol (Mongolie intérieure)
+  - [ ] Arabe (Ouïghour)
   - [ ] Plus de langues...
 - [ ] Autres écritures/langues...
 
